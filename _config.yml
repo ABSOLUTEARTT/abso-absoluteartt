@@ -3,8 +3,8 @@ description: "small games. strange ideas."
 
 # Set this to your domain; baseurl is for the folder in your domain, if you have one -- `blog`.
 # you can leave both of them blank if you are deploying on a top-level domain.
-url: "https://absoluteartt.github.io"
-baseurl: "/abso-absoluteartt"
+url: "https://abso.absoluteartt.com"
+baseurl: ""
 
 # footer
 footer:
