@@ -1,31 +1,113 @@
-# Oinam Jekyll
+﻿# abso.
 
-> A simple, clean, and minimal Jekyll Theme.
+**small games. strange ideas.**
 
-- [Demo & Documentation](https://oinam.github.io/oinam-jekyll/)
-- [Source](https://github.com/oinam/oinam-jekyll)
-- [Download](https://github.com/oinam/oinam-jekyll/archive/refs/heads/main.zip)
+abso. is the games practice of **ABSOLUTEARTT®**.
 
-## Gem
+We make small authored games, playable experiments, strange characters and tiny worlds.
 
-[Oinam Jekyll](https://rubygems.org/gems/oinam-jekyll)
+No particular genre.  
+No particular style.  
+No particular rules.
 
-```
-$ gem build oinam-jekyll.gemspec
-$ gem push oinam-jekyll-x.x.x.gem
-```
+Just ideas worth playing with.
 
-## Todo
+---
 
-- [ ] Style Tables
-- [ ] Split the CSS and Javascript on their own files, the inclusion or exclusion should be user defined. Make it an optional config setting.
-- [ ] Demo: Themes / Color Scheme Preview?
-- [ ] Split Styles into more cleaner separation -- base, grid, gallery, etc.
-- [ ] Fix Gallery
-- [ ] Remove any enforcements such as YouTube embeds. Keep the code for backward compatibility?
-- [ ] Lunr for Search as default?
-- [ ] Print Styles based off Gutenberg (or pick something that does not depend on normalize). Add this theme specific styles.
-- [ ] Reading progress on top bar.
-- [ ] Look at [Tufte CSS](https://edwardtufte.github.io/tufte-css/) for the layout, styles, and especially that Sidenotes/Footnotes.
-- [x] Spit out the Styles separate so it can just be referenced on its own from a simple HTML site.
-- [x] Toggle description in the header.
+## What we make
+
+Small games with simple mechanics and unusual ideas.
+
+Some are easy.  
+Some are weird.  
+Some probably shouldn't work.
+
+We make them anyway.
+
+---
+
+## Current games
+
+### RUN, LITTLE ONE.
+Run. Switch sides. Keep going.
+
+### SAMOSA CATCHER
+Catch the samosas. Miss one. Regret everything.
+
+### TWOSOME
+Two things. One tiny problem.
+
+### DUAL
+Two sides. One decision.
+
+### MAHABHARATA: CODE OF WAR
+A small game experiment inspired by the Mahabharata.
+
+---
+
+## The Dot
+
+Every abso. game has a Dot.
+
+The Dot is not a mascot pasted onto every project.
+
+The art style can change.  
+The genre can change.  
+The mechanics can change.
+
+The Dot remains.
+
+Sometimes the Dot is the player.  
+Sometimes the goal.  
+Sometimes the problem.  
+Sometimes the joke.
+
+Same soul. Different life.
+
+---
+
+## Philosophy
+
+**Simple enough to understand.  
+Strange enough to remember.  
+Fun enough to play again.**
+
+The scale is not the point.
+
+The idea is.
+
+---
+
+## Website
+
+**abso.**  
+[https://absoluteartt.com](https://absoluteartt.com)
+
+Games are played through the abso. games platform.
+
+---
+
+## Studio
+
+**abso.** is a games practice of **ABSOLUTEARTT ENTERTAINMENT LLP**.
+
+ABSOLUTEARTT® is an independent creative studio working across films, games, music, artwork and interactive experiences.
+
+---
+
+## Repository
+
+This repository contains the production source for the abso. website.
+
+**Status:** `v0.1_alpha`
+
+The approved visual design source files are maintained separately and are intentionally not included in this repository.
+
+---
+
+## License
+
+© 2027 ABSOLUTEARTT ENTERTAINMENT LLP.  
+All rights reserved.
+
+This repository and its contents are proprietary unless explicitly stated otherwise.
