@@ -9,6 +9,10 @@
   {% if site.styles.forms != false %} {% include css/forms.css %} {% endif %}
   
   {% include css/styles-extended.css %}
+
+  {% if page.abso_landing %}
+    {% include css/abso.css %}
+  {% endif %}
   
   {% if site.layout.theme_switch != false %} {% include css/theme-toggle.css %} {% endif %}
   

@@ -1,89 +1,91 @@
 ---
-#
-# By default, content added below the "---" mark will appear in the home page
-# between the top bar and the list of recent posts.
-# To change the home page layout, edit the _layouts/home.html file.
-# https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-#
-layout: page
+layout: default
+title: abso.
+description: small games. strange ideas.
+permalink: /
+hide_theme_chrome: true
+abso_landing: true
 ---
 
-This is the demo and documentation for Oinam Jekyll Theme. The [Styleguide]({{ site.baseurl | prepend: site.url }}/styleguide/) has the demonstation of all content features and options you can use. I wrote [an article](https://brajeshwar.com/2021/brajeshwar.com-2021/) about how and why I built this Jekyll Theme.
+<div class="abso-landing" aria-label="abso. landing page">
+  <header class="abso-entry" aria-label="abso.">
+    <img class="abso-logo" src="{{ '/assets/images/abso/abso-logo-with-dot.png' | relative_url }}" alt="abso.">
+  </header>
 
-> The [source](https://github.com/oinam/oinam-jekyll) is hosted on Github and you can [download](https://github.com/oinam/oinam-jekyll/archive/refs/heads/main.zip) a zipped version of the source code.
+  <section class="abso-stack" aria-label="Games">
+    <figure class="abso-card abso-card--full abso-card--hero">
+      <a href="https://play.absoluteartt.com/mb-cow" target="_blank" rel="noopener noreferrer">
+        <img src="{{ '/assets/images/abso/mahabharata-code-of-war.png' | relative_url }}" alt="Mahabharata Code of War">
+      </a>
+    </figure>
 
----
+    <figure class="abso-card abso-card--narrow">
+      <a href="https://play.absoluteartt.com/samosa-catcher" target="_blank" rel="noopener noreferrer">
+        <img src="{{ '/assets/images/abso/samosa-catcher.png' | relative_url }}" alt="Samosa Catcher">
+      </a>
+    </figure>
 
-## Installation
+    <figure class="abso-card abso-card--narrow">
+      <a href="https://play.absoluteartt.com/run-little-one" target="_blank" rel="noopener noreferrer">
+        <img src="{{ '/assets/images/abso/run-little-one.png' | relative_url }}" alt="Run, Little One.">
+      </a>
+    </figure>
 
-There are three ways of using Oinam Jekyll Theme;
+    <figure class="abso-card abso-card--narrow">
+      <a href="https://play.absoluteartt.com/twosome" target="_blank" rel="noopener noreferrer">
+        <img src="{{ '/assets/images/abso/twosome.png' | relative_url }}" alt="Twosome">
+      </a>
+    </figure>
 
-1. Remote Theme
-2. Template
-3. Ruby Gem
+    <figure class="abso-card abso-card--narrow">
+      <a href="https://play.absoluteartt.com/duet" target="_blank" rel="noopener noreferrer">
+        <img src="{{ '/assets/images/abso/dual-duet.png' | relative_url }}" alt="Dual">
+      </a>
+    </figure>
+  </section>
 
-### Remote Theme
+  <section class="abso-panel abso-panel--about abso-card--narrow" aria-label="About abso.">
+    <img src="{{ '/assets/images/abso/about-banner.png' | relative_url }}" alt="">
+    <div class="abso-panel__copy abso-panel__copy--about">
+      <h1>small games. strange ideas.</h1>
+      <p>We make little games.</p>
+      <p>Some are easy.<br>Some are weird.<br>Some probably shouldn't work.<br>We make them anyway.</p>
+    </div>
+  </section>
 
-Use `oinam-jekyll` as a [remote theme](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll) and you should be good to go. Add `remote_theme: oinam/oinam-jekyll` in the `_config.yml` file.
+  <section class="abso-panel abso-panel--dot" aria-label="The Dot">
+    <img src="{{ '/assets/images/abso/the-dot-banner.png' | relative_url }}" alt="">
+    <div class="abso-panel__copy abso-panel__copy--dot">
+      <h2>The Dot.</h2>
+      <p>One little character.<br>Many lives.<br>Sometimes helpful.<br>Sometimes annoying.<br>Sometimes completely unnecessary.<br><span class="abso-highlight">You'll find him.</span></p>
+    </div>
+  </section>
 
-This is the preferred option. You get updates as soon as a new feature is added or bugs are fixed and updated on Github. You also get the latest versions.
+  <section class="abso-contact" aria-label="Contact">
+    <h2>Contact</h2>
+    <p>Made something strange?</p>
+    <p><a href="mailto:abso@absoluteartt.com">abso@absoluteartt.com</a></p>
+    <p>(for games, collaborations, publishing and other suspiciously good ideas)</p>
+  </section>
 
-### Template (Modify and Use)
+  <img class="abso-walking-dots" src="{{ '/assets/images/abso/walking-dots.png' | relative_url }}" alt="">
 
-Either fork the [repository](https://github.com/oinam/oinam-jekyll) or [Use the Template](https://github.com/oinam/oinam-jekyll/generate) from the repository on Github.
-
-This option is suggested for Jekyll tinkerers and experts who are willing to update manually.
-
-### Ruby Gem
-
-The theme is also available as a [Ruby Gem](https://rubygems.org/gems/oinam-jekyll). This will be the least updated. Minor fixes and changes will <mark>NOT</mark> be reflected here quickly enough.
-
----
-## Layouts
-
-1. `home` layout where you can have content blurbs on the top and the last few recent posts.
-2. `blog` layout that lists the titles of the posts along with the years as the headings.
-3. `page` layout for pages.
-4. `post` layout for posts.
-
-### Configuration
-
-The `_config.yml` has quite a few settings that are configurable. Removing the default Footer Credit and the Footer text are configurable. Choosing either Serif or Sans-Serif font-family, etc.
-
-### Color
-
-There are three basic color themes included -- `default`, [nord](https://www.nordtheme.com), and `vintage`. Treat them as samples for you to make your own. If you are tinkering with the code, you will find it as easy as just changing few color (HEX) values in the CSS. If you want to pick one of the three, pick a choice in `_config.yml`.
-
----
-## Content
-
-The [Styleguide]({{ site.baseurl | prepend: site.url }}/styleguide/) has examples and demos to treat images, videos, etc. with various layout and placement options.
-
----
-## Development
-
-Plain simple Jekyll and nothing else. Get Jekyll running on your local system and run this;
-
-`$ bundle exec jekyll serve`
-
-Or enable `drafts`, `future`, and serve it `incremental`;
-
-`$ bundle exec jekyll serve --drafts --future --incremental`
-
----
-## Contributing
-
-You are welcome to contribute to the theme by sending in Pull Request with changes, edits, and fixes. Or, contribute by filing [Bugs and Issues](https://github.com/oinam/oinam-jekyll/issues).
-
-There is a `server` that runs a local development server for development;
-
-`$ ./server`
-
-it is just a script that runs;
-
-`$ bundle exec jekyll serve --config _config.yml,_config_dev.yml`
-
----
-## License
-
-The theme is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+  <footer class="abso-footer" aria-label="Footer">
+    <div class="abso-footer__inner">
+      <div>
+        <img class="abso-footer__logo" src="{{ '/assets/images/abso/footer-logo-with-dot.png' | relative_url }}" alt="abso.">
+        <p class="abso-footer__tagline">small games. strange ideas.</p>
+        <p class="abso-footer__note">This website was made using <a href="https://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> and <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>.<br>Theme by <a href="https://github.com/oinam/oinam-jekyll" target="_blank" rel="noopener noreferrer">Oinam Jekyll</a>. Designed by ABSOLUTEARTT&reg; / <a href="https://kavvv.absoluteartt.com/" target="_blank" rel="noopener noreferrer">KAVVV &#8961;</a>.</p>
+      </div>
+      <div class="abso-footer__meta">
+        <nav class="abso-footer__links" aria-label="Footer links">
+          <a href="{{ '/faqs' | relative_url }}">faqs</a>
+          <a href="{{ '/privacy' | relative_url }}">privacy</a>
+          <a href="{{ '/terms' | relative_url }}">terms</a>
+        </nav>
+        <p class="abso-footer__version">{{ site.version }}</p>
+        <p>&copy; 2027 ABSOLUTEARTT&reg; / abso.<br>All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>

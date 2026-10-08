@@ -28,15 +28,21 @@
 {% include head-custom.html %}
 
 </head>
-<body>
+<body{% if page.abso_landing %} class="abso-site"{% endif %}>
 
+{% unless page.hide_theme_chrome %}
 {% include header.html %}
+{% endunless %}
 
-<main>{{ content }}</main>
+<main{% if page.abso_landing %} class="abso-main"{% endif %}>{{ content }}</main>
 
+{% unless page.hide_theme_chrome %}
 {% include footer.html %}
+{% endunless %}
 
+{% unless page.hide_theme_chrome %}
 <script type="text/javascript">{% include scripts.html %}</script>
+{% endunless %}
 
 {% include footer-ext.html %}
 

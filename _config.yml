@@ -1,10 +1,10 @@
-title: Oinam Jekyll
-description: 'A simple, clean, and minimal Jekyll Theme.'
+title: abso.
+description: "small games. strange ideas."
 
 # Set this to your domain; baseurl is for the folder in your domain, if you have one -- `blog`.
 # you can leave both of them blank if you are deploying on a top-level domain.
-url: https://oinam.github.io
-baseurl: /oinam-jekyll
+url: ""
+baseurl: ""
 
 # footer
 footer:
@@ -63,6 +63,7 @@ titles_from_headings:
 exclude:
   - .jekyll-cache/
   - .sass-cache/
+  - design-files
   - Gemfile
   - Gemfile.lock
   - gemfiles/
@@ -74,3 +75,6 @@ exclude:
   - README.*
   - server
   - vendor/
+
+# Site Version
+version: "v0.1_alpha"
