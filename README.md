@@ -1,4 +1,4 @@
-﻿# abso.
+# abso.
 
 **small games. strange ideas.**
 
@@ -111,3 +111,13 @@ The approved visual design source files are maintained separately and are intent
 All rights reserved.
 
 This repository and its contents are proprietary unless explicitly stated otherwise.
+
+---
+
+## Credits
+
+This website was made using [Jekyll](https://jekyllrb.com/) and [GitHub Pages](https://pages.github.com/).
+
+Theme by [Oinam Jekyll](https://github.com/oinam/oinam-jekyll).
+
+Designed by **ABSOLUTEARTT®** / [KAVVV ⌁](https://kavvv.absoluteartt.com/).
