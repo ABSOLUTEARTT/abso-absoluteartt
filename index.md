@@ -1,6 +1,6 @@
 ---
 layout: default
-title: abso.
+title: "abso. — small games. strange ideas."
 description: small games. strange ideas.
 permalink: /
 hide_theme_chrome: true

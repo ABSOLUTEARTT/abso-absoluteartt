@@ -1,6 +1,6 @@
 # ABSO. WEBSITE — PRODUCTION RELEASE DOCUMENTATION
 
-**Release Version:** `v0.3_alpha`  
+**Release Version:** `v0.3.1.1`  
 **Release Date:** 2026-10-11  
 **Project:** ABSO. by ABSOLUTEARTT&reg;  
 **Production URL:** [https://games.absoluteartt.com/](https://games.absoluteartt.com/)  
@@ -18,7 +18,7 @@
 The ABSO. website serves as the official digital showcase and game catalogue for ABSO. titles, designed with an intentional "mobile-first, centered, ultra-clean" aesthetic inspired by Apple design restraint, tactile indie game personality, and Pixar-style character animation principles.
 
 - **Brand:** ABSO. / ABSOLUTEARTT&reg;
-- **Current Version:** `v0.3_alpha`
+- **Current Version:** `v0.3.1.1`
 - **Release Status:** Approved Production Release
 - **Production Host:** GitHub Pages with Custom Domain (`games.absoluteartt.com`)
 - **Canonical Domain:** `https://games.absoluteartt.com/` (with 301 redirects from `abso.absoluteartt.com` and `play.absoluteartt.com`)
@@ -237,12 +237,32 @@ In terminal / command prompt: Press `Ctrl + C` or terminate the running backgrou
 
 - **Branch Strategy:** `main` serves as the single source of truth and production deployment branch.
 - **Commit Convention:** Descriptive commit messages documenting release version and major modifications.
-- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`.
+- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`, `v0.3.1.1`.
 - **Deployment:** Automatically triggers GitHub Pages build upon pushing to `main`.
 
 ---
 
-## L. Detailed Changelog for Today's Work (`v0.3_alpha` — 2026-10-11)
+## L. Detailed Release Changelogs
+
+### Release v0.3.1.1 — WebP Performance Optimization & Asset Payload Reduction (2026-10-11)
+
+- **Homepage Browser Title:** Updated homepage title to `abso. — small games. strange ideas.` to match canonical brand identity.
+- **Site Version:** Bumped version to `v0.3.1.1` in `_config.yml` and footer (`abso-footer.html`).
+- **WebP Asset Optimization & Payload Reduction:**
+  - Samosa Catcher: Replaced 1.67 MB PNG (`samosa-catcher-combined.png`) with 115.3 KB WebP (`samosa-catcher.webp`) on Homepage and `/games/` showcase.
+  - About Banner: Converted 928 KB `about-banner.png` to 73.5 KB `about-banner.webp` (92.1% reduction).
+  - Navigation Menu Icons: Converted 6 oversized PNG icons (1.66 MB total) to right-sized 2× retina WebP icons (`menu-open.webp`, `menu-close.webp`, `menu-home.webp`, `menu-games.webp`, `menu-the-dot.webp`, `menu-contact-icon.webp`) totaling 43.3 KB (97.4% reduction).
+  - Game Showcase Controls: Converted `home-icon.png` (133 KB) to `home-icon.webp` (4.8 KB), `icon-left.png` (13 KB) to `icon-left.webp` (4.5 KB), and `icon-right.png` (13 KB) to `icon-right.webp` (4.5 KB) across all game showcase pages.
+- **Delivery Strategy:**
+  - Preserved eager loading (`fetchpriority="high" decoding="async"`) on the primary above-the-fold hero banner (`mahabharata-code-of-war.webp`).
+  - Added explicit `loading="lazy"` and `decoding="async"` across all below-the-fold cards, showcase screenshots, and off-screen menu assets.
+- **Measured Results:**
+  - Total homepage live asset payload reduced from 4.49 MB to 0.56 MB (87.5% reduction).
+  - Cumulative transfer duration dropped from >170s to ~18s.
+  - Zero missing assets (verified 183 image paths across all 14 rendered pages).
+  - All visual fidelity, mobile-first responsiveness, rubber-band inertia, and menu micro-animations preserved intact.
+
+### Release v0.3_alpha — Initial Production Release (2026-10-11)
 
 ### 1. Typography and Visual Consistency
 - Fixed text wrapping and line breaks across all game showcase pages.
@@ -307,17 +327,6 @@ In terminal / command prompt: Press `Ctrl + C` or terminate the running backgrou
   - `abso.absoluteartt.com/*` HTTP 301 redirects to `https://games.absoluteartt.com/$1` (preserving path and query string).
   - `play.absoluteartt.com/*` updated to HTTP 301 direct redirect to `https://games.absoluteartt.com/$1` (preserving path and query string).
 
-### 14. Asset Payload & Performance Optimization
-- Replaced 1.67 MB legacy PNG (`samosa-catcher-combined.png`) with optimized WebP (`samosa-catcher.webp`, 115 KB) on homepage and `/games/`.
-- Converted 928 KB `about-banner.png` to optimized WebP (`about-banner.webp`, 73.5 KB).
-- Right-sized and converted 6 hamburger menu PNG icons (1.66 MB total) to 2× retina WebP icons (~44 KB total bundle).
-- Replaced 133 KB `home-icon.png` with 4.8 KB `home-icon.webp`.
-- Added explicit `loading="lazy"` and `decoding="async"` to all below-the-fold cards, panels, and menu icons.
-- Preserved `fetchpriority="high"` on primary hero banner (`mahabharata-code-of-war.webp`) without lazy-loading.
-- Total homepage asset payload reduced by 88.3% (from 4.49 MB to ~526 KB).
-
----
-
 ## M. Known Limitations
 
 - **Browser Rubber-Band Variations:** Native overscroll bouncing in mobile Safari (iOS) operates at the browser compositor level and will naturally blend with the custom rubber-band script.
@@ -329,8 +338,8 @@ In terminal / command prompt: Press `Ctrl + C` or terminate the running backgrou
 ## N. Rollback Information
 
 If a rollback is ever required:
-- **Previous Known-Good Commit:** `d83c8a2` (*Fix .gitignore encoding issue to properly exclude PSDs and design files*)
-- **Previous Tag:** `v0.2.1_alpha`
+- **Previous Known-Good Commit:** `9be82ae` (*Release abso. website v0.3_alpha*)
+- **Previous Tag:** `v0.3_alpha`
 - **Revert Command:**
   ```bash
   git revert <release-commit-hash>
