@@ -536,12 +536,13 @@ body.is-desktop-view .abso-footer {
 .abso-footer__note a,
 .abso-footer__note a:visited {
   color: #bbb;
-  text-decoration: underline;
+  text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .abso-footer__note a:hover {
   color: #ffffff;
+  text-decoration: none;
 }
 
 .abso-footer__meta {

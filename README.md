@@ -1,6 +1,6 @@
 # ABSO. WEBSITE — PRODUCTION RELEASE DOCUMENTATION
 
-**Release Version:** `v3.1.1_alpha`  
+**Release Version:** `v0.3.1.1.2`  
 **Release Date:** 2026-10-11  
 **Project:** ABSO. by ABSOLUTEARTT&reg;  
 **Production URL:** [https://games.absoluteartt.com/](https://games.absoluteartt.com/)  
@@ -18,7 +18,7 @@
 The ABSO. website serves as the official digital showcase and game catalogue for ABSO. titles, designed with an intentional "mobile-first, centered, ultra-clean" aesthetic inspired by Apple design restraint, tactile indie game personality, and Pixar-style character animation principles.
 
 - **Brand:** ABSO. / ABSOLUTEARTT&reg;
-- **Current Version:** `v3.1.1_alpha`
+- **Current Version:** `v0.3.1.1.2`
 - **Release Status:** Approved Production Release
 - **Production Host:** GitHub Pages with Custom Domain (`games.absoluteartt.com`)
 - **Canonical Domain:** `https://games.absoluteartt.com/` (with 301 redirects from `abso.absoluteartt.com` and `play.absoluteartt.com`)
@@ -237,12 +237,19 @@ In terminal / command prompt: Press `Ctrl + C` or terminate the running backgrou
 
 - **Branch Strategy:** `main` serves as the single source of truth and production deployment branch.
 - **Commit Convention:** Descriptive commit messages documenting release version and major modifications.
-- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`, `v0.3.1.1`, `v3.1.1_alpha`.
+- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`, `v0.3.1.1`, `v0.3.1.1.2`.
 - **Deployment:** Automatically triggers GitHub Pages build upon pushing to `main`.
 
 ---
 
 ## L. Detailed Release Changelogs
+
+### Release v0.3.1.1.2 — Footer Note Styling & Version Alignment (2026-10-11)
+
+- **Footer Credits Links:** Removed text underlines from all footer credit note links (`Jekyll`, `GitHub Pages`, `Oinam Jekyll`, `ABSOLUTEARTT®`, `KAVVV ⌁`) in `_includes/css/abso.css`.
+- **Site Version:** Synchronized site version to `v0.3.1.1.2` in `_config.yml` and live footer across all pages.
+- **Samosa Catcher Banner:** Retained official claymation banner asset (`samosa-catcher.webp`, 98.2 KB).
+- **Twosome Banner:** Retained cropped banner (`twosome-header.webp`, 61.5 KB) with right-side line artifact removed.
 
 ### Release v3.1.1_alpha — Samosa Catcher Banner Replacement & Twosome Banner Edge Refinement (2026-10-11)
 
