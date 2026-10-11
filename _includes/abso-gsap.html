@@ -41,6 +41,21 @@
         if (typeof navigator !== 'undefined' && navigator.vibrate) {
           try { navigator.vibrate([12, 30, 20]); } catch(e){}
         }
+      },
+      heartbeat: function() {
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+          try { navigator.vibrate([8, 35, 8]); } catch(e){}
+        }
+      },
+      dualPulse: function() {
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+          try { navigator.vibrate([12, 20, 12]); } catch(e){}
+        }
+      },
+      battle: function() {
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+          try { navigator.vibrate([18, 28, 22]); } catch(e){}
+        }
       }
     };
 
@@ -96,26 +111,77 @@
 
 
     // =========================================================================
-    // 3. SAMOSA CATCHER FLOATING CLAY SAMOSAS (Particle Emitter)
+    // 3. THEMATIC GAME FLOATING CLAY PARTICLES ENGINE (All Games)
     // =========================================================================
-    var SAMOSA_SVG = '<svg viewBox="0 0 44 40" width="34" height="30" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f7bb4a"/><stop offset="50%" stop-color="#e08a1e"/><stop offset="100%" stop-color="#a64c00"/></linearGradient></defs><path d="M 22 4 C 23.5 4, 39 30, 39 33 C 39 36, 35 37, 22 37 C 9 37, 5 36, 5 33 C 5 30, 20.5 4, 22 4 Z" fill="url(#sGrad)" stroke="#7a3702" stroke-width="2" stroke-linejoin="round"/><path d="M 12 33 Q 22 30 32 33" stroke="#ffe099" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="22" cy="18" r="1.5" fill="#ffe099" opacity="0.9"/><circle cx="16" cy="24" r="1.2" fill="#7a3702" opacity="0.45"/><circle cx="27" cy="25" r="1.2" fill="#7a3702" opacity="0.45"/></svg>';
+    var GAME_TOKENS = {
+      samosa: [
+        '<svg viewBox="0 0 44 40" width="34" height="30" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_samosa" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f7bb4a"/><stop offset="50%" stop-color="#e08a1e"/><stop offset="100%" stop-color="#a64c00"/></linearGradient></defs><path d="M 22 4 C 23.5 4, 39 30, 39 33 C 39 36, 35 37, 22 37 C 9 37, 5 36, 5 33 C 5 30, 20.5 4, 22 4 Z" fill="url(#grad_samosa)" stroke="#7a3702" stroke-width="2" stroke-linejoin="round"/><path d="M 12 33 Q 22 30 32 33" stroke="#ffe099" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="22" cy="18" r="1.5" fill="#ffe099" opacity="0.9"/><circle cx="16" cy="24" r="1.2" fill="#7a3702" opacity="0.45"/><circle cx="27" cy="25" r="1.2" fill="#7a3702" opacity="0.45"/></svg>'
+      ],
 
-    function spawnSamosas(originX, originY, count) {
-      count = count || 5;
-      haptic.burst();
+      runLittleOne: [
+        // Felt Memory Crystal (Lavender Gem)
+        '<svg viewBox="0 0 36 36" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_rlo_gem1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c4b5fd"/><stop offset="50%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#5b21b6"/></linearGradient></defs><polygon points="18,2 34,13 28,34 8,34 2,13" fill="url(#grad_rlo_gem1)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/><polygon points="18,2 26,13 18,34 10,13" fill="#ffffff" opacity="0.3"/><circle cx="18" cy="13" r="2.2" fill="#ffffff" opacity="0.95"/></svg>',
+        // Felt Memory Crystal (Sky Blue Gem)
+        '<svg viewBox="0 0 36 36" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_rlo_gem2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#93c5fd"/><stop offset="50%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient></defs><polygon points="18,3 33,14 27,33 9,33 3,14" fill="url(#grad_rlo_gem2)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/><polygon points="18,3 25,14 18,33 11,14" fill="#ffffff" opacity="0.32"/><circle cx="18" cy="14" r="2" fill="#ffffff" opacity="0.9"/></svg>',
+        // Soft Wool Star Puff (Warm Gold Star)
+        '<svg viewBox="0 0 36 36" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_rlo_star" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fde047"/><stop offset="50%" stop-color="#eab308"/><stop offset="100%" stop-color="#ca8a04"/></linearGradient></defs><path d="M 18,2 L 22,12 L 34,13 L 25,22 L 28,34 L 18,27 L 8,34 L 11,22 L 2,13 L 14,12 Z" fill="url(#grad_rlo_star)" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/><circle cx="18" cy="18" r="3" fill="#ffffff" opacity="0.85"/></svg>'
+      ],
+
+      twosome: [
+        // Paired Binary Soul Orbs in Orbit (Cyan + Magenta)
+        '<svg viewBox="0 0 54 28" width="48" height="25" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_two_cyan" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#67e8f9"/><stop offset="50%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#0e7490"/></linearGradient><linearGradient id="grad_two_mag" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f472b6"/><stop offset="50%" stop-color="#db2777"/><stop offset="100%" stop-color="#9d174d"/></linearGradient></defs><path d="M 13 14 Q 27 6 41 14" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-dasharray="3,2" fill="none"/><circle cx="13" cy="14" r="10" fill="url(#grad_two_cyan)" stroke="#ffffff" stroke-width="2"/><circle cx="10" cy="11" r="3" fill="#ffffff" opacity="0.85"/><circle cx="41" cy="14" r="10" fill="url(#grad_two_mag)" stroke="#ffffff" stroke-width="2"/><circle cx="38" cy="11" r="3" fill="#ffffff" opacity="0.85"/></svg>',
+        // Cyan Single Soul Orb
+        '<svg viewBox="0 0 32 32" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_two_c2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#67e8f9"/><stop offset="50%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#0e7490"/></linearGradient></defs><circle cx="16" cy="16" r="13" fill="url(#grad_two_c2)" stroke="#ffffff" stroke-width="2.2"/><circle cx="12" cy="12" r="4" fill="#ffffff" opacity="0.88"/></svg>',
+        // Magenta Single Soul Orb
+        '<svg viewBox="0 0 32 32" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_two_m2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f472b6"/><stop offset="50%" stop-color="#db2777"/><stop offset="100%" stop-color="#9d174d"/></linearGradient></defs><circle cx="16" cy="16" r="13" fill="url(#grad_two_m2)" stroke="#ffffff" stroke-width="2.2"/><circle cx="12" cy="12" r="4" fill="#ffffff" opacity="0.88"/></svg>'
+      ],
+
+      duet: [
+        // Concentric Dual-Tone Rhythm Ring (Red + Blue)
+        '<svg viewBox="0 0 42 42" width="36" height="36" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_duet_r" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b"/><stop offset="100%" stop-color="#c92a2a"/></linearGradient><linearGradient id="grad_duet_b" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4dabf7"/><stop offset="100%" stop-color="#1864ab"/></linearGradient></defs><circle cx="21" cy="21" r="18" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="2"/><path d="M 21 6 A 15 15 0 0 1 21 36" fill="none" stroke="url(#grad_duet_r)" stroke-width="4.5" stroke-linecap="round"/><path d="M 21 36 A 15 15 0 0 1 21 6" fill="none" stroke="url(#grad_duet_b)" stroke-width="4.5" stroke-linecap="round"/><circle cx="21" cy="21" r="4.5" fill="#ffffff"/></svg>',
+        // Red Sonar Pulse Disc
+        '<svg viewBox="0 0 32 32" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="13" fill="#e62429" stroke="#ffffff" stroke-width="2.5"/><circle cx="16" cy="16" r="6" fill="#ffffff" opacity="0.75"/></svg>',
+        // Blue Sonar Pulse Disc
+        '<svg viewBox="0 0 32 32" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="13" fill="#1971c2" stroke="#ffffff" stroke-width="2.5"/><circle cx="16" cy="16" r="6" fill="#ffffff" opacity="0.75"/></svg>'
+      ],
+
+      mahabharata: [
+        // Golden Dharma Chakra (8-spoke sacred wheel)
+        '<svg viewBox="0 0 44 44" width="38" height="38" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_mb_chk" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffe066"/><stop offset="50%" stop-color="#f59f00"/><stop offset="100%" stop-color="#d9480f"/></linearGradient></defs><circle cx="22" cy="22" r="18" fill="none" stroke="url(#grad_mb_chk)" stroke-width="3"/><circle cx="22" cy="22" r="13" fill="none" stroke="#fff" stroke-width="1.2" opacity="0.8"/><line x1="22" y1="4" x2="22" y2="40" stroke="url(#grad_mb_chk)" stroke-width="2.5"/><line x1="4" y1="22" x2="40" y2="22" stroke="url(#grad_mb_chk)" stroke-width="2.5"/><line x1="9.3" y1="9.3" x2="34.7" y2="34.7" stroke="url(#grad_mb_chk)" stroke-width="2.5"/><line x1="9.3" y1="34.7" x2="34.7" y2="9.3" stroke="url(#grad_mb_chk)" stroke-width="2.5"/><circle cx="22" cy="22" r="5" fill="#fff" stroke="#d9480f" stroke-width="2"/><circle cx="22" cy="22" r="2" fill="#d9480f"/></svg>',
+        // Fiery Divine Astra Spark
+        '<svg viewBox="0 0 32 32" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_mb_fire" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff3bf"/><stop offset="40%" stop-color="#ff922b"/><stop offset="100%" stop-color="#e03131"/></linearGradient></defs><path d="M 16 2 Q 16 16 30 16 Q 16 16 16 30 Q 16 16 2 16 Q 16 16 16 2 Z" fill="url(#grad_mb_fire)" stroke="#fff" stroke-width="1.2"/><circle cx="16" cy="16" r="3" fill="#ffffff"/></svg>'
+      ],
+
+      theDot: [
+        // Crimson Red Cartoon Dot
+        '<svg viewBox="0 0 36 36" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_dot_r" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b"/><stop offset="70%" stop-color="#e62429"/><stop offset="100%" stop-color="#a61e22"/></linearGradient></defs><circle cx="18" cy="18" r="15" fill="url(#grad_dot_r)" stroke="#ffffff" stroke-width="2.5"/><circle cx="13" cy="15" r="2.2" fill="#ffffff"/><circle cx="23" cy="15" r="2.2" fill="#ffffff"/><path d="M 14 21 Q 18 25 22 21" stroke="#ffffff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>',
+        // Sunflower Gold Winking Dot
+        '<svg viewBox="0 0 36 36" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_dot_g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffe066"/><stop offset="70%" stop-color="#f59f00"/><stop offset="100%" stop-color="#d9480f"/></linearGradient></defs><circle cx="18" cy="18" r="15" fill="url(#grad_dot_g)" stroke="#ffffff" stroke-width="2.5"/><circle cx="13" cy="15" r="2.2" fill="#ffffff"/><path d="M 21 15 L 25 15" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/><path d="M 14 21 Q 18 25 22 21" stroke="#ffffff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>',
+        // Electric Cyan Happy Dot
+        '<svg viewBox="0 0 36 36" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_dot_c" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#67e8f9"/><stop offset="70%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#0e7490"/></linearGradient></defs><circle cx="18" cy="18" r="15" fill="url(#grad_dot_c)" stroke="#ffffff" stroke-width="2.5"/><circle cx="13" cy="15" r="2.2" fill="#ffffff"/><circle cx="23" cy="15" r="2.2" fill="#ffffff"/><path d="M 14 21 Q 18 25 22 21" stroke="#ffffff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>'
+      ]
+    };
+
+    function spawnGameParticles(gameType, originX, originY) {
+      var tokenList = GAME_TOKENS[gameType] || GAME_TOKENS.samosa;
+      var count = (gameType === 'mahabharata') ? 7 : (gameType === 'twosome' ? 5 : 6);
+
+      // Trigger dedicated haptic pattern
+      if (gameType === 'mahabharata') haptic.battle();
+      else if (gameType === 'twosome') haptic.dualPulse();
+      else if (gameType === 'runLittleOne') haptic.heartbeat();
+      else if (gameType === 'duet') haptic.tap();
+      else if (gameType === 'theDot') haptic.wiggle();
+      else haptic.burst();
 
       for (var i = 0; i < count; i++) {
         var p = document.createElement('div');
-        p.className = 'abso-samosa-particle';
-        p.innerHTML = SAMOSA_SVG;
-        p.style.left = (originX - 17) + 'px';
-        p.style.top = (originY - 15) + 'px';
+        p.className = 'abso-game-particle';
+        var svgContent = tokenList[i % tokenList.length];
+        p.innerHTML = svgContent;
+        p.style.left = (originX - 18) + 'px';
+        p.style.top = (originY - 16) + 'px';
         document.body.appendChild(p);
-
-        var burstX = gsap.utils.random(-90, 90);
-        var burstY = gsap.utils.random(-130, -210);
-        var spin = gsap.utils.random(-240, 240);
-        var scale = gsap.utils.random(0.85, 1.3);
 
         var tl = gsap.timeline({
           onComplete: (function(elem) {
@@ -125,36 +191,174 @@
           })(p)
         });
 
-        tl.to(p, {
-          x: burstX,
-          y: burstY,
-          rotation: spin,
-          scale: scale,
-          duration: gsap.utils.random(0.38, 0.48),
-          ease: 'power2.out'
-        })
-        .to(p, {
-          y: burstY + gsap.utils.random(130, 180),
-          x: burstX + gsap.utils.random(-20, 20),
-          rotation: spin + gsap.utils.random(-60, 60),
-          opacity: 0,
-          duration: gsap.utils.random(0.55, 0.7),
-          ease: 'power2.in'
-        });
+        if (gameType === 'runLittleOne') {
+          // Gentle floating wool/crystal drift in soft breeze
+          var bX = gsap.utils.random(-75, 75);
+          var bY = gsap.utils.random(-110, -180);
+          tl.to(p, {
+            x: bX,
+            y: bY,
+            rotation: gsap.utils.random(-90, 90),
+            scale: gsap.utils.random(0.9, 1.25),
+            duration: gsap.utils.random(0.5, 0.65),
+            ease: 'power1.out'
+          })
+          .to(p, {
+            x: bX + gsap.utils.random(-30, 30),
+            y: bY - gsap.utils.random(30, 60),
+            opacity: 0,
+            scale: 0.8,
+            duration: gsap.utils.random(0.65, 0.85),
+            ease: 'sine.out'
+          });
+        } else if (gameType === 'twosome') {
+          // Intertwined orbiting spiral burst
+          var tX = gsap.utils.random(-95, 95);
+          var tY = gsap.utils.random(-130, -200);
+          tl.to(p, {
+            x: tX,
+            y: tY,
+            rotation: gsap.utils.random(-360, 360),
+            scale: gsap.utils.random(0.9, 1.3),
+            duration: 0.48,
+            ease: 'power2.out'
+          })
+          .to(p, {
+            x: tX + gsap.utils.random(-40, 40),
+            y: tY + gsap.utils.random(80, 130),
+            rotation: '+=180',
+            opacity: 0,
+            duration: 0.65,
+            ease: 'power1.in'
+          });
+        } else if (gameType === 'duet') {
+          // High-speed acoustic pulse expansion
+          var dX = gsap.utils.random(-70, 70);
+          var dY = gsap.utils.random(-80, -150);
+          tl.to(p, {
+            x: dX,
+            y: dY,
+            scale: gsap.utils.random(1.4, 1.9),
+            duration: 0.38,
+            ease: 'power2.out'
+          })
+          .to(p, {
+            scale: 2.3,
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power1.out'
+          });
+        } else if (gameType === 'mahabharata') {
+          // Explosive spinning golden chakras & fierce fiery sparks
+          var mX = gsap.utils.random(-110, 110);
+          var mY = gsap.utils.random(-160, -250);
+          var spin = gsap.utils.random(-540, 540);
+          tl.to(p, {
+            x: mX,
+            y: mY,
+            rotation: spin,
+            scale: gsap.utils.random(1.0, 1.45),
+            duration: 0.42,
+            ease: 'power2.out'
+          })
+          .to(p, {
+            x: mX + gsap.utils.random(-25, 25),
+            y: mY + gsap.utils.random(130, 180),
+            rotation: spin + gsap.utils.random(-180, 180),
+            opacity: 0,
+            duration: 0.65,
+            ease: 'power2.in'
+          });
+        } else if (gameType === 'theDot') {
+          // Bouncy rubber ball pop with elastic bounce
+          var dotX = gsap.utils.random(-85, 85);
+          var dotY = gsap.utils.random(-140, -210);
+          tl.to(p, {
+            x: dotX,
+            y: dotY,
+            scale: gsap.utils.random(0.95, 1.35),
+            duration: 0.35,
+            ease: 'power1.out'
+          })
+          .to(p, {
+            y: dotY + 90,
+            duration: 0.55,
+            ease: 'bounce.out'
+          })
+          .to(p, {
+            opacity: 0,
+            scale: 0.6,
+            duration: 0.25,
+            ease: 'power1.in'
+          });
+        } else {
+          // Samosa gravity tumble
+          var sX = gsap.utils.random(-90, 90);
+          var sY = gsap.utils.random(-130, -210);
+          var sSpin = gsap.utils.random(-240, 240);
+          tl.to(p, {
+            x: sX,
+            y: sY,
+            rotation: sSpin,
+            scale: gsap.utils.random(0.85, 1.3),
+            duration: 0.45,
+            ease: 'power2.out'
+          })
+          .to(p, {
+            y: sY + gsap.utils.random(130, 180),
+            x: sX + gsap.utils.random(-20, 20),
+            rotation: sSpin + gsap.utils.random(-60, 60),
+            opacity: 0,
+            duration: 0.65,
+            ease: 'power2.in'
+          });
+        }
       }
     }
 
-    var samosaTriggers = document.querySelectorAll(
-      '.abso-card a[href*="samosa-catcher"], .banner-wrapper, .banner-overlay, .img-rounded[src*="samosa"]'
-    );
+    // 1. Attach particle triggers on Game Cards (Homepage & Games Page)
+    var cardMappings = [
+      { selector: '.abso-card a[href*="mb-cow"]', type: 'mahabharata' },
+      { selector: '.abso-card a[href*="samosa-catcher"]', type: 'samosa' },
+      { selector: '.abso-card a[href*="run-little-one"]', type: 'runLittleOne' },
+      { selector: '.abso-card a[href*="twosome"]', type: 'twosome' },
+      { selector: '.abso-card a[href*="duet"]', type: 'duet' },
+      { selector: '.abso-panel--dot a[href*="the-dot"], .abso-panel--dot', type: 'theDot' }
+    ];
 
-    samosaTriggers.forEach(function(elem) {
-      elem.addEventListener('click', function(e) {
-        var x = e.clientX || (window.innerWidth / 2);
-        var y = e.clientY || (window.innerHeight / 2);
-        spawnSamosas(x, y, 6);
+    cardMappings.forEach(function(item) {
+      var elements = document.querySelectorAll(item.selector);
+      elements.forEach(function(el) {
+        el.addEventListener('pointerdown', function(e) {
+          var x = e.clientX || (window.innerWidth / 2);
+          var y = e.clientY || (window.innerHeight / 2);
+          spawnGameParticles(item.type, x, y);
+        });
       });
     });
+
+    // 2. Attach particle triggers on Dedicated Game Pages
+    var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+    var pageGameType = null;
+    if (currentPath.indexOf('mb-cow') !== -1) pageGameType = 'mahabharata';
+    else if (currentPath.indexOf('samosa-catcher') !== -1) pageGameType = 'samosa';
+    else if (currentPath.indexOf('run-little-one') !== -1) pageGameType = 'runLittleOne';
+    else if (currentPath.indexOf('twosome') !== -1) pageGameType = 'twosome';
+    else if (currentPath.indexOf('duet') !== -1) pageGameType = 'duet';
+    else if (currentPath.indexOf('the-dot') !== -1) pageGameType = 'theDot';
+
+    if (pageGameType) {
+      var pageElements = document.querySelectorAll(
+        '.banner-wrapper, .banner-overlay, .info-banner-wrapper, .info-card, .img-rounded, .main-logo, .dot-section'
+      );
+      pageElements.forEach(function(el) {
+        el.addEventListener('pointerdown', function(e) {
+          var x = e.clientX || (window.innerWidth / 2);
+          var y = e.clientY || (window.innerHeight / 2);
+          spawnGameParticles(pageGameType, x, y);
+        });
+      });
+    }
 
 
     // =========================================================================
