@@ -345,6 +345,7 @@ body.is-desktop-view .abso-footer {
 
 .abso-panel--dot {
   margin: 18px auto 0;
+  overflow: visible !important;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1065,12 +1066,18 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   user-select: none;
   filter: drop-shadow(0 4px 10px rgba(245, 159, 0, 0.6)) drop-shadow(0 0 6px rgba(255, 215, 0, 0.4));
   transform-style: preserve-3d;
-  cursor: pointer;
+  cursor: grab;
   -webkit-tap-highlight-color: transparent;
   pointer-events: auto;
+  touch-action: none;
+}
+.abso-falling-coin:active,
+.abso-falling-coin.is-aiming {
+  cursor: grabbing;
+  filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.95)) drop-shadow(0 0 30px rgba(255, 100, 0, 0.8));
 }
 
-/* The Dot Coin Collector Badge & Popup Text */
+/* The Dot Coin Collector Badge & Sound Toggle */
 .abso-dot-coin-counter {
   position: absolute;
   top: 14px;
@@ -1079,20 +1086,40 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: #ffd700;
-  padding: 5px 14px;
+  padding: 5px 12px;
   border-radius: 20px;
   font-size: 13px;
   font-weight: 800;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   border: 1.5px solid rgba(255, 215, 0, 0.55);
   z-index: 10;
-  pointer-events: none;
   user-select: none;
   transform-origin: center center;
+  pointer-events: auto;
 }
+.abso-sound-toggle {
+  background: none;
+  border: none;
+  padding: 0 2px;
+  margin: 0;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  opacity: 0.9;
+  transition: transform 120ms ease, opacity 120ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.abso-sound-toggle:hover {
+  transform: scale(1.18);
+  opacity: 1;
+}
+.abso-sound-toggle:active {
+  transform: scale(0.9);
+}
+
 .abso-coin-pop-text {
   position: fixed;
   color: #ffd700;
@@ -1103,6 +1130,94 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 215, 0, 0.6);
   user-select: none;
   will-change: transform, opacity;
+}
+
+/* Fever Mode Visuals */
+.abso-panel--dot.is-fever-mode {
+  filter: drop-shadow(0 0 28px rgba(255, 215, 0, 0.85)) drop-shadow(0 0 50px rgba(255, 107, 0, 0.45));
+  transition: filter 0.4s ease;
+}
+.abso-fever-banner {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  background: linear-gradient(135deg, #111012 0%, #2a1b00 100%);
+  color: #ffd700;
+  border: 2px solid #ffd700;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.6);
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  z-index: 100000;
+  pointer-events: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+.abso-fever-spark,
+.abso-pinball-spark {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  user-select: none;
+  will-change: transform, opacity;
+}
+
+/* The Dot Unlockable Disguises Layer */
+.abso-dot-disguises {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 8;
+}
+.abso-dot-disguise-item {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.abso-dot-disguise-item:hover {
+  transform: scale(1.12);
+}
+.abso-unlock-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(40px);
+  opacity: 0;
+  background: #111012;
+  color: #ffffff;
+  border: 1.5px solid #ffd700;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  padding: 10px 22px;
+  border-radius: 28px;
+  font-size: 13px;
+  font-weight: 800;
+  z-index: 100000;
+  pointer-events: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Footsteps / Clay Dust Trail */
+.abso-clay-dust {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99980;
+  border-radius: 50%;
+  background: rgba(230, 36, 41, 0.28);
+  will-change: transform, opacity;
+  transform: translate(-50%, -50%);
 }
 
 /* 3. Footer Walking Dots Mascot Reaction */
