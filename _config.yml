@@ -77,4 +77,4 @@ exclude:
   - vendor/
 
 # Site Version
-version: "v0.1_alpha"
+version: "v0.3_alpha"

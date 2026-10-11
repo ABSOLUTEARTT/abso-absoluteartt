@@ -1,1 +1,5 @@
-{% comment %}<!-- Additional custom footer content -->{% endcomment %}
+{% if page.abso_landing %}
+  {% include abso-scroll-motion.html %}
+  {% include abso-overscroll.html %}
+  {% include abso-fluid-interactions.html %}
+{% endif %}

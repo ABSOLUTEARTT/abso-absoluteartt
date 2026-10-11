@@ -3,5 +3,322 @@
     <a href="{{ site.baseurl }}/" class="abso-logo-link">
       <img class="abso-logo" src="{{ '/assets/images/abso/abso-logo-with-dot.png' | relative_url }}" alt="abso.">
     </a>
+    
+    <button class="hamburger-btn" id="abso-menu-toggle" aria-label="Menu" aria-expanded="false" style="-webkit-tap-highlight-color: transparent; outline: none;">
+      <img src="{{ '/assets/images/abso/menu-open.png' | relative_url }}" alt="Open Menu" class="icon-open" draggable="false">
+      <img src="{{ '/assets/images/abso/menu-close.png' | relative_url }}" alt="Close Menu" class="icon-close" draggable="false">
+    </button>
   </div>
 </header>
+
+<div class="abso-nav-overlay" id="abso-nav-menu">
+  <ul class="nav-links">
+    <li class="nav-item-home"><a href="{{ site.baseurl }}/" style="-webkit-tap-highlight-color: transparent; outline: none;"><img src="{{ site.baseurl }}/assets/images/abso/menu-home.png" alt="home" draggable="false"></a></li>
+    <li class="nav-item-games"><a href="{{ site.baseurl }}/games/" style="-webkit-tap-highlight-color: transparent; outline: none;"><img src="{{ site.baseurl }}/assets/images/abso/menu-games.png" alt="games" draggable="false"></a></li>
+    <li class="nav-item-the-dot"><a href="{{ site.baseurl }}/the-dot/" style="-webkit-tap-highlight-color: transparent; outline: none;"><img src="{{ site.baseurl }}/assets/images/abso/menu-the-dot.png" alt="the dot." draggable="false"></a></li>
+    <li class="nav-item-contact"><a href="{{ site.baseurl }}/about/" style="-webkit-tap-highlight-color: transparent; outline: none;"><img src="{{ site.baseurl }}/assets/images/abso/menu-contact-icon.png" alt="contact" draggable="false"></a></li>
+  </ul>
+</div>
+
+<style>
+  .abso-logo-link {
+    display: inline-block;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: opacity 180ms ease, transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .abso-logo-link:hover {
+      opacity: 0.82;
+      transform: scale(1.02);
+    }
+  }
+  .abso-logo-link:active {
+    transform: scale(0.97);
+    opacity: 0.75;
+  }
+
+  .hamburger-btn {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), opacity 160ms ease;
+  }
+  .hamburger-btn:focus,
+  .hamburger-btn:active,
+  .hamburger-btn:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .hamburger-btn:hover {
+      transform: scale(1.04);
+      opacity: 0.85;
+    }
+  }
+  .hamburger-btn:active {
+    transform: scale(0.94);
+  }
+  .hamburger-btn img {
+    height: 38px;
+    width: auto;
+    pointer-events: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .abso-nav-overlay {
+    display: block;
+    position: absolute;
+    top: 90px;
+    right: 20px;
+    width: 240px;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 24px;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.09), 0 3px 10px rgba(0, 0, 0, 0.04);
+    border: none;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.96);
+    transition: opacity 240ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 240ms;
+    pointer-events: none;
+  }
+  @media (max-width: 520px) {
+    .abso-nav-overlay {
+      width: calc(100% - 40px);
+      left: 20px;
+      right: 20px;
+    }
+  }
+  .abso-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .abso-nav-overlay .nav-links {
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  /* Staggered entrance pop for menu items */
+  .abso-nav-overlay .nav-links li {
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateY(22px) scale(0.88);
+    transition: opacity 200ms ease, transform 200ms ease;
+  }
+  .abso-nav-overlay.active .nav-links li {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 380ms cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  }
+  .abso-nav-overlay.active .nav-links li:nth-child(1) { transition-delay: 60ms; }
+  .abso-nav-overlay.active .nav-links li:nth-child(2) { transition-delay: 120ms; }
+  .abso-nav-overlay.active .nav-links li:nth-child(3) { transition-delay: 180ms; }
+  .abso-nav-overlay.active .nav-links li:nth-child(4) { transition-delay: 240ms; }
+
+  /* Interactive anchor styling & tactile tap reaction */
+  .abso-nav-overlay .nav-links li a {
+    display: inline-block;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+    transform-origin: center center;
+    transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms ease, filter 180ms ease;
+  }
+  .abso-nav-overlay .nav-links li a:focus,
+  .abso-nav-overlay .nav-links li a:active,
+  .abso-nav-overlay .nav-links li a:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .abso-nav-overlay .nav-links li a:hover {
+      transform: scale(1.04) translateY(-2px);
+      opacity: 0.94;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.08));
+    }
+  }
+  .abso-nav-overlay .nav-links li a:active {
+    transform: scale(0.92) translateY(2px);
+    opacity: 0.82;
+    transition: transform 90ms cubic-bezier(0.16, 1, 0.3, 1), opacity 90ms ease;
+  }
+
+  /* Tactile spring pulse on click / selection */
+  @keyframes absoMenuSelectedPulse {
+    0% { transform: scale(0.92); }
+    45% { transform: scale(1.06); }
+    100% { transform: scale(0.96); opacity: 0.82; }
+  }
+  .abso-nav-overlay .nav-links li a.is-selected {
+    animation: absoMenuSelectedPulse 240ms cubic-bezier(0.2, 0.9, 0.3, 1.15) forwards !important;
+  }
+
+  /* Badge image rendering & subtle alive micro-floating */
+  .abso-nav-overlay .nav-links img {
+    height: auto;
+    max-width: 80%;
+    max-height: 80px;
+    pointer-events: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent !important;
+    transform-origin: center center;
+  }
+
+  .abso-nav-overlay.active .nav-item-home img {
+    animation: absoHomeBob 3.6s ease-in-out infinite;
+    animation-delay: 420ms;
+  }
+  .abso-nav-overlay.active .nav-item-games img {
+    animation: absoGamesFloat 3.1s ease-in-out infinite;
+    animation-delay: 480ms;
+  }
+  .abso-nav-overlay.active .nav-item-the-dot img {
+    animation: absoDotLounge 4.0s ease-in-out infinite;
+    animation-delay: 540ms;
+  }
+  .abso-nav-overlay.active .nav-item-contact img {
+    animation: absoContactBob 3.4s ease-in-out infinite;
+    animation-delay: 600ms;
+  }
+
+  @keyframes absoHomeBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  @keyframes absoGamesFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-3.5px) rotate(0.8deg); }
+  }
+  @keyframes absoDotLounge {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-2.5px) rotate(-0.8deg); }
+  }
+  @keyframes absoContactBob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-3px) rotate(0.6deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .abso-logo-link,
+    .hamburger-btn,
+    .hamburger-btn img,
+    .abso-nav-overlay,
+    .abso-nav-overlay .nav-links li,
+    .abso-nav-overlay .nav-links li a,
+    .abso-nav-overlay .nav-links li a.is-selected,
+    .abso-nav-overlay .nav-links img {
+      transition: none !important;
+      transform: none !important;
+      animation: none !important;
+      opacity: 1 !important;
+    }
+    .abso-nav-overlay .nav-links li {
+      opacity: 1 !important;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var toggle = document.getElementById('abso-menu-toggle');
+    var menu = document.getElementById('abso-nav-menu');
+    
+    if (toggle && menu) {
+      toggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.toggle('active');
+        menu.classList.toggle('active');
+        var expanded = this.getAttribute('aria-expanded') === 'true' || false;
+        this.setAttribute('aria-expanded', !expanded);
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (menu.classList.contains('active') && !menu.contains(e.target) && !toggle.contains(e.target)) {
+          toggle.classList.remove('active');
+          menu.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Close menu on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menu.classList.contains('active')) {
+          toggle.classList.remove('active');
+          menu.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.focus();
+        }
+      });
+
+      // Fluid menu item selection & graceful close
+      var menuLinks = menu.querySelectorAll('.nav-links a');
+      menuLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          var href = this.getAttribute('href');
+          if (!href || href === '#') return;
+
+          var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+          var targetUrl;
+          try {
+            targetUrl = new URL(this.href, window.location.origin);
+          } catch(err) {
+            targetUrl = { pathname: href };
+          }
+          var targetPath = targetUrl.pathname.replace(/\/$/, '') || '/';
+
+          e.preventDefault();
+          this.classList.add('is-selected');
+
+          // Allow the fluid tactile bounce to be visibly experienced before collapsing
+          setTimeout(function() {
+            toggle.classList.remove('active');
+            menu.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
+          }, 160);
+
+          if (currentPath === targetPath) {
+            var self = this;
+            setTimeout(function() {
+              self.classList.remove('is-selected');
+            }, 300);
+            return;
+          }
+
+          setTimeout(function() {
+            window.location.href = href;
+          }, 260);
+        });
+      });
+
+      // Reset selection state when restoring from bfcache
+      window.addEventListener('pageshow', function() {
+        menuLinks.forEach(function(link) {
+          link.classList.remove('is-selected');
+        });
+      });
+    }
+  });
+</script>

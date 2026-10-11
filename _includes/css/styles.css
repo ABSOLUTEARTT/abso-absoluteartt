@@ -2,6 +2,11 @@
 ::before,
 ::after {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+html, body {
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 html {

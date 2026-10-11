@@ -153,6 +153,7 @@ abso_landing: true
     }
   }
 
+
 </style>
 
 <!-- Logo -->
@@ -160,7 +161,7 @@ abso_landing: true
 
 <!-- Main Banner -->
 <div class="banner-wrapper">
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/mb-cow-base copy.png" alt="Mahabharata Code of War Banner" class="cow-center" style="width: 100%;">
+  <img src="{{ site.baseurl }}/assets/images/mb-cow/mb-cow-base copy.webp" alt="Mahabharata Code of War Banner" class="cow-center" style="width: 100%;" fetchpriority="high">
   <div class="banner-overlay">
     <img src="{{ site.baseurl }}/assets/images/mb-cow/logo.png" alt="MAHABHARATA CODE OF WAR" class="main-logo cow-center">
     <p class="banner-desc">A mythological multiplayer game of deception, strategy, and social deduction. Choose your side, uncover hidden identities, and fight for Dharma or Adharma.</p>
@@ -181,31 +182,46 @@ abso_landing: true
   </div>
 
   <!-- Screenshots Header -->
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/screenshots-icon copy.png" alt="Screenshots" class="cow-center" style="height: 64px; margin-bottom: 20px;">
+  <img src="{{ site.baseurl }}/assets/images/mb-cow/screenshots-icon copy.png" alt="Screenshots" class="abso-section-icon">
   
   <!-- Character Cards -->
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/arjuna-screen copy.png" alt="Arjuna" class="img-rounded" style="margin-bottom: 20px;">
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/shakuni-screen.png" alt="Shakuni" class="img-rounded" style="margin-bottom: 20px;">
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/nala-sscreenshot copy.png" alt="Nala &amp; Damayanti" class="img-rounded" style="margin-bottom: 20px;">
+  <img src="{{ site.baseurl }}/assets/images/mb-cow/arjuna-screen copy.webp" alt="Arjuna" class="img-rounded" loading="lazy" style="margin-bottom: 20px;">
+  <img src="{{ site.baseurl }}/assets/images/mb-cow/shakuni-screen.webp" alt="Shakuni" class="img-rounded" loading="lazy" style="margin-bottom: 20px;">
+  <img src="{{ site.baseurl }}/assets/images/mb-cow/nala-sscreenshot copy.webp" alt="Nala &amp; Damayanti" class="img-rounded" loading="lazy" style="margin-bottom: 20px;">
   
   <!-- In Game Screen -->
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/in-game-screen copy.png" alt="In Game Screenshots" class="img-rounded" style="margin-bottom: 30px;">
+  <img src="{{ site.baseurl }}/assets/images/mb-cow/in-game-screen copy.webp" alt="In Game Screenshots" class="img-rounded" loading="lazy" style="margin-bottom: 30px;">
   
   <!-- Download Header -->
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/download-icon.png" alt="Download" class="cow-center" style="height: 64px; margin-bottom: 20px;">
+  <img src="{{ site.baseurl }}/assets/images/abso/download-icon.png" alt="Download" class="abso-section-icon">
   
   <!-- Badges -->
   <div class="download-badges" style="margin-bottom: 20px;">
     <a href="#"><img src="{{ site.baseurl }}/assets/images/mb-cow/Layer 31 copy.png" alt="Google Play and App Store" style="width: 140px;"></a>
   </div>
   <!-- Coming Soon -->
-  <div class="coming-soon">coming soon</div>
+  <div class="abso-coming-soon-btn">coming soon</div>
   
   <!-- Home Button -->
-  <a href="{{ site.baseurl }}/" style="display:block; margin: 0 auto 30px auto; text-align: center;">
-    <img src="{{ site.baseurl }}/assets/images/mb-cow/home-icon copy.png" alt="Home" class="cow-center" style="height: 64px;">
-  </a>
+  <div class="home-wrapper">
+    <a href="{{ site.baseurl }}/duet/">
+      <img src="{{ site.baseurl }}/assets/images/abso/icon-left.png" alt="Previous" style="height: 40px;">
+    </a>
+    <a href="{{ site.baseurl }}/">
+      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.png" alt="Home" style="height: 64px;">
+    </a>
+    <a href="{{ site.baseurl }}/samosa-catcher/">
+      <img src="{{ site.baseurl }}/assets/images/abso/icon-right.png" alt="Next" style="height: 40px;">
+    </a>
+  </div>
 </div>
 
 <!-- Footer Section -->
 {% include abso-footer.html %}
+
+
+
+
+
+
+

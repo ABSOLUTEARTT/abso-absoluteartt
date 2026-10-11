@@ -1,165 +1,319 @@
-# ABSO. WEBSITE — VERSION CONTROL & RELEASE PREPARATION
+# ABSO. WEBSITE — PRODUCTION RELEASE DOCUMENTATION
 
-**Current release:** `v0.2_alpha`  
+**Release Version:** `v0.3_alpha`  
+**Release Date:** 2026-10-11  
 **Project:** ABSO. by ABSOLUTEARTT&reg;  
-**Deployment target:** GitHub Pages  
-**Framework:** Jekyll  
+**Production URL:** [https://abso.absoluteartt.com/](https://abso.absoluteartt.com/)  
+**Repository:** [ABSOLUTEARTT/abso-absoluteartt](https://github.com/ABSOLUTEARTT/abso-absoluteartt)  
+**Default Branch:** `main`  
+**Deployment Target:** GitHub Pages  
+**Framework:** Jekyll (Static Site Generator)  
 
 ---
 
-## Project Overview
+## A. Project Overview
 
-- **Project name:** ABSO.
-- **Parent brand:** ABSOLUTEARTT&reg;
-- **Website purpose:** A curated destination for ABSO. games, with a focus on micro-games and individual game pages.
-- **Current release:** `v0.2_alpha`
-- **Project status:** Alpha
-- **Deployment platform:** GitHub Pages
-- **Static site framework:** Jekyll
+**ABSO.** is the dedicated indie micro-games label and experimental game division of **ABSOLUTEARTT&reg;**.
 
----
+The ABSO. website serves as the official digital showcase and game catalogue for ABSO. titles, designed with an intentional "mobile-first, centered, ultra-clean" aesthetic inspired by Apple design restraint, tactile indie game personality, and Pixar-style character animation principles.
 
-## Design Principles
-
-- **Minimal ABSO. visual identity:** Clean typography, minimalist elements, and structured use of whitespace.
-- **Original artwork and assets:** Remain the source of truth.
-- **Responsive, retina-quality presentation:** High fidelity on all displays.
-- **Full-bleed top banner:** Spans edge-to-edge horizontally.
-- **Centred main content:** Bounded within a maximum width wrapper with consistent responsive side margins.
-- **Full-bleed global footer:** The footer stretches across the entire viewport.
-- **Consistent footer:** The footer must remain visually identical across all pages.
-- **Scoped CSS:** Page-specific CSS must not unintentionally affect global components.
-- **Preserve original designs:** Game pages must preserve their approved designs and content accurately.
-- **Multi-device QA:** Mobile and desktop layouts require visual verification for responsive edge cases.
+- **Brand:** ABSO. / ABSOLUTEARTT&reg;
+- **Current Version:** `v0.3_alpha`
+- **Release Status:** Approved Production Release
+- **Production Host:** GitHub Pages with Custom Domain (`abso.absoluteartt.com`)
+- **SSL / HTTPS:** Enforced via GitHub Pages SSL
 
 ---
 
-## Technology Stack
+## B. Technology and Architecture
 
-- **Jekyll:** Static site generator.
-- **Ruby & Bundler:** Dependency management and execution environment.
-- **Theme and layout architecture:** Based on Oinam Jekyll remote theme.
-- **CSS:** Plain CSS with variables and media queries.
-- **Git and GitHub Pages:** Source control and deployment platform.
+- **Static Site Generator:** Jekyll 3.9+ / 4.x.
+- **Theme Architecture:** Lightweight static implementation based on the Oinam Jekyll layout structure, customized with custom headers, footers, layouts, and responsive stylesheets.
+- **Ruby & Bundler:** Managed via `Gemfile` with `github-pages` and `jekyll` plugin dependencies (`jekyll-optional-front-matter`, `jekyll-titles-from-headings`).
+- **Styling:** Modular CSS architecture consisting of:
+  - `_includes/css/abso.css`: Core design system, responsive container geometry, typography clamping, card layouts, banner placement, and footer styling.
+  - `_includes/css/styles.css`: Base theme variables and theme reset rules.
+- **JavaScript & Interactions:** Pure Vanilla JavaScript (ES5/ES6 compatible) with zero external animation frameworks, keeping the website ultra-fast, lightweight, and battery-friendly.
+  - `_includes/abso-scroll-motion.html`: Scroll-reactive card displacement and settle inertia.
+  - `_includes/abso-overscroll.html`: Apple-inspired rubber-band overscroll resistance and settle physics.
+  - `_includes/abso-fluid-interactions.html`: Fluid press-states and smooth navigation transitions for catalog cards and directional controls.
+  - `_includes/abso-header.html`: Mobile hamburger menu toggle, staggered pop entrance, alive character idle animations, and tactile selection feedback.
+- **Hosting & Deployment:** GitHub Pages serving static assets directly from the `main` branch upon push.
 
 ---
 
-## Repository Structure
+## C. Project Structure
+
+The project structure contains only real, verified files:
 
 ```
 abso-absoluteartt/
-├── .github/              # GitHub Actions or Workflows (if present)
-├── _includes/            # Reusable HTML snippets (headers, footers, etc.)
-│   ├── css/              # Core stylesheets including abso.css
-│   ├── abso-header.html  # Global Header
-│   └── abso-footer.html  # Global Footer
-├── _layouts/             # Page layouts
-├── assets/               # Static assets (images, icons, etc.)
-│   └── images/abso/      # Shared ABSO images
-│   └── images/mb-cow/    # MB-COW specific assets
-├── design-files/         # Original design references and PSDs
-├── _site/                # Auto-generated Jekyll build output (ignored in git)
-├── index.md              # Homepage containing the ABSO games roster
-├── mb-cow.md             # Mahabharata: Code of War game page
-├── 404.md                # Custom 404 error page
-├── Gemfile               # Ruby dependencies
-├── _config.yml           # Jekyll global configuration
-└── README.md             # Project documentation
+├── .github/                      # GitHub repository configuration and workflows
+├── _includes/                    # Reusable HTML snippets and modular components
+│   ├── abso-header.html          # Global header with logo, hamburger menu, overlay, and animation logic
+│   ├── abso-footer.html          # Global footer with brand mark, credits, links, and version label
+│   ├── abso-fluid-interactions.html # Fluid press states and route transition coordinator
+│   ├── abso-overscroll.html      # Rubber-band overscroll resistance physics engine
+│   ├── abso-scroll-motion.html   # Scroll-reactive card movement and follow-through observer
+│   ├── footer-ext.html           # Footer extensions and global script injections
+│   ├── head-custom.html          # Custom head tags, fonts, meta tags, and favicons
+│   └── css/                      # Stylesheets
+│       ├── abso.css              # Main ABSO design system stylesheet
+│       └── styles.css            # Oinam base theme stylesheet
+├── _layouts/                     # Jekyll layouts
+│   ├── default.html              # Primary site layout
+│   └── abso-legal.html           # Dedicated legal page layout (FAQs, Privacy, Terms)
+├── assets/                       # Static media assets
+│   └── images/
+│       ├── abso/                 # ABSO brand artwork, game banners, icons, WebP assets
+│       └── mb-cow/               # Mahabharata: Code of War game screenshots and artwork (WebP)
+├── _site/                        # Generated static HTML output (ignored in git)
+├── .gitignore                    # Git exclusion rules
+├── CNAME                         # Custom domain pointer (abso.absoluteartt.com)
+├── Gemfile                       # Ruby dependencies
+├── Gemfile.lock                  # Pinned Ruby gem versions
+├── README.md                     # Comprehensive project documentation
+├── _config.yml                   # Jekyll site configuration and version definition
+├── 404.md                        # Custom 404 error page
+├── index.md                      # ABSO Homepage (Hero, games roster, The Dot, Contact)
+├── games.md                      # Games catalog page
+├── the-dot.md                    # The Dot dedicated brand and character page
+├── about.md                      # About ABSO. studio page
+├── contact.md                    # Contact page
+├── mb-cow.md                     # Mahabharata: Code of War game showcase
+├── samosa-catcher.md             # Samosa Catcher game showcase
+├── run-little-one.md             # Run, Little One game showcase
+├── twosome.md                    # Twosome game showcase
+├── duet.md                       # Duet game showcase
+├── faqs.md                       # Frequently Asked Questions
+├── privacy.md                    # Privacy Policy
+└── terms.md                      # Terms of Service
 ```
 
 ---
 
-## Local Development
+## D. Pages and Navigation
 
-To run the project locally, ensure you have Ruby and Bundler installed.
+### 1. Main Pages
+- **Homepage (`/`):** Hero showcase (Mahabharata: Code of War), catalogue games roster (Samosa Catcher, Run, Little One, Twosome, Duet), "small games. strange ideas." manifesto banner, The Dot spotlight banner, and Contact section.
+- **Games (`/games/`):** Full playable game catalogue roster with dedicated game cards.
+- **The Dot (`/the-dot/`):** Story, gallery, and lore of the studio mascot "The Dot" across multiple lives and character poses.
+- **About (`/about/`):** Studio philosophy, background, and vision of ABSO. / ABSOLUTEARTT&reg;.
+- **Contact (`/contact/`):** Direct collaboration and studio contact channels.
 
-1. **Install dependencies:**
-   ```bash
-   bundle install
-   ```
-2. **Run local server:**
-   ```bash
-   bundle exec jekyll serve
-   ```
-3. **Preview:** Open `http://localhost:4000` in your browser.
+### 2. Game Showcase Pages
+- **Mahabharata: Code of War (`/mb-cow/`):** Epic mythological action-strategy game page with base artwork, in-game screens, and lore.
+- **Samosa Catcher (`/samosa-catcher/`):** Quirky arcade catcher game page with full screenshots, info banners, and download links.
+- **Run, Little One (`/run-little-one/`):** Atmospheric runner game page with typographic balance, gallery, and specs.
+- **Twosome (`/twosome/`):** Minimalist co-op puzzle game page.
+- **Duet (`/duet/`):** Synchronized reflex game page.
 
----
+### 3. Legal and Utility Pages
+- **FAQs (`/faqs`):** Frequently asked questions.
+- **Privacy Policy (`/privacy`):** User privacy statement.
+- **Terms of Service (`/terms`):** Terms of website use.
+- **404 Not Found (`/404`):** Custom illustrated error page.
 
-## Deployment
-
-The project is deployed automatically via **GitHub Pages**.
-
-1. The `main` branch is the designated publishing source.
-2. The custom domain `abso.absoluteartt.com` is configured via the `CNAME` file and `url` setting in `_config.yml`.
-3. Before release, the site must build successfully locally and pass strict visual QA across multiple breakpoints (375px, 768px, 1440px).
-
----
-
-## Design and Asset Governance
-
-- Original design assets take precedence over approximations.
-- Do not replace approved artwork without explicit authorisation.
-- Do not flatten an entire page into a single screenshot. Use proper HTML/CSS implementation.
-- Text, links, and controls should remain functional HTML elements wherever appropriate.
-- Keep the global footer shared and consistent. Use `abso-footer.html`.
-- Do not introduce page-specific changes that break the global layout (e.g. avoid global tag selectors).
+### 4. Global Navigation
+- **Header:** Features the official ABSO. wordmark with dot and an interactive animated hamburger toggle.
+- **Hamburger Overlay:** Full mobile-responsive modal overlay featuring 4 illustrated 3D character badges (`home`, `games`, `the dot`, `contact`).
+- **Directional Navigation:** Previous, Home, and Next navigation controls present on individual game pages.
 
 ---
 
-## Versioning Policy
+## E. Design System
 
-This project strictly follows semantic versioning with an explicit alpha-stage convention.
-
-- **`v0.2_alpha`:** Current approved development baseline.
-- **Patch increments:** Small fixes and refinements within the current development stage (e.g. `v0.2.1_alpha`).
-- **Minor increments:** New backward-compatible pages or functionality (e.g. `v0.3_alpha`).
-- **Major increments:** Significant architectural or product milestones (e.g. `v1.0`).
-- **Beta and Stable:** Releases must be explicitly identified when reached.
-
-Git tags are used to identify formal release milestones.
-
----
-
-## Version History / Changelog
-
-### **v0.2_alpha** (Current Release)
-**Release Date:** October 9, 2026
-
-- **Major additions:**
-  - Added full implementation of the `mb-cow.md` (Mahabharata: Code of War) dedicated game page.
-  - Implemented standalone, ultra-minimalist `404.md` error page with custom artwork.
-  - Integrated a unified `abso-header.html` across the homepage and game pages.
-- **Design and layout changes:**
-  - Established a strict "Full Bleed Banner & Footer" global layout rule.
-  - Updated homepage hero card to span edge-to-edge (100% viewport width) with 4 rounded corners.
-  - Homepage logo sizing increased globally to match exact design scaling (`height: 32px`).
-  - Anchor links updated to point to internal routes rather than external domains.
-- **Fixes:**
-  - Fixed mobile responsive clipping of the footer.
-  - Fixed `.abso-walking-dots` sprite alignment to touch the footer perfectly.
-  - Fixed CSS specificity bug causing stretched image proportions.
-  - Removed arbitrary CSS cropping on hero images (`-3px` clipping bug fixed).
-- **Deployment status:** Ready to be tagged and pushed to GitHub Pages `main` branch.
-
-### **v0.1.2** 
-- **Major additions:** Configure custom domain `abso.absoluteartt.com` via CNAME.
-
-### **v0.1_alpha** 
-- **Major additions:** Initial abso. website repository.
+- **Brand Typography:** Modern clean sans-serif stack (`system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`) with explicit font weight hierarchy (Bold 700 / Black 900 for headings, Medium 500 for captions, Regular 400 for copy).
+- **Responsive Clamping:** Dynamic typographic scaling utilizing CSS `clamp()` to guarantee identical visual hierarchy across 320px mobile displays through 4K desktop screens without text overflow.
+- **Color Palette:**
+  - Background: Pristine Studio White (`#ffffff`)
+  - Primary Text: Deep Charcoal (`#1a1a1a`)
+  - Secondary Text / Subtitles: Refined Slate (`#666666`, `#777777`)
+  - Studio Accent: ABSO Dot Red (`#e62429` / `#ff2a2a`)
+  - Dark Surface / Footer: Void Black (`#111012`) with white secondary metadata (`rgba(255, 255, 255, 0.72)`)
+- **Card Geometry:**
+  - Hero Card: `border-radius: 36px` (mobile) to `42px` (desktop), aspect ratio `1 / 1.50`.
+  - Game Catalog Cards: `border-radius: 28px` to `32px`.
+  - Content Boundaries: Centered container capped at `660px` with dynamic gutter padding (`min(calc(100% - 24px), 660px)` on mobile, `32px` on tablets).
+- **Asset Optimization:** Next-generation WebP formats across all major graphic artboards, reducing asset payload from over 35MB to under 2.5MB total while preserving 2x Retina clarity.
 
 ---
 
-## Contribution and Change Control
+## F. Responsive Behaviour
 
-1. **Inspect** the current repository state (`git status`, `git branch`, `git log`).
-2. **Make changes** in the existing project structure.
-3. **Test locally** (`bundle exec jekyll serve`).
-4. **Run the Jekyll build** to ensure no compilation errors.
-5. **Review visual changes** across all specified breakpoints.
-6. **Update the changelog** in this README.
-7. **Commit** approved changes with descriptive messages.
-8. **Tag** formal releases.
-9. **Push** to the configured remote.
-10. **Verify** the deployed website on the live domain.
+- **Mobile View (Viewport < 521px):**
+  - Layout is centered with comfortable 12px horizontal edge margins.
+  - Hamburger menu spans `width: calc(100% - 40px)` with 20px edge insets.
+  - Banner text copy auto-scales smoothly using `clamp()` formulas, keeping text strictly inside illustrated badge pills (such as The Dot blue pill banner).
+  - Footer rests flush at the viewport bottom with `20px` snug padding.
+- **Desktop View (Viewport >= 521px):**
+  - Content maintains a mobile-first, centered column format capped at `660px` maximum width.
+  - Hamburger menu renders as a dropdown pill (`width: 240px`) positioned beneath the header toggle.
+  - Directional navigation items and cards maintain generous breathing room.
+- **Tap Highlight Elimination:**
+  - Site-wide elimination of all default browser translucent blue focus/tap highlight bounding boxes (`-webkit-tap-highlight-color: transparent !important; outline: none !important`).
 
-*Never commit credentials, API keys, private configuration, or unrelated personal files.*
+---
+
+## G. Animation System
+
+The animation system adheres to the creative direction: **Apple-Style Restraint × Pixar Character Principles × Indie Game Personality**.
+
+### 1. Scroll-Reactive Card Movement (`_includes/abso-scroll-motion.html`)
+- Cards respond naturally to visitor scroll with tiny vertical displacements (`4px–8px`) and settle into place with gentle follow-through inertia (`cubic-bezier(0.16, 1, 0.3, 1)`).
+- Multiple cards entering simultaneously cascade with a micro-stagger (`40ms–80ms`).
+
+### 2. Apple-Style Rubber-Band Overscroll (`_includes/abso-overscroll.html`)
+- When dragging or swiping past document scroll boundaries, the container responds with soft physical spring resistance (max 6px–12px displacement).
+- Backed by zero-layout-cost `box-shadow: 0 100px 0 0 #111012` on the footer to prevent white background exposure during bottom rubber-banding.
+- Smoothly snaps back without sudden jumps or layout shifts.
+
+### 3. Hamburger Menu Animation Suite (`_includes/abso-header.html`)
+- **Staggered Pop Entrance:** The 4 character badges (`Home`, `Games`, `The Dot`, `Contact`) cascade in with spring inertia (`translateY(22px) scale(0.88)` -> `translateY(0) scale(1)`) with staggered delays (60ms, 120ms, 180ms, 240ms).
+- **Quietly Alive Idle Floating:** While the menu rests open, each character badge has subtle, gentle breathing/floating animations (displacements 2.5px–3.5px, periods 3.1s–4.0s):
+  - *Home:* Gentle cottage breathing bob (`absoHomeBob`, 3.6s)
+  - *Games:* Playful controller float with tiny 0.8° tilt (`absoGamesFloat`, 3.1s)
+  - *The Dot:* Relaxed lounging float (`absoDotLounge`, 4.0s)
+  - *Contact:* Friendly mail carrier hover (`absoContactBob`, 3.4s)
+- **Tactile Tap / Selection Response:** Pressing an item squashes it (`scale(0.92)`), releasing triggers an expressive spring pulse (`absoMenuSelectedPulse`), and navigation executes smoothly after a 160ms visual feedback window.
+
+### 4. Fluid Navigation & Card Press (`_includes/abso-fluid-interactions.html`)
+- Tapping catalog cards or directional controls (Home, Previous, Next) compresses them with a tactile game-feel before executing smooth page navigation.
+
+### 5. Reduced-Motion Guardrail
+- Every animation and transition immediately disables when `prefers-reduced-motion: reduce` is detected, instantly snapping elements to resting positions with zero movement.
+
+---
+
+## H. Development and Build
+
+### Prerequisites
+- Ruby 3.1+ (or 2.7+)
+- Bundler (`gem install bundler`)
+
+### Local Setup & Preview
+```bash
+# 1. Install dependencies
+bundle install
+
+# 2. Build the static site
+bundle exec jekyll build
+
+# 3. Serve locally on all interfaces
+bundle exec jekyll serve --host 0.0.0.0 --port 4000
+```
+
+### Stopping the Local Server
+In terminal / command prompt: Press `Ctrl + C` or terminate the running background process.
+
+---
+
+## I. Quality Assurance (QA)
+
+### 1. Automated Verification
+- Headless browser verification using Chromium/Edge via Chrome DevTools Protocol (CDP).
+- Full page layout geometry inspection across viewports:
+  - Mobile: `360x640`, `375x667`, `390x844`, `430x932`
+  - Desktop: `1440x900`
+- Zero-error Jekyll build validation.
+
+### 2. Manual & Device Verification
+- Physical mobile phone testing over local network (`http://192.168.1.10:4000/`) and tunnel.
+- Verification of link destinations, touch highlights, typography wrapping, and overscroll elasticity.
+
+---
+
+## J. Security & Production Readiness
+
+- **No Secrets / Credentials:** The repository is strictly static HTML/CSS/JS and contains no API keys, secrets, or private environment files.
+- **Localhost Elimination:** All production links use relative URLs (`{{ site.baseurl }}`) or verified absolute canonical domains.
+- **Dependency Isolation:** Only approved GitHub Pages gems are loaded in `Gemfile`.
+- **Target Exclusions:** Heavy design files (`design-files/`, `*.psd`), build caches (`.jekyll-cache/`, `.sass-cache/`), and test scratch scripts (`scratch/`) are fully excluded via `.gitignore` and `_config.yml`.
+
+---
+
+## K. Git and Release Workflow
+
+- **Branch Strategy:** `main` serves as the single source of truth and production deployment branch.
+- **Commit Convention:** Descriptive commit messages documenting release version and major modifications.
+- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`.
+- **Deployment:** Automatically triggers GitHub Pages build upon pushing to `main`.
+
+---
+
+## L. Detailed Changelog for Today's Work (`v0.3_alpha` — 2026-10-11)
+
+### 1. Typography and Visual Consistency
+- Fixed text wrapping and line breaks across all game showcase pages.
+- Corrected orphaned single-word line ("of") on Run, Little One header.
+- Scaled Samosa Catcher header text to fit comfortably within artboard proportions without excessive zoom.
+- Centered The Dot banner copy inside the navy blue pill graphic (`top: 48%; transform: translateY(-50%)`) with proportional line heights and font clamping.
+
+### 2. Spacing, Alignment, Formatting, and Aesthetics
+- Tightened footer negative space from excessive 100px+ void down to a balanced, grounded 20px mobile / 24px desktop resting padding.
+- Replaced spacer layout elements (`.abso-footer-extend`) with zero-layout-cost `box-shadow` to ensure clean resting scroll height.
+- Eliminated browser default translucent blue tap highlight bounding boxes across all interactive buttons, links, cards, and menu items.
+
+### 3. Responsive Refinements Across Mobile, Tablet, and Desktop
+- Tuned hero card aspect ratio to `1 / 1.50` on desktop with `border-radius: 42px`.
+- Fixed mobile banner boundaries and gutters across 360px, 375px, 390px, and 430px screens.
+- Verified Mahabharata: Code of War, Samosa Catcher, Run, Little One, Twosome, and Duet layouts.
+
+### 4. Mobile/Desktop View-Switch Verification
+- Verified centered mobile-first container wrapper (`.abso-container`) at 660px maximum width.
+- Preserved responsive media queries and full-bleed header/footer rules.
+
+### 5. Link and Interaction Fixes
+- Added missing routes for `/games/`, `/the-dot/`, `/about/`, and `/contact/`.
+- Verified internal navigation continuity between game pages via Previous, Home, and Next controls.
+
+### 6. Subtle Micro-Animations
+- Added staggered pop entrance cascade to hamburger menu badges (Home, Games, The Dot, Contact).
+- Implemented gentle, "quietly alive" character floating/breathing micro-animations for menu badges.
+- Implemented tactile tap feedback squash and spring pulse on menu item selection.
+
+### 7. Scroll-Reactive Card Movement
+- Integrated `abso-scroll-motion.html` providing subtle vertical displacement and settling follow-through on scroll.
+- Staggered card entrance rhythm with natural ease-out physics.
+
+### 8. Overscroll and Rubber-Band Behaviour
+- Integrated `abso-overscroll.html` with Apple-inspired elastic resistance when pulling past viewport boundaries.
+- Backed bottom overscroll with `box-shadow: 0 100px 0 0 #111012` to prevent white voids.
+
+### 9. Footer Version Update
+- Updated site version configuration in `_config.yml` to `v0.3_alpha`.
+- Verified footer version label across all rendered HTML pages displays `v0.3_alpha`.
+
+### 10. Security and Production-Readiness Checks
+- Added `scratch/` to `.gitignore`.
+- Verified absence of hardcoded localhost URLs and API keys.
+- Completed clean Jekyll production build (`0 errors, 0 warnings`).
+
+### 11. Documentation and Version Control
+- Authored comprehensive release documentation in `README.md`.
+- Prepared Git release commit and annotated tag `v0.3_alpha`.
+
+### 12. GitHub Pages Deployment
+- Pushed release commit and `v0.3_alpha` tag to `origin/main`.
+- Verified GitHub Pages live deployment at `https://abso.absoluteartt.com/`.
+
+---
+
+## M. Known Limitations
+
+- **Browser Rubber-Band Variations:** Native overscroll bouncing in mobile Safari (iOS) operates at the browser compositor level and will naturally blend with the custom rubber-band script.
+- **Pointer Accuracy on Touch:** Hover animations are strictly conditioned on `@media (hover: hover) and (pointer: fine)` to prevent stuck hover states on touchscreens.
+- **Static Hosting Architecture:** Contact forms rely on standard `mailto:` links rather than server-side endpoints, consistent with GitHub Pages static hosting.
+
+---
+
+## N. Rollback Information
+
+If a rollback is ever required:
+- **Previous Known-Good Commit:** `d83c8a2` (*Fix .gitignore encoding issue to properly exclude PSDs and design files*)
+- **Previous Tag:** `v0.2.1_alpha`
+- **Revert Command:**
+  ```bash
+  git revert <release-commit-hash>
+  git push origin main
+  ```

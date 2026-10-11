@@ -5,7 +5,7 @@
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" id="viewport-meta" content="width=device-width, initial-scale=1">
 
 <title>
   {%- if title -%}{{ title }}
@@ -30,6 +30,10 @@
 </head>
 <body{% if page.abso_landing %} class="abso-site"{% endif %}>
 
+{% if page.abso_landing %}
+<div class="abso-container">
+{% endif %}
+
 {% unless page.hide_theme_chrome %}
 {% include header.html %}
 {% endunless %}
@@ -45,6 +49,10 @@
 {% endunless %}
 
 {% include footer-ext.html %}
+
+{% if page.abso_landing %}
+</div>
+{% endif %}
 
 </body>
 </html>

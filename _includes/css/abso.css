@@ -1,6 +1,56 @@
+:root {
+  --abso-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --abso-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --abso-micro-dur: 160ms;
+  --abso-hover-dur: 200ms;
+  --abso-reveal-dur: 280ms;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+a,
+button,
+input,
+select,
+textarea,
+[tabindex],
+[role="button"],
+.hamburger-btn,
+.abso-logo-link,
+.abso-nav-overlay a {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+  outline: none !important;
+}
+
+a:focus,
+a:active,
+button:focus,
+button:active,
+.hamburger-btn:focus,
+.hamburger-btn:active,
+.hamburger-btn:focus-visible,
+.abso-nav-overlay a:focus,
+.abso-nav-overlay a:active,
+.abso-nav-overlay a:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+html {
+  overscroll-behavior-y: auto;
+}
+
 body.abso-site {
   max-width: none;
   min-height: 100vh;
+  height: auto;
+  margin: 0;
   padding: 0;
   background: #ffffff;
   color: #1a1a1a;
@@ -9,11 +59,59 @@ body.abso-site {
   line-height: 1.5;
   word-break: normal;
   overflow-wrap: normal;
+  -webkit-tap-highlight-color: transparent !important;
+  overscroll-behavior-y: auto;
 }
 
 body.abso-site .abso-main {
   flex: none;
   width: 100%;
+}
+
+/* Global Centered Responsive Container with Mobile-First Inset Gutters */
+.abso-container {
+  width: min(calc(100% - 24px), 660px);
+  max-width: 660px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  box-sizing: border-box;
+  animation: absoPageFadeIn var(--abso-reveal-dur) var(--abso-ease-out) both;
+}
+
+@keyframes absoPageFadeIn {
+  from {
+    opacity: 0.9;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 521px) {
+  .abso-container {
+    width: min(calc(100% - 32px), 660px);
+  }
+}
+
+body.is-desktop-view .abso-container {
+  width: 660px !important;
+  max-width: 660px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.is-desktop-view .abso-card--hero {
+  border-radius: 42px !important;
+  aspect-ratio: 1 / 1.50 !important;
+}
+
+body.is-desktop-view .abso-footer {
+  border-radius: 42px 42px 0 0 !important;
+  margin-bottom: 0 !important;
+  padding: 68px 10.5% 24px 10.5% !important;
 }
 
 .abso-landing {
@@ -66,26 +164,36 @@ body.abso-site .abso-main {
   padding: 10px;
   z-index: 1000;
   outline: none;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.hamburger-btn:focus,
+.hamburger-btn:active,
+.hamburger-btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
-.hamburger-btn .bar {
+.hamburger-btn img {
+  height: 38px;
+  width: auto;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent !important;
+}
+.hamburger-btn .icon-close {
+  display: none;
+}
+.hamburger-btn.active .icon-open {
+  display: none;
+}
+.hamburger-btn.active .icon-close {
   display: block;
-  width: 22px;
-  height: 2px;
-  margin: 4px auto;
-  background-color: #1a1a1a;
-  transition: all 0.3s ease-in-out;
-  border-radius: 2px;
-}
-
-.hamburger-btn.active .bar:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
-}
-.hamburger-btn.active .bar:nth-child(2) {
-  opacity: 0;
-}
-.hamburger-btn.active .bar:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
 }
 
 .abso-nav-menu {
@@ -159,12 +267,34 @@ body.abso-site .abso-main {
   overflow: hidden;
   background: #111012;
   border-radius: 42px;
+  aspect-ratio: 1 / 1.50;
+  transition: transform var(--abso-hover-dur) var(--abso-ease-out), box-shadow var(--abso-hover-dur) ease;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .abso-card--hero:hover {
+    transform: scale(1.012);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+}
+.abso-card--hero:active {
+  transform: scale(0.988);
+}
+
+.abso-card--hero a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .abso-card--hero img {
   width: 100%;
+  height: 100%;
   max-width: 100%;
   display: block;
+  object-fit: cover;
+  object-position: center 42%;
 }
 
 .abso-card--full {
@@ -175,6 +305,17 @@ body.abso-site .abso-main {
   width: 88.7%;
   margin-right: auto;
   margin-left: auto;
+  transition: transform var(--abso-hover-dur) var(--abso-ease-out);
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .abso-card--narrow:hover {
+    transform: scale(1.015);
+  }
+}
+.abso-card--narrow:active {
+  transform: scale(0.985);
 }
 
 .abso-card--narrow + .abso-card--narrow,
@@ -185,15 +326,34 @@ body.abso-site .abso-main {
 .abso-panel {
   position: relative;
   overflow: hidden;
+  transition: transform var(--abso-hover-dur) var(--abso-ease-out);
+  will-change: transform;
 }
 
 .abso-panel--about {
   margin-top: 20px;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .abso-panel--about:hover {
+    transform: scale(1.012);
+  }
+}
+.abso-panel--about:active {
+  transform: scale(0.988);
+}
+
 .abso-panel--dot {
-  width: 99.25%;
   margin: 18px auto 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .abso-panel--dot:hover {
+    transform: scale(1.012);
+  }
+}
+.abso-panel--dot:active {
+  transform: scale(0.988);
 }
 
 .abso-panel__copy {
@@ -211,9 +371,9 @@ body.abso-site .abso-main {
 }
 
 .abso-panel__copy--about {
-  top: 46%;
+  top: 44%;
   left: 7.7%;
-  width: 36%;
+  width: 32%;
   transform: translateY(-50%);
   color: #fcfcfc;
 }
@@ -235,24 +395,24 @@ body.abso-site .abso-main {
 }
 
 .abso-panel__copy--dot {
-  top: 40.5%;
-  left: 9.5%;
-  width: 40%;
+  top: 48%;
+  left: 8.5%;
+  width: 32%;
   transform: translateY(-50%);
 }
 
 .abso-panel__copy--dot h2 {
-  margin-bottom: 8px;
-  font-size: 24px;
+  margin-bottom: 6px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: #1a1a1a;
 }
 
 .abso-panel__copy--dot p {
-  font-size: 14px;
+  font-size: 12.5px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.36;
   color: #4a4a4a;
 }
 
@@ -317,12 +477,14 @@ body.abso-site .abso-main {
 
 .abso-footer {
   position: relative;
-  margin: 0;
-  overflow: hidden;
+  margin: 0 auto 0 auto;
+  overflow: visible;
   color: #f5f5f5;
   background: #111012 url("{{ '/assets/images/abso/footer-black.png' | relative_url }}") top center / 100% auto no-repeat;
   border-radius: 42px 42px 0 0;
-  padding: 70px 10.5% 30px 10.5%;
+  padding: 68px 10.5% 24px 10.5%;
+  box-sizing: border-box;
+  box-shadow: 0 100px 0 0 #111012;
 }
 
 .abso-footer__inner {
@@ -335,6 +497,18 @@ body.abso-site .abso-main {
 .abso-footer__logo {
   max-width: 96px;
   margin-bottom: 6px;
+  transition: opacity var(--abso-hover-dur) ease, transform var(--abso-hover-dur) var(--abso-ease-out);
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .abso-footer__logo:hover {
+    opacity: 0.84;
+    transform: scale(1.02);
+  }
+}
+.abso-footer__logo:active {
+  transform: scale(0.97);
 }
 
 .abso-footer__tagline,
@@ -361,8 +535,8 @@ body.abso-site .abso-main {
 
 .abso-footer__note a,
 .abso-footer__note a:visited {
-  color: #bbbbbb;
-  text-decoration: none;
+  color: #bbb;
+  text-decoration: underline;
   transition: color 0.2s ease;
 }
 
@@ -388,11 +562,17 @@ body.abso-site .abso-main {
   margin-left: 16px;
   color: #bbbbbb;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 180ms ease, opacity 180ms ease;
 }
 
-.abso-footer__links a:hover {
-  color: #ffffff;
+@media (hover: hover) and (pointer: fine) {
+  .abso-footer__links a:hover {
+    color: #ffffff;
+    opacity: 1;
+  }
+}
+.abso-footer__links a:active {
+  opacity: 0.65;
 }
 
 .abso-footer__meta p {
@@ -403,6 +583,11 @@ body.abso-site .abso-main {
 
 .abso-footer__version {
   margin-bottom: 8px !important;
+}
+
+/* Overscroll fill is handled via box-shadow on .abso-footer with 0 extra scroll height */
+.abso-footer-extend {
+  display: none !important;
 }
 
 @media (max-width: 520px) {
@@ -422,38 +607,45 @@ body.abso-site .abso-main {
   }
 
   .abso-panel--dot {
-    margin-top: 12px;
+    margin-top: 14px;
+    transform: none;
   }
 
   .abso-panel__copy--about {
-    width: 42%;
+    top: 40%;
+    left: 6%;
+    width: 29%;
+    transform: translateY(-50%);
   }
 
   .abso-panel__copy--about h1 {
-    margin-bottom: 6px;
-    font-size: 14px;
-    line-height: 1.1;
+    margin-bottom: 3px;
+    font-size: clamp(8.5px, 2.5vw, 10.5px);
+    line-height: 1.12;
   }
 
   .abso-panel__copy--about p {
-    margin-top: 4px;
-    font-size: 10px;
-    line-height: 1.3;
+    margin-top: 2px;
+    font-size: clamp(6.2px, 1.8vw, 7.5px);
+    line-height: 1.25;
   }
 
   .abso-panel__copy--dot {
-    left: 9%;
-    width: 46%;
+    top: 48%;
+    left: 7.5%;
+    width: 32%;
+    transform: translateY(-50%);
   }
 
   .abso-panel__copy--dot h2 {
-    margin-bottom: 4px;
-    font-size: 18px;
+    margin-bottom: 2px;
+    font-size: clamp(10.5px, 3.1vw, 13.5px);
+    line-height: 1.1;
   }
 
   .abso-panel__copy--dot p {
-    font-size: 12px;
-    line-height: 1.3;
+    font-size: clamp(6.2px, 1.8vw, 7.8px);
+    line-height: 1.25;
   }
 
   .abso-contact {
@@ -473,14 +665,22 @@ body.abso-site .abso-main {
     font-size: 11px;
   }
 
+  .abso-walking-dots {
+    width: 56%;
+    max-width: 240px;
+    margin: 24px auto -16px;
+  }
+
   .abso-footer {
-    margin: 0;
+    margin: 0 auto 0 auto;
     border-radius: 28px 28px 0 0;
-    padding: 50px 9% 30px 9%;
+    padding: 50px 9% 20px 9%;
   }
 
   .abso-card--hero {
     border-radius: 28px;
+    aspect-ratio: 1 / 1.60;
+    max-height: 70vh;
   }
 
   .abso-footer__inner {
@@ -601,3 +801,265 @@ body.abso-site .abso-main {
     font-size: 14px;
   }
 }
+
+
+/* Coming Soon Button */
+/* Coming Soon Button */
+.abso-coming-soon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto 30px auto;
+  background: url('/assets/images/abso/coming-soon-button.png') no-repeat center center;
+  background-size: 100% 100%;
+  width: 122px;
+  height: 35px;
+  font-size: 12px;
+  color: #1a1a1a;
+  font-weight: 700;
+  text-align: center;
+  text-transform: lowercase;
+  transition: transform var(--abso-micro-dur) var(--abso-ease-out), opacity var(--abso-micro-dur) ease;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .abso-coming-soon-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+  }
+}
+.abso-coming-soon-btn:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* Download Badges */
+.download-badges {
+  text-align: center;
+}
+.download-badges a {
+  display: inline-block;
+  transition: transform var(--abso-micro-dur) var(--abso-ease-out), opacity var(--abso-micro-dur) ease;
+  will-change: transform;
+}
+@media (hover: hover) and (pointer: fine) {
+  .download-badges a:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+}
+.download-badges a:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* Restored rules for icons and wrappers */
+.home-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px auto;
+  max-width: 500px;
+  width: 88.7%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+.home-wrapper a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms ease;
+  will-change: transform;
+}
+@media (hover: hover) and (pointer: fine) {
+  .home-wrapper a:first-child:hover {
+    transform: translateX(-3px) scale(1.03);
+  }
+  .home-wrapper a:nth-child(2):hover {
+    transform: scale(1.045);
+  }
+  .home-wrapper a:last-child:hover {
+    transform: translateX(3px) scale(1.03);
+  }
+}
+.home-wrapper a:active,
+.home-wrapper a.is-selected {
+  opacity: 0.82;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), opacity 120ms ease;
+}
+.home-wrapper a:first-child:active,
+.home-wrapper a:first-child.is-selected {
+  transform: translateX(-2px) scale(0.94);
+}
+.home-wrapper a:nth-child(2):active,
+.home-wrapper a:nth-child(2).is-selected {
+  transform: scale(0.935);
+}
+.home-wrapper a:last-child:active,
+.home-wrapper a:last-child.is-selected {
+  transform: translateX(2px) scale(0.94);
+}
+.home-wrapper img {
+  width: auto !important;
+  object-fit: contain;
+}
+
+.abso-section-icon {
+  height: 85px !important;
+  width: auto !important;
+  object-fit: contain;
+  margin-bottom: 25px !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Screenshot image subtle lift on hover */
+.img-rounded {
+  transition: transform var(--abso-hover-dur) var(--abso-ease-out), box-shadow var(--abso-hover-dur) ease;
+  will-change: transform;
+}
+@media (hover: hover) and (pointer: fine) {
+  .img-rounded:hover {
+    transform: scale(1.012);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+}
+.img-rounded:active {
+  transform: scale(0.99);
+}
+
+img[alt="Home"],
+img[alt="Previous"],
+img[alt="Next"],
+img[alt="Screenshots"],
+img[alt="Download"] {
+  width: auto !important;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   SUBTLE SCROLL-REACTIVE CARD ANIMATION
+   Pixar Principles × Apple Restraint × Indie Game Personality
+   ========================================================================== */
+
+:root {
+  --abso-card-settle-dur: 340ms;
+  --abso-card-settle-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base state for reactive cards when scroll motion is initialized */
+html.abso-scroll-motion .abso-reactive-card {
+  opacity: 0.92;
+  transform: translateY(var(--abso-scroll-displacement, 6px)) scale(0.992);
+  transition: transform var(--abso-card-settle-dur) var(--abso-card-settle-ease),
+              opacity var(--abso-card-settle-dur) ease;
+  will-change: transform, opacity;
+}
+
+/* Settled resting state */
+html.abso-scroll-motion .abso-reactive-card.is-settled {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: var(--stagger-delay, 0ms);
+}
+
+/* Once motion is completed and card is resting at idle, release compositing layer */
+html.abso-scroll-motion .abso-reactive-card.is-settled.is-motion-done {
+  will-change: auto;
+  transition-delay: 0ms;
+}
+
+/* Tactile pointer hover & touch pressed states on settled cards */
+@media (hover: hover) and (pointer: fine) {
+  html.abso-scroll-motion .abso-card--hero.is-settled:hover,
+  html.abso-scroll-motion .abso-panel--about.is-settled:hover,
+  html.abso-scroll-motion .abso-panel--dot.is-settled:hover {
+    transform: scale(1.012);
+  }
+  html.abso-scroll-motion .abso-card--narrow.is-settled:hover {
+    transform: scale(1.015);
+  }
+  html.abso-scroll-motion .dot-section.is-settled:hover {
+    transform: scale(1.012);
+  }
+  html.abso-scroll-motion .img-rounded.is-settled:hover {
+    transform: scale(1.012);
+  }
+  html.abso-scroll-motion .info-card.is-settled:hover,
+  html.abso-scroll-motion .info-banner-wrapper.is-settled:hover {
+    transform: scale(1.008);
+  }
+}
+
+html.abso-scroll-motion .abso-card--hero.is-settled:active,
+html.abso-scroll-motion .abso-panel--about.is-settled:active,
+html.abso-scroll-motion .abso-panel--dot.is-settled:active,
+.abso-card--hero.is-selected,
+.abso-panel--about.is-selected,
+.abso-panel--dot.is-selected {
+  transform: scale(0.985) !important;
+  opacity: 0.92;
+  transition: transform 130ms cubic-bezier(0.16, 1, 0.3, 1), opacity 130ms ease;
+}
+html.abso-scroll-motion .abso-card--narrow.is-settled:active,
+.abso-card--narrow.is-selected {
+  transform: scale(0.980) !important;
+  opacity: 0.92;
+  transition: transform 130ms cubic-bezier(0.16, 1, 0.3, 1), opacity 130ms ease;
+}
+html.abso-scroll-motion .dot-section.is-settled:active {
+  transform: scale(0.988);
+}
+html.abso-scroll-motion .img-rounded.is-settled:active {
+  transform: scale(0.988);
+}
+html.abso-scroll-motion .info-card.is-settled:active,
+html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
+  transform: scale(0.992);
+}
+
+/* Prefers-reduced-motion: Global Accessibility Guardrail */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .abso-container {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  html.abso-scroll-motion .abso-reactive-card,
+  html.abso-scroll-motion .abso-reactive-card.is-settled {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+  .abso-card--hero:hover,
+  .abso-card--narrow:hover,
+  .abso-panel:hover,
+  .abso-panel--about:hover,
+  .abso-panel--dot:hover,
+  .abso-coming-soon-btn:hover,
+  .download-badges a:hover,
+  .home-wrapper a:hover,
+  .img-rounded:hover,
+  .home-wrapper a.is-selected,
+  .abso-card.is-selected,
+  .abso-panel.is-selected {
+    transform: none !important;
+    box-shadow: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+  }
+}
+
+
