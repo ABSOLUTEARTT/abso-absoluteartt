@@ -711,7 +711,7 @@
 
 
     // =========================================================================
-    // 10. SCROLL-DRIVEN FALLING CLAY COINS COLLECTED BY THE DOT (HOMEPAGE)
+    // 10. SUBWAY SURFERS COIN MAGNET STREAM FROM HAMBURGER MENU INTO THE DOT
     // =========================================================================
     var currentPathname = window.location.pathname.replace(/\/$/, '') || '/';
     var isHomepage = (currentPathname === '/' || currentPathname === '' || !!document.querySelector('.abso-panel--about'));
@@ -752,16 +752,17 @@
         if (dotPanel) {
           var dotImg = dotPanel.querySelector('img');
           if (dotImg) {
-            gsap.to(dotImg, { scaleX: 1.04, scaleY: 0.95, duration: 0.08, yoyo: true, repeat: 1, ease: 'power1.inOut' });
+            gsap.to(dotImg, { scaleX: 1.05, scaleY: 0.94, duration: 0.08, yoyo: true, repeat: 1, ease: 'power1.inOut' });
           }
         }
 
-        // Floating "+1 🪙" pop text
+        // Floating comic pop text
         var pop = document.createElement('div');
         pop.className = 'abso-coin-pop-text';
-        pop.textContent = (Math.random() > 0.3) ? '+1 🪙' : 'NOM! 😋';
-        pop.style.left = (x - 15) + 'px';
-        pop.style.top = (y - 12) + 'px';
+        var comicWords = ['+1 🪙', 'NOM! 😋', 'CHOMP! 🍪', 'YUM! ✨', '+100 pts! 🪙'];
+        pop.textContent = comicWords[Math.floor(Math.random() * comicWords.length)];
+        pop.style.left = (x - 20) + 'px';
+        pop.style.top = (y - 14) + 'px';
         document.body.appendChild(pop);
 
         gsap.timeline({
@@ -770,14 +771,14 @@
           }
         })
         .to(pop, {
-          y: -36,
-          scale: 1.25,
+          y: -42,
+          scale: 1.3,
           duration: 0.28,
           ease: 'power2.out'
         })
         .to(pop, {
           opacity: 0,
-          scale: 0.8,
+          scale: 0.75,
           duration: 0.2,
           ease: 'power1.in'
         });
@@ -788,32 +789,57 @@
       var lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
       var accumulatedScroll = 0;
       var activeCoinCount = 0;
-      var maxCoinsOnScreen = 24;
+      var maxCoinsOnScreen = 28;
       var lastSpawnTime = 0;
+      var hamburgerBtn = document.getElementById('abso-menu-toggle') || document.querySelector('.hamburger-btn');
 
-      function spawnFallingCoin() {
+      function pulseHamburgerDispenser() {
+        if (!hamburgerBtn) return;
+        var hRect = hamburgerBtn.getBoundingClientRect();
+        if (hRect.bottom > 0 && hRect.top < window.innerHeight) {
+          gsap.killTweensOf(hamburgerBtn);
+          gsap.timeline()
+            .to(hamburgerBtn, { scale: 1.15, rotation: gsap.utils.random(-8, 8), duration: 0.06, ease: 'power2.out' })
+            .to(hamburgerBtn, { scale: 1, rotation: 0, duration: 0.26, ease: 'elastic.out(1.4, 0.4)' });
+        }
+      }
+
+      function spawnSubwaySurferCoin() {
         if (activeCoinCount >= maxCoinsOnScreen) return;
         activeCoinCount++;
 
         var coin = document.createElement('div');
         coin.className = 'abso-falling-coin';
-        coin.innerHTML = (Math.random() > 0.45) ? COIN_SVG_STAR : COIN_SVG_DOT;
+        coin.innerHTML = (Math.random() > 0.4) ? COIN_SVG_STAR : COIN_SVG_DOT;
 
-        // Start from top of screen across viewport width
-        var startX = gsap.utils.random(window.innerWidth * 0.06, window.innerWidth * 0.94);
-        var startY = -40;
+        // 1. ORIGIN: Exact coordinates of the hamburger menu dispenser
+        var startX, startY;
+        if (hamburgerBtn) {
+          var menuRect = hamburgerBtn.getBoundingClientRect();
+          startX = menuRect.left + menuRect.width / 2;
+          // If scrolled down and header moved above viewport, anchor to the top-right header spot
+          startY = Math.max(24, menuRect.top + menuRect.height / 2);
+        } else {
+          startX = window.innerWidth - 45;
+          startY = 35;
+        }
+
+        // Dispenser tactile micro-pulse
+        pulseHamburgerDispenser();
 
         coin.style.left = startX + 'px';
         coin.style.top = startY + 'px';
         document.body.appendChild(coin);
 
-        // Interactive mid-air tap to pop!
+        // 2. INTERACTIVE TAP MID-FLIGHT
         coin.addEventListener('pointerdown', function(e) {
           e.stopPropagation();
           haptic.burst();
           gsap.killTweensOf(coin);
+          var cRect = coin.getBoundingClientRect();
+          collectCoin(cRect.left + 16, cRect.top + 16);
           gsap.to(coin, {
-            scale: 1.45,
+            scale: 1.5,
             opacity: 0,
             duration: 0.16,
             ease: 'back.out(2)',
@@ -824,19 +850,37 @@
           });
         });
 
-        // Calculate live magnetic gravity attraction towards The Dot character
+        // 3. TARGET: The Dot character banner
         var dotRect = dotPanel ? dotPanel.getBoundingClientRect() : null;
-        var isDotNearby = dotRect && (dotRect.top < window.innerHeight * 1.5 && dotRect.bottom > -100);
+        var targetX, targetY;
 
-        // The Dot character is on the right-middle portion of the banner
-        var targetX = dotRect ? (dotRect.left + dotRect.width * 0.72) : (window.innerWidth * 0.5);
-        var targetY = dotRect ? (dotRect.top + dotRect.height * 0.5) : (window.innerHeight * 0.9);
+        if (dotRect && dotRect.top < window.innerHeight && dotRect.bottom > 0) {
+          // The Dot is right now visible in viewport!
+          targetX = dotRect.left + dotRect.width * 0.73;
+          targetY = dotRect.top + dotRect.height * 0.5;
+        } else if (dotRect && dotRect.top >= window.innerHeight) {
+          // Scrolled above The Dot; stream rushes downward towards The Dot's lane
+          targetX = Math.min(window.innerWidth - 60, Math.max(60, dotRect.left + dotRect.width * 0.73));
+          targetY = window.innerHeight + 50;
+        } else if (dotRect && dotRect.bottom <= 0) {
+          // Scrolled past The Dot; stream rushes upward towards The Dot's lane
+          targetX = Math.min(window.innerWidth - 60, Math.max(60, dotRect.left + dotRect.width * 0.73));
+          targetY = -40;
+        } else {
+          targetX = window.innerWidth * 0.75;
+          targetY = window.innerHeight * 0.6;
+        }
 
-        // Fast, punchy gravity timing
-        var duration = gsap.utils.random(0.55, 0.75);
-        var scale = gsap.utils.random(0.85, 1.2);
+        // 4. SUBWAY SURFERS ARC TRAJECTORY
+        // An energetic outward bow curve sweeping across the screen
+        var arcBulgeX = gsap.utils.random(-140, -45); // bows outwards to the left
+        var midX = (startX + targetX) / 2 + arcBulgeX;
+        var midY = (startY + targetY) / 2 + gsap.utils.random(-25, 45);
+
+        var duration = gsap.utils.random(0.48, 0.68); // snappy arcade momentum
+        var scale = gsap.utils.random(0.9, 1.25);
         var spinY = gsap.utils.random(540, 1080) * (Math.random() > 0.5 ? 1 : -1);
-        var spinZ = gsap.utils.random(-240, 240);
+        var spinZ = gsap.utils.random(-180, 180);
 
         var tl = gsap.timeline({
           onComplete: function() {
@@ -845,52 +889,41 @@
           }
         });
 
-        if (isDotNearby) {
-          // MAGNETIC GRAVITATIONAL PULL INTO THE DOT!
-          var deltaX = targetX - startX;
-          var deltaY = targetY - startY;
-
-          tl.to(coin, {
-            x: deltaX,
-            y: deltaY,
-            rotationY: spinY,
-            rotationZ: spinZ,
-            scale: scale,
-            duration: duration,
-            ease: 'power2.in' // accelerates naturally like gravitational suction!
-          })
-          .to(coin, {
-            scale: 0.15,
-            opacity: 0,
-            duration: 0.1,
-            ease: 'power3.in',
-            onComplete: function() {
-              collectCoin(targetX, targetY);
-            }
-          });
-        } else {
-          // Rapid downward gravity fall towards bottom
-          var fallY = window.innerHeight * gsap.utils.random(0.7, 0.95);
-          var driftX = gsap.utils.random(-80, 80);
-
-          tl.to(coin, {
-            y: fallY,
-            x: driftX,
-            rotationY: spinY,
-            rotationZ: spinZ,
-            scale: scale,
-            duration: duration + 0.15,
-            ease: 'power2.in'
-          })
-          .to(coin, {
-            opacity: 0,
-            scale: scale * 0.6,
-            duration: 0.2,
-            ease: 'power1.out'
-          }, '-=0.2');
-        }
+        // Phase 1: Arcade dispenser ejection & lateral sweep outward
+        tl.to(coin, {
+          x: midX - startX,
+          y: midY - startY,
+          scale: scale * 1.18,
+          rotationY: spinY * 0.42,
+          rotationZ: spinZ * 0.42,
+          duration: duration * 0.4,
+          ease: 'sine.out'
+        })
+        // Phase 2: Strong magnetic acceleration & vacuum suction towards The Dot
+        .to(coin, {
+          x: targetX - startX,
+          y: targetY - startY,
+          scale: scale * 0.32,
+          rotationY: spinY,
+          rotationZ: spinZ,
+          duration: duration * 0.6,
+          ease: 'power3.in' // accelerates exponentially like a magnet
+        })
+        // Phase 3: Vacuum ingestion into The Dot's mouth
+        .to(coin, {
+          scale: 0.05,
+          opacity: 0,
+          duration: 0.07,
+          ease: 'power4.in',
+          onComplete: function() {
+            var popX = Math.max(30, Math.min(window.innerWidth - 60, targetX));
+            var popY = Math.max(30, Math.min(window.innerHeight - 40, targetY));
+            collectCoin(popX, popY);
+          }
+        });
       }
 
+      // Scroll listener: emits coins from hamburger button in an arcade stream
       window.addEventListener('scroll', function() {
         var currentY = window.pageYOffset || document.documentElement.scrollTop;
         var delta = Math.abs(currentY - lastScrollY);
@@ -899,20 +932,38 @@
         accumulatedScroll += delta;
         var now = Date.now();
 
-        // Responsive fast spawn every ~55px of scroll delta, rate limited to max once every 65ms
-        if (accumulatedScroll >= 55 && (now - lastSpawnTime > 65)) {
+        // Responsive fast stream: 1 coin every ~38px scroll delta, min 55ms throttle
+        if (accumulatedScroll >= 38 && (now - lastSpawnTime > 55)) {
           accumulatedScroll = 0;
           lastSpawnTime = now;
-          spawnFallingCoin();
+          spawnSubwaySurferCoin();
 
-          // If fast scroll, drop 2 coins in quick burst!
-          if (delta > 50 && activeCoinCount < maxCoinsOnScreen) {
+          // If fast scroll, drop 2 extra coins in a rapid staggered trail (Subway Surfer ribbon!)
+          if (delta > 42 && activeCoinCount < maxCoinsOnScreen) {
             setTimeout(function() {
-              spawnFallingCoin();
-            }, 50);
+              spawnSubwaySurferCoin();
+            }, 30);
+            if (delta > 75) {
+              setTimeout(function() {
+                spawnSubwaySurferCoin();
+              }, 60);
+            }
           }
         }
       }, { passive: true });
+
+      // Easter egg: tapping hamburger mascot fires a festive mini-fountain!
+      if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', function() {
+          for (var i = 0; i < 4; i++) {
+            (function(idx) {
+              setTimeout(function() {
+                spawnSubwaySurferCoin();
+              }, idx * 60);
+            })(i);
+          }
+        });
+      }
     }
 
   }

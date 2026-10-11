@@ -1063,10 +1063,11 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   z-index: 99990;
   will-change: transform, opacity;
   user-select: none;
-  filter: drop-shadow(0 4px 10px rgba(180, 110, 0, 0.45));
+  filter: drop-shadow(0 4px 10px rgba(245, 159, 0, 0.6)) drop-shadow(0 0 6px rgba(255, 215, 0, 0.4));
   transform-style: preserve-3d;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
 }
 
 /* The Dot Coin Collector Badge & Popup Text */
@@ -1074,18 +1075,19 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   position: absolute;
   top: 14px;
   right: 14px;
-  background: rgba(17, 16, 18, 0.90);
+  background: rgba(17, 16, 18, 0.92);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: #ffd700;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 20px;
   font-size: 13px;
   font-weight: 800;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
-  border: 1.5px solid rgba(255, 215, 0, 0.45);
+  gap: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  border: 1.5px solid rgba(255, 215, 0, 0.55);
   z-index: 10;
   pointer-events: none;
   user-select: none;
@@ -1095,10 +1097,10 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   position: fixed;
   color: #ffd700;
   font-weight: 900;
-  font-size: 16px;
+  font-size: 17px;
   pointer-events: none;
   z-index: 99999;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 215, 0, 0.6);
   user-select: none;
   will-change: transform, opacity;
 }
