@@ -1047,7 +1047,7 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   mix-blend-mode: screen;
 }
 
-/* 2. Thematic Game Floating Clay Particles */
+/* 2. Thematic Game Floating Clay Particles & Falling Coins */
 .abso-samosa-particle,
 .abso-game-particle {
   position: fixed;
@@ -1056,6 +1056,17 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   will-change: transform, opacity;
   user-select: none;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.22));
+}
+
+.abso-falling-coin {
+  position: fixed;
+  z-index: 99990;
+  will-change: transform, opacity;
+  user-select: none;
+  filter: drop-shadow(0 4px 10px rgba(180, 110, 0, 0.35));
+  transform-style: preserve-3d;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* 3. Footer Walking Dots Mascot Reaction */
