@@ -95,9 +95,11 @@
   }
   @media (max-width: 520px) {
     .abso-nav-overlay {
-      width: calc(100% - 40px);
-      left: 20px;
-      right: 20px;
+      width: min(calc(100% - 40px), 240px);
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
   .abso-nav-overlay.active {
