@@ -855,148 +855,19 @@
         }
       }
 
-      // -----------------------------------------------------------------------
-      // C. THE DOT DISGUISE SHOP & COSTUMES (HATS / ACCESSORIES)
-      // -----------------------------------------------------------------------
-      var DISGUISES = {
-        chef: {
-          milestone: 15,
-          name: 'Tiny Chef Hat 👨‍🍳',
-          top: '-6%',
-          right: '21%',
-          width: '84px',
-          height: '66px',
-          zIndex: 10,
-          svg: '<svg viewBox="0 0 100 80" width="100%" height="100%" style="display:block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));"><ellipse cx="50" cy="28" rx="34" ry="22" fill="#ffffff" stroke="#111012" stroke-width="3"/><ellipse cx="28" cy="32" rx="20" ry="16" fill="#f8f8f8" stroke="#111012" stroke-width="3"/><ellipse cx="72" cy="32" rx="20" ry="16" fill="#f8f8f8" stroke="#111012" stroke-width="3"/><rect x="25" y="44" width="50" height="20" rx="4" fill="#ffffff" stroke="#111012" stroke-width="3"/><line x1="32" y1="46" x2="32" y2="62" stroke="#e0e0e0" stroke-width="2"/><line x1="50" y1="46" x2="50" y2="62" stroke="#e0e0e0" stroke-width="2"/><line x1="68" y1="46" x2="68" y2="62" stroke="#e0e0e0" stroke-width="2"/></svg>'
-        },
-        detective: {
-          milestone: 30,
-          name: 'Detective Mustache 🕵️‍♂️',
-          top: '52%',
-          right: '22%',
-          width: '64px',
-          height: '32px',
-          zIndex: 11,
-          svg: '<svg viewBox="0 0 90 40" width="100%" height="100%" style="display:block; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4));"><path d="M 45 15 C 38 8, 22 6, 8 18 C 18 28, 36 24, 45 18 C 54 24, 72 28, 82 18 C 68 6, 52 8, 45 15 Z" fill="#111012" stroke="#ffffff" stroke-width="1.5"/></svg>'
-        },
-        shades: {
-          milestone: 50,
-          name: 'Pixel Sunglasses 😎',
-          top: '35%',
-          right: '17%',
-          width: '88px',
-          height: '32px',
-          zIndex: 12,
-          svg: '<svg viewBox="0 0 120 40" width="100%" height="100%" style="display:block; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45));"><rect x="10" y="8" width="42" height="24" rx="3" fill="#111012" stroke="#ffffff" stroke-width="2"/><rect x="68" y="8" width="42" height="24" rx="3" fill="#111012" stroke="#ffffff" stroke-width="2"/><line x1="52" y1="14" x2="68" y2="14" stroke="#111012" stroke-width="4"/><polygon points="14,12 28,12 22,20 14,20" fill="#ffffff" opacity="0.85"/><polygon points="72,12 86,12 80,20 72,20" fill="#ffffff" opacity="0.85"/></svg>'
-        },
-        crown: {
-          milestone: 75,
-          name: 'Golden King Crown 👑',
-          top: '0%',
-          right: '21%',
-          width: '82px',
-          height: '58px',
-          zIndex: 13,
-          svg: '<svg viewBox="0 0 100 70" width="100%" height="100%" style="display:block; filter: drop-shadow(0 4px 12px rgba(255,215,0,0.6));"><defs><linearGradient id="crGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff3bf"/><stop offset="50%" stop-color="#ffd43b"/><stop offset="100%" stop-color="#b45309"/></linearGradient></defs><polygon points="10,60 10,24 32,42 50,12 68,42 90,24 90,60" fill="url(#crGrad)" stroke="#78350f" stroke-width="3" stroke-linejoin="round"/><circle cx="10" cy="22" r="5" fill="#e62429" stroke="#ffffff" stroke-width="1.5"/><circle cx="50" cy="10" r="6" fill="#e62429" stroke="#ffffff" stroke-width="1.5"/><circle cx="90" cy="22" r="5" fill="#e62429" stroke="#ffffff" stroke-width="1.5"/><circle cx="50" cy="46" r="4" fill="#ffffff" opacity="0.9"/></svg>'
-        }
-      };
-
-      var disguiseLayer = null;
-      var unlockedDisguises = {};
-      var unlockedKeys = [];
-      var disguiseElements = {};
-      var activeDisguiseMode = 'latest';
-
-      function updateDisguiseVisibility() {
-        if (!unlockedKeys.length) return;
-        unlockedKeys.forEach(function(k) {
-          var el = disguiseElements[k];
-          if (!el) return;
-          var isLatest = (activeDisguiseMode === 'latest' && k === unlockedKeys[unlockedKeys.length - 1]);
-          if (activeDisguiseMode === 'combo' || activeDisguiseMode === k || isLatest) {
-            gsap.to(el, { opacity: 1, scale: 1, duration: 0.25, overwrite: 'auto' });
-          } else {
-            gsap.to(el, { opacity: 0, scale: 0.6, duration: 0.2, overwrite: 'auto' });
-          }
-        });
-      }
-
       if (dotPanel) {
-        disguiseLayer = document.createElement('div');
-        disguiseLayer.className = 'abso-dot-disguises';
-        dotPanel.appendChild(disguiseLayer);
-
-        // Click The Dot to do a victory spin & cycle through wardrobe!
+        // Click The Dot to do a playful victory spin!
         dotPanel.addEventListener('click', function() {
           var img = dotPanel.querySelector('img');
           if (img) {
             haptic.wiggle();
             gsap.to(img, { rotation: '+=360', duration: 0.65, ease: 'back.out(1.4)', overwrite: 'auto' });
           }
-          if (unlockedKeys.length > 0) {
-            var modes = unlockedKeys.concat(['combo', 'none']);
-            var curIdx = modes.indexOf(activeDisguiseMode);
-            var nextIdx = (curIdx + 1) % modes.length;
-            activeDisguiseMode = modes[nextIdx];
-            updateDisguiseVisibility();
-            var modeName = activeDisguiseMode === 'combo' ? 'MEGA COMBO! 🎭' : 
-              (activeDisguiseMode === 'none' ? 'Natural Dot 🔴' : DISGUISES[activeDisguiseMode].name);
-            showUnlockToast('Equipped: ' + modeName);
-          }
-        });
-      }
-
-      function showUnlockToast(text) {
-        var toast = document.createElement('div');
-        toast.className = 'abso-unlock-toast';
-        toast.innerHTML = '<span>🎉</span> <span>' + text + '</span>';
-        document.body.appendChild(toast);
-        sfxFanfare();
-
-        gsap.timeline({
-          onComplete: function() {
-            if (toast.parentNode) toast.parentNode.removeChild(toast);
-          }
-        })
-        .to(toast, { y: 0, opacity: 1, duration: 0.4, ease: 'back.out(1.8)' })
-        .to(toast, { opacity: 0, y: -20, duration: 0.35, ease: 'power1.in', delay: 2.5 });
-      }
-
-      function checkDisguiseUnlocks(count) {
-        if (!disguiseLayer) return;
-        Object.keys(DISGUISES).forEach(function(key) {
-          var item = DISGUISES[key];
-          if (count >= item.milestone && !unlockedDisguises[key]) {
-            unlockedDisguises[key] = true;
-            unlockedKeys.push(key);
-            activeDisguiseMode = key; // Automatically equip newly unlocked costume!
-
-            var elem = document.createElement('div');
-            elem.className = 'abso-dot-disguise-item';
-            elem.style.position = 'absolute';
-            elem.style.top = item.top;
-            elem.style.right = item.right;
-            elem.style.width = item.width;
-            elem.style.height = item.height;
-            elem.style.zIndex = item.zIndex;
-            elem.innerHTML = item.svg;
-            disguiseLayer.appendChild(elem);
-            disguiseElements[key] = elem;
-
-            updateDisguiseVisibility();
-
-            gsap.fromTo(elem, 
-              { scale: 0, y: -30, rotation: -15 },
-              { scale: 1, y: 0, rotation: 0, duration: 0.65, ease: 'elastic.out(1.3, 0.4)' }
-            );
-
-            showUnlockToast('NEW DISGUISE: ' + item.name);
-          }
         });
       }
 
       // -----------------------------------------------------------------------
-      // D. FEVER MODE (50 COIN JACKPOT CELEBRATION)
+      // C. FEVER MODE (50 COIN JACKPOT CELEBRATION)
       // -----------------------------------------------------------------------
       function triggerFeverMode() {
         if (isFeverMode) return;
@@ -1073,7 +944,6 @@
         } else if (collectedCount % 100 === 0) {
           triggerFeverMode();
         }
-        checkDisguiseUnlocks(collectedCount);
 
         // Bouncy pulse on counter badge
         if (coinCounterElem) {
