@@ -944,92 +944,57 @@ img[alt="Download"] {
   object-fit: contain;
 }
 
-/* ==========================================================================
-   SUBTLE SCROLL-REACTIVE CARD ANIMATION
-   Pixar Principles × Apple Restraint × Indie Game Personality
-   ========================================================================== */
 
-:root {
-  --abso-card-settle-dur: 340ms;
-  --abso-card-settle-ease: cubic-bezier(0.16, 1, 0.3, 1);
+/* Tactile pointer hover & touch pressed states on cards */
+.abso-card--hero,
+.abso-card--narrow,
+.abso-panel,
+.dot-section,
+.img-rounded,
+.info-card,
+.info-banner-wrapper {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms ease;
 }
 
-/* Base state for reactive cards when scroll motion is initialized */
-html.abso-scroll-motion .abso-reactive-card {
-  opacity: 0.92;
-  transform: translateY(var(--abso-scroll-displacement, 6px)) scale(0.992);
-  transition: transform var(--abso-card-settle-dur) var(--abso-card-settle-ease),
-              opacity var(--abso-card-settle-dur) ease;
-  will-change: transform, opacity;
-}
-
-/* Settled resting state */
-html.abso-scroll-motion .abso-reactive-card.is-settled {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  transition-delay: var(--stagger-delay, 0ms);
-}
-
-/* Once motion is completed and card is resting at idle, release compositing layer */
-html.abso-scroll-motion .abso-reactive-card.is-settled.is-motion-done {
-  will-change: auto;
-  transition-delay: 0ms;
-}
-
-/* Tactile pointer hover & touch pressed states on settled cards */
 @media (hover: hover) and (pointer: fine) {
-  html.abso-scroll-motion .abso-card--hero.is-settled:hover,
-  html.abso-scroll-motion .abso-panel--about.is-settled:hover,
-  html.abso-scroll-motion .abso-panel--dot.is-settled:hover {
-    transform: scale(1.012);
+  .abso-card--hero:hover,
+  .abso-panel--about:hover,
+  .abso-panel--dot:hover,
+  .abso-card--narrow:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
   }
-  html.abso-scroll-motion .abso-card--narrow.is-settled:hover {
-    transform: scale(1.015);
-  }
-  html.abso-scroll-motion .dot-section.is-settled:hover {
-    transform: scale(1.012);
-  }
-  html.abso-scroll-motion .img-rounded.is-settled:hover {
-    transform: scale(1.012);
-  }
-  html.abso-scroll-motion .info-card.is-settled:hover,
-  html.abso-scroll-motion .info-banner-wrapper.is-settled:hover {
-    transform: scale(1.008);
+  .dot-section:hover,
+  .img-rounded:hover,
+  .info-card:hover,
+  .info-banner-wrapper:hover {
+    transform: translateY(-3px);
   }
 }
 
-html.abso-scroll-motion .abso-card--hero.is-settled:active,
-html.abso-scroll-motion .abso-panel--about.is-settled:active,
-html.abso-scroll-motion .abso-panel--dot.is-settled:active,
-.abso-card--hero.is-selected,
-.abso-panel--about.is-selected,
-.abso-panel--dot.is-selected {
-  transform: scale(0.985) !important;
-  opacity: 0.92;
-  transition: transform 130ms cubic-bezier(0.16, 1, 0.3, 1), opacity 130ms ease;
+.abso-card--hero:active,
+.abso-panel--about:active,
+.abso-panel--dot:active {
+  transform: scale(0.985);
+  transition: transform 100ms ease;
 }
-html.abso-scroll-motion .abso-card--narrow.is-settled:active,
-.abso-card--narrow.is-selected {
-  transform: scale(0.980) !important;
-  opacity: 0.92;
-  transition: transform 130ms cubic-bezier(0.16, 1, 0.3, 1), opacity 130ms ease;
+.abso-card--narrow:active {
+  transform: scale(0.980);
+  transition: transform 100ms ease;
 }
-html.abso-scroll-motion .dot-section.is-settled:active {
+.dot-section:active,
+.img-rounded:active,
+.info-card:active,
+.info-banner-wrapper:active {
   transform: scale(0.988);
-}
-html.abso-scroll-motion .img-rounded.is-settled:active {
-  transform: scale(0.988);
-}
-html.abso-scroll-motion .info-card.is-settled:active,
-html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
-  transform: scale(0.992);
+  transition: transform 100ms ease;
 }
 
 /* ==========================================================================
-   abso. GSAP Motion & Interaction Components (v0.4.1.2-GSAP)
+   abso. Pure Native Tactile CSS Animations (Zero-Dependency)
    ========================================================================== */
 
-/* 1. Mahabharata Golden Light Sheen */
+/* 1. Mahabharata Golden Light Sheen (Hardware-Accelerated CSS) */
 .abso-card--hero {
   position: relative;
   overflow: hidden;
@@ -1042,24 +1007,57 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   height: 160%;
   pointer-events: none;
   background: linear-gradient(112deg, transparent 38%, rgba(255, 230, 120, 0.16) 47%, rgba(255, 255, 255, 0.45) 50%, rgba(255, 215, 60, 0.22) 53%, transparent 62%);
-  transform: translateX(-110%);
+  transform: translateX(-120%);
   z-index: 3;
   border-radius: inherit;
   mix-blend-mode: screen;
+  animation: abso-hero-sheen-sweep 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
 }
 
-/* 2. Thematic Game Floating Clay Particles */
-.abso-samosa-particle,
-.abso-game-particle {
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  will-change: transform, opacity;
-  user-select: none;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.22));
+@keyframes abso-hero-sheen-sweep {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .abso-card--hero:hover .abso-hero-sheen {
+    animation: abso-hero-sheen-sweep 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards;
+  }
+}
+
+/* 2. Tactile Clay Keyframes */
+@keyframes abso-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.abso-spin-360 {
+  animation: abso-spin 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes abso-squash-stretch {
+  0% { transform: scale(1, 1); }
+  25% { transform: scale(1.18, 0.82) translateY(0); }
+  50% { transform: scale(0.92, 1.12) translateY(-14px); }
+  100% { transform: scale(1, 1) translateY(0); }
+}
+.abso-squash-bounce {
+  animation: abso-squash-stretch 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes abso-bubble-pop {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.abso-bubble-pop {
+  animation: abso-bubble-pop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* 3. Footer Walking Dots Mascot Reaction */
+@keyframes abso-mascot-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3.5px); }
+}
+
 .abso-walking-dots-wrap {
   position: relative;
   display: block;
@@ -1076,6 +1074,8 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   width: 100%;
   margin: 0;
   display: block;
+  animation: abso-mascot-bob 1.4s ease-in-out infinite;
+  will-change: transform;
 }
 .abso-walking-dots-speech {
   position: absolute;
@@ -1094,6 +1094,11 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   opacity: 0;
   z-index: 10;
   letter-spacing: -0.2px;
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.abso-walking-dots-speech.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
 }
 .abso-walking-dots-speech::after {
   content: '';
@@ -1400,13 +1405,6 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
     transform: none !important;
     transition: none !important;
   }
-  html.abso-scroll-motion .abso-reactive-card,
-  html.abso-scroll-motion .abso-reactive-card.is-settled {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-    will-change: auto !important;
-  }
   .abso-card--hero:hover,
   .abso-card--narrow:hover,
   .abso-panel:hover,
@@ -1415,10 +1413,7 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   .abso-coming-soon-btn:hover,
   .download-badges a:hover,
   .home-wrapper a:hover,
-  .img-rounded:hover,
-  .home-wrapper a.is-selected,
-  .abso-card.is-selected,
-  .abso-panel.is-selected {
+  .img-rounded:hover {
     transform: none !important;
     box-shadow: none !important;
     transition: none !important;

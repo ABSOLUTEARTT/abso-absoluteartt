@@ -1,0 +1,225 @@
+<!-- abso. Pure Tactile & Interactive Physics Engine (Zero-Dependency Vanilla JS) -->
+<script>
+(function() {
+  'use strict';
+
+  // Respect user preference for reduced motion
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  function initAbsoInteractions() {
+    // -------------------------------------------------------------------------
+    // 1. HAPTIC FEEDBACK (Physical Vibration on Touch Devices)
+    // -------------------------------------------------------------------------
+    var haptic = {
+      tick: function() {
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+          try { navigator.vibrate(8); } catch(e){}
+        }
+      }
+    };
+
+    // -------------------------------------------------------------------------
+    // 2. HERO CARD GOLDEN LIGHT SHEEN (Mahabharata)
+    // -------------------------------------------------------------------------
+    var heroCard = document.querySelector('.abso-card--hero');
+    if (heroCard && !heroCard.querySelector('.abso-hero-sheen')) {
+      var sheen = document.createElement('div');
+      sheen.className = 'abso-hero-sheen';
+      sheen.setAttribute('aria-hidden', 'true');
+      heroCard.appendChild(sheen);
+    }
+
+    // -------------------------------------------------------------------------
+    // 3. THE DOT MASCOT 360 VICTORY SPIN (Homepage)
+    // -------------------------------------------------------------------------
+    var dotPanel = document.querySelector('.abso-panel--dot');
+    if (dotPanel) {
+      dotPanel.addEventListener('click', function() {
+        var img = dotPanel.querySelector('img');
+        if (img) {
+          haptic.tick();
+          img.classList.remove('abso-spin-360');
+          void img.offsetWidth; // Trigger reflow to restart animation
+          img.classList.add('abso-spin-360');
+          setTimeout(function() {
+            img.classList.remove('abso-spin-360');
+          }, 700);
+        }
+      });
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. FOOTER WALKING MASCOT INTERACTION
+    // -------------------------------------------------------------------------
+    var dotsWrap = document.getElementById('abso-walking-dots-wrap');
+    var dotsImg = document.getElementById('abso-walking-dots');
+    var dotsSpeech = document.getElementById('abso-walking-dots-speech');
+
+    if (dotsWrap && dotsImg) {
+      var walkingPhrases = [
+        "wheee! 🏃‍♂️💨",
+        "almost there! 🚩",
+        "ticklish! 🤭",
+        "keep rolling! ✨",
+        "three dots on the run! 🐾"
+      ];
+      var walkIdx = 0;
+      var hideSpeechTimer = null;
+
+      dotsWrap.addEventListener('click', function(e) {
+        e.preventDefault();
+        haptic.tick();
+        walkIdx = (walkIdx + 1) % walkingPhrases.length;
+
+        dotsImg.classList.remove('abso-squash-bounce');
+        void dotsImg.offsetWidth;
+        dotsImg.classList.add('abso-squash-bounce');
+
+        if (dotsSpeech) {
+          dotsSpeech.textContent = walkingPhrases[walkIdx];
+          dotsSpeech.classList.add('is-visible');
+          clearTimeout(hideSpeechTimer);
+          hideSpeechTimer = setTimeout(function() {
+            dotsSpeech.classList.remove('is-visible');
+          }, 2000);
+        }
+      });
+    }
+
+    // -------------------------------------------------------------------------
+    // 5. THE DOT EXPRESSION LAB & MOOD SWITCHER (the-dot.md)
+    // -------------------------------------------------------------------------
+    var moodStage = document.getElementById('abso-mood-stage');
+    if (moodStage) {
+      var moodAvatar = document.getElementById('abso-mood-avatar');
+      var moodImg = document.getElementById('abso-mood-img');
+      var moodSpeech = document.getElementById('abso-mood-speech');
+      var moodText = document.getElementById('abso-mood-text');
+      var moodEmoji = document.getElementById('abso-mood-emoji');
+      var pills = Array.from(moodStage.querySelectorAll('.abso-mood-pill'));
+
+      var moods = pills.map(function(pill) {
+        return {
+          img: pill.getAttribute('data-img'),
+          quote: pill.getAttribute('data-quote'),
+          emoji: pill.getAttribute('data-emoji')
+        };
+      });
+
+      var activeMoodIndex = 0;
+
+      function applyMood(index) {
+        if (!moods[index]) return;
+        activeMoodIndex = index;
+        haptic.tick();
+
+        pills.forEach(function(p, i) {
+          if (i === index) p.classList.add('is-active');
+          else p.classList.remove('is-active');
+        });
+
+        if (moodSpeech && moodText && moodEmoji) {
+          moodText.textContent = moods[index].quote;
+          moodEmoji.textContent = moods[index].emoji;
+          moodSpeech.classList.remove('abso-bubble-pop');
+          void moodSpeech.offsetWidth;
+          moodSpeech.classList.add('abso-bubble-pop');
+        }
+
+        if (moodAvatar && moodImg) {
+          moodImg.src = moods[index].img;
+          moodAvatar.classList.remove('abso-squash-bounce');
+          void moodAvatar.offsetWidth;
+          moodAvatar.classList.add('abso-squash-bounce');
+        }
+      }
+
+      if (moodAvatar) {
+        moodAvatar.addEventListener('click', function(e) {
+          e.preventDefault();
+          applyMood((activeMoodIndex + 1) % moods.length);
+        });
+      }
+
+      pills.forEach(function(pill, i) {
+        pill.addEventListener('click', function(e) {
+          e.preventDefault();
+          applyMood(i);
+        });
+      });
+    }
+
+    // -------------------------------------------------------------------------
+    // 6. LOST IN THE 404 MAZE INTERACTION (404.md)
+    // -------------------------------------------------------------------------
+    var playground404 = document.querySelector('.abso-404-playground');
+    if (playground404) {
+      var needle = document.getElementById('abso-404-needle');
+      var compass = document.getElementById('abso-404-compass');
+      var card404 = document.getElementById('abso-404-card');
+      var speech404 = document.getElementById('abso-404-speech');
+      var img404 = document.getElementById('abso-404-img');
+
+      var phrases404 = [
+        "“Wait... is this exit 404 or entry 404?!”",
+        "“Don't panic! I found a crumb of samosa!”",
+        "“I've been running in circles for hours!”",
+        "“Follow the compass home!”",
+        "“Ouch! Still stuck in the labyrinth!”"
+      ];
+      var phraseIdx = 0;
+      var compassAngle = 0;
+
+      if (needle && compass) {
+        playground404.addEventListener('pointermove', function(e) {
+          var rect = compass.getBoundingClientRect();
+          var cx = rect.left + rect.width / 2;
+          var cy = rect.top + rect.height / 2;
+          var rad = Math.atan2(e.clientY - cy, e.clientX - cx);
+          compassAngle = rad * (180 / Math.PI) + 90;
+          needle.style.transform = 'rotate(' + compassAngle + 'deg)';
+        }, { passive: true });
+
+        compass.addEventListener('click', function(e) {
+          e.stopPropagation();
+          haptic.tick();
+          compassAngle += 720;
+          needle.style.transition = 'transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          needle.style.transform = 'rotate(' + compassAngle + 'deg)';
+          setTimeout(function() {
+            needle.style.transition = '';
+          }, 950);
+        });
+      }
+
+      if (card404) {
+        card404.addEventListener('click', function() {
+          haptic.tick();
+          phraseIdx = (phraseIdx + 1) % phrases404.length;
+
+          if (img404) {
+            img404.classList.remove('abso-squash-bounce');
+            void img404.offsetWidth;
+            img404.classList.add('abso-squash-bounce');
+          }
+
+          if (speech404) {
+            speech404.textContent = phrases404[phraseIdx];
+            speech404.classList.remove('abso-bubble-pop');
+            void speech404.offsetWidth;
+            speech404.classList.add('abso-bubble-pop');
+          }
+        });
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAbsoInteractions);
+  } else {
+    initAbsoInteractions();
+  }
+})();
+</script>
