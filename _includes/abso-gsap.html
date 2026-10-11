@@ -144,88 +144,40 @@
 
 
     // =========================================================================
-    // 4. CHOREOGRAPHED HAMMER MENU POP & SPRING STAGGER
+    // 4. HAMBURGER MASCOT BUTTON TACTILE POP
     // =========================================================================
     var menuToggle = document.getElementById('abso-menu-toggle');
-    var navMenu = document.getElementById('abso-nav-menu');
-
-    if (menuToggle && navMenu) {
-      var navItems = navMenu.querySelectorAll('.nav-links li');
-
-      // Intercept active toggle to apply juicy GSAP spring timeline
-      var observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (mutation.attributeName === 'class') {
-            var isActive = navMenu.classList.contains('active');
-            if (isActive) {
-              // Opening: Spring card bloom + staggered token drop
-              gsap.killTweensOf(navMenu);
-              gsap.killTweensOf(navItems);
-
-              gsap.fromTo(navMenu, 
-                { scale: 0.90, y: -12, opacity: 0 },
-                { scale: 1, y: 0, opacity: 1, duration: 0.38, ease: 'back.out(1.6)', overwrite: 'auto' }
-              );
-
-              gsap.fromTo(navItems,
-                { y: 20, scale: 0.86, opacity: 0 },
-                { 
-                  y: 0, 
-                  scale: 1, 
-                  opacity: 1, 
-                  stagger: 0.055, 
-                  duration: 0.42, 
-                  ease: 'back.out(1.85)',
-                  delay: 0.06,
-                  overwrite: 'auto'
-                }
-              );
-
-              // Playful button icon pop
-              gsap.fromTo(menuToggle, 
-                { scale: 0.88, rotation: -12 },
-                { scale: 1, rotation: 0, duration: 0.45, ease: 'elastic.out(1.3, 0.45)' }
-              );
-
-            } else {
-              // Closing: Quick crisp collapse
-              gsap.to(navMenu, {
-                scale: 0.94,
-                y: -8,
-                opacity: 0,
-                duration: 0.22,
-                ease: 'power2.in',
-                overwrite: 'auto'
-              });
-            }
-          }
-        });
+    if (menuToggle) {
+      menuToggle.addEventListener('click', function() {
+        gsap.fromTo(this, 
+          { scale: 0.88, rotation: -10 },
+          { scale: 1, rotation: 0, duration: 0.45, ease: 'elastic.out(1.3, 0.45)', overwrite: 'auto' }
+        );
       });
-
-      observer.observe(navMenu, { attributes: true });
     }
-
 
     // =========================================================================
-    // 5. "THE DOT" & MASCOT PLAYFUL MICRO-PHYSICS
+    // 5. "THE DOT" & LOGO PLAYFUL MICRO-PHYSICS
     // =========================================================================
-    // Floating character micro-drifts
-    var floatingHome = document.querySelector('.nav-item-home img');
-    var floatingGames = document.querySelector('.nav-item-games img');
-    var floatingDot = document.querySelector('.nav-item-the-dot img');
-    var floatingContact = document.querySelector('.nav-item-contact img');
+    var theDotImage = document.querySelector('.abso-panel--dot img, .dot-section img');
+    if (theDotImage) {
+      theDotImage.addEventListener('pointerenter', function() {
+        gsap.to(this, { scale: 1.04, y: -4, duration: 0.25, ease: 'power1.out' });
+      });
+      theDotImage.addEventListener('pointerleave', function() {
+        gsap.to(this, { scale: 1, y: 0, duration: 0.55, ease: 'elastic.out(1.2, 0.4)' });
+      });
+    }
 
-    if (floatingHome) {
-      gsap.to(floatingHome, { y: -3.5, duration: 2.4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.1 });
-    }
-    if (floatingGames) {
-      gsap.to(floatingGames, { y: -4, rotation: 1, duration: 2.1, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.3 });
-    }
-    if (floatingDot) {
-      gsap.to(floatingDot, { y: -3, rotation: -1, duration: 2.7, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.5 });
-    }
-    if (floatingContact) {
-      gsap.to(floatingContact, { y: -3.5, rotation: 0.8, duration: 2.3, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.2 });
+    // Playful wobble for the abso. red dot in header logo on click/tap
+    var logoImg = document.querySelector('.abso-logo');
+    if (logoImg) {
+      logoImg.addEventListener('pointerenter', function() {
+        gsap.to(this, { scale: 1.05, duration: 0.18, ease: 'power1.out' });
+      });
+      logoImg.addEventListener('pointerleave', function() {
+        gsap.to(this, { scale: 1, duration: 0.4, ease: 'elastic.out(1.1, 0.4)' });
+      });
     }
 
     // Playful wobble for the abso. red dot in header logo on click/tap
