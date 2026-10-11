@@ -1,6 +1,6 @@
 # ABSO. WEBSITE — PRODUCTION RELEASE DOCUMENTATION
 
-**Release Version:** `v0.3.1.1.3`  
+**Release Version:** `v0.4_alpha`  
 **Release Date:** 2026-10-11  
 **Project:** ABSO. by ABSOLUTEARTT&reg;  
 **Production URL:** [https://games.absoluteartt.com/](https://games.absoluteartt.com/)  
@@ -18,7 +18,7 @@
 The ABSO. website serves as the official digital showcase and game catalogue for ABSO. titles, designed with an intentional "mobile-first, centered, ultra-clean" aesthetic inspired by Apple design restraint, tactile indie game personality, and Pixar-style character animation principles.
 
 - **Brand:** ABSO. / ABSOLUTEARTT&reg;
-- **Current Version:** `v0.3.1.1.3`
+- **Current Version:** `v0.4_alpha`
 - **Release Status:** Approved Production Release
 - **Production Host:** GitHub Pages with Custom Domain (`games.absoluteartt.com`)
 - **Canonical Domain:** `https://games.absoluteartt.com/` (with 301 redirects from `abso.absoluteartt.com` and `play.absoluteartt.com`)
@@ -237,12 +237,37 @@ In terminal / command prompt: Press `Ctrl + C` or terminate the running backgrou
 
 - **Branch Strategy:** `main` serves as the single source of truth and production deployment branch.
 - **Commit Convention:** Descriptive commit messages documenting release version and major modifications.
-- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`, `v0.3.1.1`, `v0.3.1.1.2`, `v0.3.1.1.3`.
+- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`, `v0.3.1.1`, `v0.3.1.1.2`, `v0.3.1.1.3`, `v0.4_alpha`.
 - **Deployment:** Automatically triggers GitHub Pages build upon pushing to `main`.
 
 ---
 
 ## L. Detailed Release Changelogs
+
+### Release v0.4_alpha — Comprehensive Website Performance Optimization & Responsive Media Engine (2026-10-11)
+
+- **Responsive Image Architecture (`srcset` & `sizes`):**
+  - Generated mobile, tablet, and desktop responsive variants for hero artwork and key game cards (`360w`, `640w`, `960w`, `1324w`).
+  - Added `<link rel="preload" as="image" imagesrcset="..." imagesizes="...">` in `head-custom.html` for homepage and catalogue pages to slash mobile LCP.
+  - Mobile devices now download a 15.5 KB – 34.1 KB WebP hero banner instead of the full desktop master, reducing initial hero bytes by over 60%.
+- **Zero Menu Badge Leaks on Page Load:**
+  - Modernized mobile hamburger menu badges to deferred lazy loading (`data-src`).
+  - Implemented interactive pre-fetch trigger (`ensureMenuImages()`) on touchstart/focus/mouseenter of the menu toggle.
+  - Completely eliminated 35.5 KB of off-screen menu badge image requests from the initial page load waterfall.
+- **Full Showcase & Story Artwork Conversion to WebP:**
+  - Converted 37 source PNG/JPEG assets across all game showcase and narrative pages, dropping combined source image payload from 40.82 MB to 1.90 MB (95.3% reduction).
+  - Samosa Catcher page image assets reduced from 15.34 MB to 730 KB.
+  - Run, Little One page image assets reduced from 11.60 MB to 367 KB.
+  - The Dot story narrative banners reduced from 5.44 MB to 308 KB.
+  - Duet and MB-COW showcase artwork converted to lightweight WebP assets.
+- **Global Footer & Layout Shift (CLS) Elimination:**
+  - Converted `walking-dots.png` (118.8 KB) to `walking-dots.webp` (21.5 KB, 81.9% reduction).
+  - Converted `footer-logo-with-dot.png` (18.2 KB) to `footer-logo-with-dot.webp` (3.6 KB, 80.3% reduction).
+  - Added explicit intrinsic `width` and `height` dimensions across all image tags in all markdown and include files to prevent layout reflows and guarantee zero Cumulative Layout Shift (CLS = 0.000).
+- **Site Version Synchronization:**
+  - Updated site version to `v0.4_alpha` in `_config.yml`, `README.md`, and the global footer across all pages.
+- **Design & Experience Fidelity:**
+  - All original artwork, colors, transparency, rounded corner masks (`rx = 92`), physics-based overscroll, scroll motion inertia, and mobile responsiveness preserved with 100% visual fidelity.
 
 ### Release v0.3.1.1.3 — Final Approved Samosa Catcher Banner & Version Synchronization (2026-10-11)
 

@@ -116,7 +116,7 @@ abso_landing: true
 {% include abso-header.html %}
 
 <div class="banner-wrapper">
-  <img src="{{ site.baseurl }}/assets/images/abso/run-little-one-header.png" alt="Run Little One Banner" fetchpriority="high">
+  <img src="{{ site.baseurl }}/assets/images/abso/run-little-one-header.webp" alt="Run Little One Banner" fetchpriority="high" decoding="async" width="1320" height="1059">
   <div class="banner-text">
     Flip between two lanes, dodge handcrafted felt obstacles, and collect scattered memory fragments in a tactile world of wool and soft shadows.<br>
     <strong>Keep running, little one.</strong>
@@ -126,7 +126,7 @@ abso_landing: true
 <div class="game-container">
   <!-- Info Banner -->
   <div class="info-banner-wrapper">
-    <img class="info-banner-bg" src="{{ site.baseurl }}/assets/images/abso/run-little-one-info-banner.png" alt="Run Little One Info">
+    <img class="info-banner-bg" src="{{ site.baseurl }}/assets/images/abso/run-little-one-info-banner.webp" alt="Run Little One Info" width="1170" height="414">
     <div class="info-banner-text">
       <h2>Run, Little One</h2>
       <p>Genre: Casual, Arcade<br>
@@ -135,24 +135,24 @@ abso_landing: true
       Developer: ABSOLUTEARTT&reg; / abso.<br>
       Platforms: iOS, Android</p>
     </div>
-    <img class="info-badge" src="{{ site.baseurl }}/assets/images/abso/hyper-icon.png" alt="Hyper Badge">
+    <img class="info-badge" src="{{ site.baseurl }}/assets/images/abso/hyper-icon.webp" alt="Hyper Badge" width="115" height="108">
   </div>
 
   <!-- Screenshots Header -->
-  <img src="{{ site.baseurl }}/assets/images/abso/screenshots-icon.png" alt="Screenshots" class="abso-section-icon">
+  <img src="{{ site.baseurl }}/assets/images/abso/screenshots-icon.webp" alt="Screenshots" class="abso-section-icon" width="671" height="333">
   
   <!-- Screenshots -->
-  <img src="{{ site.baseurl }}/assets/images/abso/run-little-screen1.png" alt="Screenshot 1" class="img-rounded" loading="lazy">
-  <img src="{{ site.baseurl }}/assets/images/abso/run-little-screen2.png" alt="Screenshot 2" class="img-rounded" loading="lazy">
-  <img src="{{ site.baseurl }}/assets/images/abso/run-little-screen3.png" alt="Screenshot 3" class="img-rounded" loading="lazy">
-  <img src="{{ site.baseurl }}/assets/images/abso/run-little-screen4.png" alt="Screenshot 4" class="img-rounded" loading="lazy" style="margin-bottom: 40px;">
+  <img src="{{ site.baseurl }}/assets/images/abso/run-little-screen1.webp" alt="Screenshot 1" class="img-rounded" loading="lazy" decoding="async" width="1172" height="1945">
+  <img src="{{ site.baseurl }}/assets/images/abso/run-little-screen2.webp" alt="Screenshot 2" class="img-rounded" loading="lazy" decoding="async" width="1170" height="1945">
+  <img src="{{ site.baseurl }}/assets/images/abso/run-little-screen3.webp" alt="Screenshot 3" class="img-rounded" loading="lazy" decoding="async" width="1170" height="1945">
+  <img src="{{ site.baseurl }}/assets/images/abso/run-little-screen4.webp" alt="Screenshot 4" class="img-rounded" loading="lazy" decoding="async" width="1172" height="1945" style="margin-bottom: 40px;">
   
   <!-- Download Header -->
-  <img src="{{ site.baseurl }}/assets/images/abso/download-icon.png" alt="Download" class="abso-section-icon">
+  <img src="{{ site.baseurl }}/assets/images/abso/download-icon.webp" alt="Download" class="abso-section-icon" width="650" height="325">
   
   <!-- Badges -->
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="{{ site.baseurl }}/assets/images/abso/app-store-icons.png" alt="Google Play and App Store" style="width: 140px;" class="game-center">
+    <img src="{{ site.baseurl }}/assets/images/abso/app-store-icons.webp" alt="Google Play and App Store" style="width: 140px;" class="game-center" width="866" height="612">
   </div>
   
   <!-- Coming Soon -->
@@ -160,11 +160,11 @@ abso_landing: true
   
   <!-- Home Button -->
   <div class="home-wrapper">
-    <a href="{{ site.baseurl }}/samosa-catcher/"><img src="{{ site.baseurl }}/assets/images/abso/icon-left.webp" alt="Previous" loading="lazy" decoding="async" style="height: 40px;"></a>
+    <a href="{{ site.baseurl }}/samosa-catcher/"><img src="{{ site.baseurl }}/assets/images/abso/icon-left.webp" alt="Previous" loading="lazy" decoding="async" width="101" height="80" style="height: 40px; width: auto;"></a>
     <a href="{{ site.baseurl }}/">
-      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.webp" alt="Home" loading="lazy" decoding="async" style="height: 64px;">
+      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.webp" alt="Home" loading="lazy" decoding="async" width="160" height="81" style="height: 64px; width: auto;">
     </a>
-    <a href="{{ site.baseurl }}/twosome/"><img src="{{ site.baseurl }}/assets/images/abso/icon-right.webp" alt="Next" loading="lazy" decoding="async" style="height: 40px;"></a>
+    <a href="{{ site.baseurl }}/twosome/"><img src="{{ site.baseurl }}/assets/images/abso/icon-right.webp" alt="Next" loading="lazy" decoding="async" width="94" height="80" style="height: 40px; width: auto;"></a>
   </div>
 </div>
 

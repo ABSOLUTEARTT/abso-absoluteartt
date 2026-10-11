@@ -1,22 +1,22 @@
 <header class="abso-entry" aria-label="abso.">
   <div class="abso-header-container">
     <a href="{{ site.baseurl }}/" class="abso-logo-link">
-      <img class="abso-logo" src="{{ '/assets/images/abso/abso-logo-with-dot.png' | relative_url }}" alt="abso.">
+      <img class="abso-logo" src="{{ '/assets/images/abso/abso-logo-with-dot.webp' | relative_url }}" alt="abso." width="300" height="100">
     </a>
     
     <button class="hamburger-btn" id="abso-menu-toggle" aria-label="Menu" aria-expanded="false" style="-webkit-tap-highlight-color: transparent; outline: none;">
-      <img src="{{ '/assets/images/abso/menu-open.webp' | relative_url }}" alt="Open Menu" class="icon-open" draggable="false" decoding="async">
-      <img src="{{ '/assets/images/abso/menu-close.webp' | relative_url }}" alt="Close Menu" class="icon-close" draggable="false" decoding="async">
+      <img src="{{ '/assets/images/abso/menu-open.webp' | relative_url }}" alt="Open Menu" class="icon-open" draggable="false" decoding="async" width="100" height="80">
+      <img src="{{ '/assets/images/abso/menu-close.webp' | relative_url }}" alt="Close Menu" class="icon-close" draggable="false" decoding="async" width="100" height="80">
     </button>
   </div>
 </header>
 
 <div class="abso-nav-overlay" id="abso-nav-menu">
   <ul class="nav-links">
-    <li class="nav-item-home"><a href="{{ site.baseurl }}/" style="-webkit-tap-highlight-color: transparent; outline: none;"><img src="{{ site.baseurl }}/assets/images/abso/menu-home.webp" alt="home" draggable="false" loading="lazy" decoding="async"></a></li>
-    <li class="nav-item-games"><a href="{{ site.baseurl }}/games/" style="-webkit-tap-highlight-color: transparent; outline: none;"><img src="{{ site.baseurl }}/assets/images/abso/menu-games.webp" alt="games" draggable="false" loading="lazy" decoding="async"></a></li>
-    <li class="nav-item-the-dot"><a href="{{ site.baseurl }}/the-dot/" style="-webkit-tap-highlight-color: transparent; outline: none;"><img src="{{ site.baseurl }}/assets/images/abso/menu-the-dot.webp" alt="the dot." draggable="false" loading="lazy" decoding="async"></a></li>
-    <li class="nav-item-contact"><a href="{{ site.baseurl }}/about/" style="-webkit-tap-highlight-color: transparent; outline: none;"><img src="{{ site.baseurl }}/assets/images/abso/menu-contact-icon.webp" alt="contact" draggable="false" loading="lazy" decoding="async"></a></li>
+    <li class="nav-item-home"><a href="{{ site.baseurl }}/" style="-webkit-tap-highlight-color: transparent; outline: none;"><img data-src="{{ site.baseurl }}/assets/images/abso/menu-home.webp" alt="home" draggable="false" decoding="async" width="240" height="133"></a></li>
+    <li class="nav-item-games"><a href="{{ site.baseurl }}/games/" style="-webkit-tap-highlight-color: transparent; outline: none;"><img data-src="{{ site.baseurl }}/assets/images/abso/menu-games.webp" alt="games" draggable="false" decoding="async" width="240" height="127"></a></li>
+    <li class="nav-item-the-dot"><a href="{{ site.baseurl }}/the-dot/" style="-webkit-tap-highlight-color: transparent; outline: none;"><img data-src="{{ site.baseurl }}/assets/images/abso/menu-the-dot.webp" alt="the dot." draggable="false" decoding="async" width="240" height="128"></a></li>
+    <li class="nav-item-contact"><a href="{{ site.baseurl }}/about/" style="-webkit-tap-highlight-color: transparent; outline: none;"><img data-src="{{ site.baseurl }}/assets/images/abso/menu-contact-icon.webp" alt="contact" draggable="false" decoding="async" width="240" height="130"></a></li>
   </ul>
 </div>
 
@@ -245,7 +245,19 @@
     var menu = document.getElementById('abso-nav-menu');
     
     if (toggle && menu) {
+      function ensureMenuImages() {
+        var menuImgs = menu.querySelectorAll('img[data-src]');
+        menuImgs.forEach(function(img) {
+          img.src = img.getAttribute('data-src');
+          img.removeAttribute('data-src');
+        });
+      }
+      toggle.addEventListener('mouseenter', ensureMenuImages, { once: true });
+      toggle.addEventListener('focus', ensureMenuImages, { once: true });
+      toggle.addEventListener('touchstart', ensureMenuImages, { passive: true, once: true });
+
       toggle.addEventListener('click', function(e) {
+        ensureMenuImages();
         e.stopPropagation();
         this.classList.toggle('active');
         menu.classList.toggle('active');

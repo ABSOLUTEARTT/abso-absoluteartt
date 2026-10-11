@@ -5,3 +5,12 @@
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/abso/favicon-32x32.png' | relative_url }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/abso/favicon-16x16.png' | relative_url }}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/abso/apple-touch-icon.png' | relative_url }}">
+{% if page.url == '/' or page.url == '/games/' %}
+<link rel="preload" as="image" href="{{ '/assets/images/abso/mahabharata-code-of-war-640w.webp' | relative_url }}"
+      imagesrcset="{{ '/assets/images/abso/mahabharata-code-of-war-360w.webp' | relative_url }} 360w,
+                   {{ '/assets/images/abso/mahabharata-code-of-war-640w.webp' | relative_url }} 640w,
+                   {{ '/assets/images/abso/mahabharata-code-of-war-960w.webp' | relative_url }} 960w,
+                   {{ '/assets/images/abso/mahabharata-code-of-war.webp' | relative_url }} 1324w"
+      imagesizes="(max-width: 660px) 100vw, 660px"
+      fetchpriority="high">
+{% endif %}

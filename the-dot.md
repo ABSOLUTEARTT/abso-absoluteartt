@@ -42,25 +42,25 @@ abso_landing: true
 <div class="dot-container">
   
   <div class="dot-section">
-    <img src="{{ site.baseurl }}/assets/images/abso/the-dot-meet.png" alt="Meet the Dot." fetchpriority="high">
+    <img src="{{ site.baseurl }}/assets/images/abso/the-dot-meet.webp" alt="Meet the Dot." fetchpriority="high" width="940" height="1535">
   </div>
   
   <div class="dot-section">
-    <img src="{{ site.baseurl }}/assets/images/abso/the-dot-many-lives.png" alt="One Dot. Many Lives.">
+    <img src="{{ site.baseurl }}/assets/images/abso/the-dot-many-lives.webp" alt="One Dot. Many Lives." loading="lazy" decoding="async" width="941" height="1489">
   </div>
   
   <div class="dot-section">
-    <img src="{{ site.baseurl }}/assets/images/abso/the-dot-cute-curious.png" alt="Cute. Curious. Chaos.">
+    <img src="{{ site.baseurl }}/assets/images/abso/the-dot-cute-curious.webp" alt="Cute. Curious. Chaos." loading="lazy" decoding="async" width="940" height="1490">
   </div>
   
   <div class="dot-section">
-    <img src="{{ site.baseurl }}/assets/images/abso/the-dot-endless.png" alt="One little Dot. Endless possibilities.">
+    <img src="{{ site.baseurl }}/assets/images/abso/the-dot-endless.webp" alt="One little Dot. Endless possibilities." loading="lazy" decoding="async" width="1059" height="1718">
   </div>
   
   <!-- Home Button -->
   <div class="home-wrapper" style="justify-content: center; margin: 20px auto 40px auto;">
     <a href="{{ site.baseurl }}/">
-      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.webp" alt="Home" loading="lazy" decoding="async" style="height: 64px;">
+      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.webp" alt="Home" loading="lazy" decoding="async" width="160" height="81" style="height: 64px; width: auto;">
     </a>
   </div>
 

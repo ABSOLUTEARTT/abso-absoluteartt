@@ -135,7 +135,7 @@ abso_landing: true
   .coming-soon {
     display: block;
     margin: 0 auto 25px auto;
-    background: url('{{ site.baseurl }}/assets/images/mb-cow/coming-soon_button copy.png') no-repeat center center;
+    background: url('{{ site.baseurl }}/assets/images/mb-cow/coming-soon-button.webp') no-repeat center center;
     background-size: 100% 100%;
     padding: clamp(2px, 0.5vw, 4px) clamp(18px, 4vw, 25px);
     font-size: clamp(11px, 2vw, 14px);
@@ -161,9 +161,9 @@ abso_landing: true
 
 <!-- Main Banner -->
 <div class="banner-wrapper">
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/mb-cow-base copy.webp" alt="Mahabharata Code of War Banner" class="cow-center" style="width: 100%;" fetchpriority="high">
+  <img src="{{ site.baseurl }}/assets/images/mb-cow/mb-cow-base copy.webp" alt="Mahabharata Code of War Banner" class="cow-center" style="width: 100%;" fetchpriority="high" width="1322" height="1024">
   <div class="banner-overlay">
-    <img src="{{ site.baseurl }}/assets/images/mb-cow/logo.png" alt="MAHABHARATA CODE OF WAR" class="main-logo cow-center">
+    <img src="{{ site.baseurl }}/assets/images/mb-cow/logo.webp" alt="MAHABHARATA CODE OF WAR" class="main-logo cow-center" width="1024" height="575">
     <p class="banner-desc">A mythological multiplayer game of deception, strategy, and social deduction. Choose your side, uncover hidden identities, and fight for Dharma or Adharma.</p>
     <p class="banner-tagline">Trust no one. Choose your Dharma.</p>
   </div>
@@ -178,26 +178,26 @@ abso_landing: true
     <p>Release Date: TBA</p>
     <p>Developer: ABSOLUTEARTT&reg; / abso.</p>
     <p>Platforms: iOS &amp; Android</p>
-    <img src="{{ site.baseurl }}/assets/images/mb-cow/mp-icon copy.png" alt="Multi-player" class="mp-icon">
+    <img src="{{ site.baseurl }}/assets/images/mb-cow/mp-icon.webp" alt="Multi-player" class="mp-icon" width="112" height="98" loading="lazy" decoding="async">
   </div>
 
   <!-- Screenshots Header -->
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/screenshots-icon copy.png" alt="Screenshots" class="abso-section-icon">
+  <img src="{{ site.baseurl }}/assets/images/mb-cow/screenshots-icon.webp" alt="Screenshots" class="abso-section-icon" width="671" height="333" loading="lazy" decoding="async">
   
   <!-- Character Cards -->
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/arjuna-screen copy.webp" alt="Arjuna" class="img-rounded" loading="lazy" style="margin-bottom: 20px;">
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/shakuni-screen.webp" alt="Shakuni" class="img-rounded" loading="lazy" style="margin-bottom: 20px;">
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/nala-sscreenshot copy.webp" alt="Nala &amp; Damayanti" class="img-rounded" loading="lazy" style="margin-bottom: 20px;">
+  <img src="{{ site.baseurl }}/assets/images/mb-cow/arjuna-screen copy.webp" alt="Arjuna" class="img-rounded" loading="lazy" decoding="async" width="1173" height="1945" style="margin-bottom: 20px;">
+  <img src="{{ site.baseurl }}/assets/images/mb-cow/shakuni-screen.webp" alt="Shakuni" class="img-rounded" loading="lazy" decoding="async" width="1173" height="1945" style="margin-bottom: 20px;">
+  <img src="{{ site.baseurl }}/assets/images/mb-cow/nala-sscreenshot copy.webp" alt="Nala &amp; Damayanti" class="img-rounded" loading="lazy" decoding="async" width="1173" height="1945" style="margin-bottom: 20px;">
   
   <!-- In Game Screen -->
-  <img src="{{ site.baseurl }}/assets/images/mb-cow/in-game-screen copy.webp" alt="In Game Screenshots" class="img-rounded" loading="lazy" style="margin-bottom: 30px;">
+  <img src="{{ site.baseurl }}/assets/images/mb-cow/in-game-screen copy.webp" alt="In Game Screenshots" class="img-rounded" loading="lazy" decoding="async" width="1173" height="1945" style="margin-bottom: 30px;">
   
   <!-- Download Header -->
-  <img src="{{ site.baseurl }}/assets/images/abso/download-icon.png" alt="Download" class="abso-section-icon">
+  <img src="{{ site.baseurl }}/assets/images/abso/download-icon.webp" alt="Download" class="abso-section-icon" width="650" height="325" loading="lazy" decoding="async">
   
   <!-- Badges -->
   <div class="download-badges" style="margin-bottom: 20px;">
-    <a href="#"><img src="{{ site.baseurl }}/assets/images/mb-cow/Layer 31 copy.png" alt="Google Play and App Store" style="width: 140px;"></a>
+    <a href="#"><img src="{{ site.baseurl }}/assets/images/mb-cow/app-store-icons.webp" alt="Google Play and App Store" style="width: 140px;" width="866" height="612" loading="lazy" decoding="async"></a>
   </div>
   <!-- Coming Soon -->
   <div class="abso-coming-soon-btn">coming soon</div>
@@ -205,13 +205,13 @@ abso_landing: true
   <!-- Home Button -->
   <div class="home-wrapper">
     <a href="{{ site.baseurl }}/duet/">
-      <img src="{{ site.baseurl }}/assets/images/abso/icon-left.webp" alt="Previous" loading="lazy" decoding="async" style="height: 40px;">
+      <img src="{{ site.baseurl }}/assets/images/abso/icon-left.webp" alt="Previous" loading="lazy" decoding="async" width="101" height="80" style="height: 40px; width: auto;">
     </a>
     <a href="{{ site.baseurl }}/">
-      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.webp" alt="Home" loading="lazy" decoding="async" style="height: 64px;">
+      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.webp" alt="Home" loading="lazy" decoding="async" width="160" height="81" style="height: 64px; width: auto;">
     </a>
     <a href="{{ site.baseurl }}/samosa-catcher/">
-      <img src="{{ site.baseurl }}/assets/images/abso/icon-right.webp" alt="Next" loading="lazy" decoding="async" style="height: 40px;">
+      <img src="{{ site.baseurl }}/assets/images/abso/icon-right.webp" alt="Next" loading="lazy" decoding="async" width="94" height="80" style="height: 40px; width: auto;">
     </a>
   </div>
 </div>

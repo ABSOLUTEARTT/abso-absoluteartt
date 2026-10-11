@@ -167,13 +167,13 @@ abso_landing: true
   </div>
 
   <div class="contact-artwork-wrap">
-    <img src="{{ site.baseurl }}/assets/images/abso/contact-artwork.png" alt="abso. artwork" class="contact-artwork">
+    <img src="{{ site.baseurl }}/assets/images/abso/contact-artwork.webp" alt="abso. artwork" class="contact-artwork" width="1672" height="941" loading="lazy" decoding="async">
   </div>
 
   <!-- Home Button -->
   <div class="home-wrapper" style="justify-content: center; margin: 30px auto 40px auto;">
     <a href="{{ site.baseurl }}/">
-      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.png" alt="Home" style="height: 64px;">
+      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.webp" alt="Home" width="160" height="81" loading="lazy" decoding="async" style="height: 64px; width: auto;">
     </a>
   </div>
 </div>

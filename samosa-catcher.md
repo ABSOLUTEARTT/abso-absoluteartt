@@ -143,9 +143,9 @@ abso_landing: true
 {% include abso-header.html %}
 
 <div class="banner-wrapper">
-  <img src="{{ site.baseurl }}/assets/images/abso/samosa-catcher-header.png" alt="Samosa Catcher Banner" fetchpriority="high">
+  <img src="{{ site.baseurl }}/assets/images/abso/samosa-catcher-header.webp" alt="Samosa Catcher Banner" fetchpriority="high" decoding="async" width="1322" height="999">
   <div class="banner-overlay">
-    <img class="main-logo" src="{{ site.baseurl }}/assets/images/abso/samosa-catcher-logo.png" alt="Samosa Catcher Logo">
+    <img class="main-logo" src="{{ site.baseurl }}/assets/images/abso/samosa-catcher-logo.webp" alt="Samosa Catcher Logo" width="1024" height="801">
     <p class="banner-desc">Catch the golden samosas, dodge rotten ones and chilli bombs, grab crazy power-ups, and chase the ultimate high score. It's desi street-food chaos, served hot with memes.</p>
     <p class="banner-tagline">Main hun Samosa Catcher! &#127925;</p>
   </div>
@@ -154,7 +154,7 @@ abso_landing: true
 <div class="game-container">
   <!-- Info Banner -->
   <div class="info-banner-wrapper">
-    <img class="info-banner-bg" src="{{ site.baseurl }}/assets/images/abso/game-info-banner.png" alt="Samosa Catcher Info">
+    <img class="info-banner-bg" src="{{ site.baseurl }}/assets/images/abso/game-info-banner.webp" alt="Samosa Catcher Info" width="1173" height="414">
     <div class="info-banner-text">
       <h2>Samosa Catcher</h2>
       <p>Genre: Hyper-Casual, Arcade<br>
@@ -163,24 +163,24 @@ abso_landing: true
       Developer: ABSOLUTEARTT&reg; / abso.<br>
       Platforms: iOS &amp; Android</p>
     </div>
-    <img class="info-badge" src="{{ site.baseurl }}/assets/images/abso/casual-icon.png" alt="Casual Badge">
+    <img class="info-badge" src="{{ site.baseurl }}/assets/images/abso/casual-icon.webp" alt="Casual Badge" width="115" height="108">
   </div>
 
   <!-- Screenshots Header -->
-  <img src="{{ site.baseurl }}/assets/images/abso/screenshots-icon.png" alt="Screenshots" class="abso-section-icon">
+  <img src="{{ site.baseurl }}/assets/images/abso/screenshots-icon.webp" alt="Screenshots" class="abso-section-icon" width="671" height="333">
   
   <!-- Screenshots -->
-  <img src="{{ site.baseurl }}/assets/images/abso/samosa-catcher-screen1.png" alt="Screenshot 1" class="img-rounded" loading="lazy">
-  <img src="{{ site.baseurl }}/assets/images/abso/samosa-catcher-screen2.png" alt="Screenshot 2" class="img-rounded" loading="lazy">
-  <img src="{{ site.baseurl }}/assets/images/abso/samosa-catcher-screen3.png" alt="Screenshot 3" class="img-rounded" loading="lazy">
-  <img src="{{ site.baseurl }}/assets/images/abso/samosa-catcher-screen4.png" alt="Screenshot 4" class="img-rounded" loading="lazy" style="margin-bottom: 40px;">
+  <img src="{{ site.baseurl }}/assets/images/abso/samosa-catcher-screen1.webp" alt="Screenshot 1" class="img-rounded" loading="lazy" decoding="async" width="1172" height="1945">
+  <img src="{{ site.baseurl }}/assets/images/abso/samosa-catcher-screen2.webp" alt="Screenshot 2" class="img-rounded" loading="lazy" decoding="async" width="1173" height="1945">
+  <img src="{{ site.baseurl }}/assets/images/abso/samosa-catcher-screen3.webp" alt="Screenshot 3" class="img-rounded" loading="lazy" decoding="async" width="1173" height="1945">
+  <img src="{{ site.baseurl }}/assets/images/abso/samosa-catcher-screen4.webp" alt="Screenshot 4" class="img-rounded" loading="lazy" decoding="async" width="1172" height="1945" style="margin-bottom: 40px;">
   
   <!-- Download Header -->
-  <img src="{{ site.baseurl }}/assets/images/abso/download-icon.png" alt="Download" class="abso-section-icon">
+  <img src="{{ site.baseurl }}/assets/images/abso/download-icon.webp" alt="Download" class="abso-section-icon" width="650" height="325">
   
   <!-- Badges -->
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="{{ site.baseurl }}/assets/images/abso/app-store-icons.png" alt="Google Play and App Store" style="width: 140px;" class="game-center">
+    <img src="{{ site.baseurl }}/assets/images/abso/app-store-icons.webp" alt="Google Play and App Store" style="width: 140px;" class="game-center" width="866" height="612">
   </div>
   
   <!-- Coming Soon -->
@@ -188,11 +188,11 @@ abso_landing: true
   
   <!-- Home Button -->
   <div class="home-wrapper">
-    <a href="{{ site.baseurl }}/mb-cow/"><img src="{{ site.baseurl }}/assets/images/abso/icon-left.webp" alt="Previous" loading="lazy" decoding="async" style="height: 40px;"></a>
+    <a href="{{ site.baseurl }}/mb-cow/"><img src="{{ site.baseurl }}/assets/images/abso/icon-left.webp" alt="Previous" loading="lazy" decoding="async" width="101" height="80" style="height: 40px; width: auto;"></a>
     <a href="{{ site.baseurl }}/">
-      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.webp" alt="Home" loading="lazy" decoding="async" style="height: 64px;">
+      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.webp" alt="Home" loading="lazy" decoding="async" width="160" height="81" style="height: 64px; width: auto;">
     </a>
-    <a href="{{ site.baseurl }}/run-little-one/"><img src="{{ site.baseurl }}/assets/images/abso/icon-right.webp" alt="Next" loading="lazy" decoding="async" style="height: 40px;"></a>
+    <a href="{{ site.baseurl }}/run-little-one/"><img src="{{ site.baseurl }}/assets/images/abso/icon-right.webp" alt="Next" loading="lazy" decoding="async" width="94" height="80" style="height: 40px; width: auto;"></a>
   </div>
 </div>
 
