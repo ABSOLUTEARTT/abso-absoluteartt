@@ -307,6 +307,15 @@ In terminal / command prompt: Press `Ctrl + C` or terminate the running backgrou
   - `abso.absoluteartt.com/*` HTTP 301 redirects to `https://games.absoluteartt.com/$1` (preserving path and query string).
   - `play.absoluteartt.com/*` updated to HTTP 301 direct redirect to `https://games.absoluteartt.com/$1` (preserving path and query string).
 
+### 14. Asset Payload & Performance Optimization
+- Replaced 1.67 MB legacy PNG (`samosa-catcher-combined.png`) with optimized WebP (`samosa-catcher.webp`, 115 KB) on homepage and `/games/`.
+- Converted 928 KB `about-banner.png` to optimized WebP (`about-banner.webp`, 73.5 KB).
+- Right-sized and converted 6 hamburger menu PNG icons (1.66 MB total) to 2× retina WebP icons (~44 KB total bundle).
+- Replaced 133 KB `home-icon.png` with 4.8 KB `home-icon.webp`.
+- Added explicit `loading="lazy"` and `decoding="async"` to all below-the-fold cards, panels, and menu icons.
+- Preserved `fetchpriority="high"` on primary hero banner (`mahabharata-code-of-war.webp`) without lazy-loading.
+- Total homepage asset payload reduced by 88.3% (from 4.49 MB to ~526 KB).
+
 ---
 
 ## M. Known Limitations

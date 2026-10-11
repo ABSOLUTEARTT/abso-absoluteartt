@@ -12,7 +12,7 @@ abso_landing: true
 <section id="games" class="abso-stack" aria-label="Games">
   <figure class="abso-card abso-card--full abso-card--hero" style="margin-bottom: 20px;">
     <a href="{{ site.baseurl }}/mb-cow">
-      <img src="{{ '/assets/images/abso/mahabharata-code-of-war.webp' | relative_url }}" fetchpriority="high" alt="Mahabharata Code of War">
+      <img src="{{ '/assets/images/abso/mahabharata-code-of-war.webp' | relative_url }}" fetchpriority="high" decoding="async" alt="Mahabharata Code of War">
     </a>
   </figure>
 </section>
@@ -22,32 +22,32 @@ abso_landing: true
 
     <figure class="abso-card abso-card--narrow">
       <a href="{{ site.baseurl }}/samosa-catcher">
-                  <img src="{{ '/assets/images/abso/samosa-catcher-combined.png' | relative_url }}" loading="lazy" alt="Samosa Catcher" style="width: 100%; border-radius: 42px; display: block;">
+        <img src="{{ '/assets/images/abso/samosa-catcher.webp' | relative_url }}" loading="lazy" decoding="async" alt="Samosa Catcher" style="width: 100%; border-radius: 42px; display: block;">
       </a>
     </figure>
 
     <figure class="abso-card abso-card--narrow">
       <a href="{{ site.baseurl }}/run-little-one">
-        <img src="{{ '/assets/images/abso/run-little-one.webp' | relative_url }}" loading="lazy" alt="Run, Little One.">
+        <img src="{{ '/assets/images/abso/run-little-one.webp' | relative_url }}" loading="lazy" decoding="async" alt="Run, Little One.">
       </a>
     </figure>
 
     <figure class="abso-card abso-card--narrow">
       <a href="{{ site.baseurl }}/twosome">
-        <img src="{{ '/assets/images/abso/twosome.webp' | relative_url }}" loading="lazy" alt="Twosome">
+        <img src="{{ '/assets/images/abso/twosome.webp' | relative_url }}" loading="lazy" decoding="async" alt="Twosome">
       </a>
     </figure>
 
     <figure class="abso-card abso-card--narrow">
       <a href="{{ site.baseurl }}/duet">
-        <img src="{{ '/assets/images/abso/dual-duet.webp' | relative_url }}" loading="lazy" alt="Dual">
+        <img src="{{ '/assets/images/abso/dual-duet.webp' | relative_url }}" loading="lazy" decoding="async" alt="Dual">
       </a>
     </figure>
   </section>
 
   <section class="abso-panel abso-panel--about abso-card--narrow" aria-label="About abso.">
     <a href="{{ site.baseurl }}/about" style="text-decoration: none; color: inherit; display: block;">
-      <img src="{{ '/assets/images/abso/about-banner.png' | relative_url }}" loading="lazy" alt="">
+      <img src="{{ '/assets/images/abso/about-banner.webp' | relative_url }}" loading="lazy" decoding="async" alt="">
       <div class="abso-panel__copy abso-panel__copy--about">
         <h1>small games. strange ideas.</h1>
         <p>We make little games.</p>
@@ -58,7 +58,7 @@ abso_landing: true
 
   <section class="abso-panel abso-panel--dot abso-card--narrow" aria-label="The Dot">
     <a href="{{ site.baseurl }}/the-dot" style="text-decoration: none; color: inherit; display: block;">
-      <img src="{{ '/assets/images/abso/the-dot-banner.webp' | relative_url }}" loading="lazy" alt="">
+      <img src="{{ '/assets/images/abso/the-dot-banner.webp' | relative_url }}" loading="lazy" decoding="async" alt="">
       <div class="abso-panel__copy abso-panel__copy--dot">
         <h2>The Dot.</h2>
         <p>One little character.<br>Many lives.<br>Sometimes helpful.<br>Sometimes annoying.<br>Sometimes completely unnecessary.<br><span class="abso-highlight">You'll find him.</span></p>
