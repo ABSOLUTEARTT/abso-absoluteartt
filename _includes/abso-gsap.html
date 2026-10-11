@@ -19,15 +19,42 @@
     }
 
     // =========================================================================
+    // HAPTIC TACTILE FEEDBACK UTILITY (Mobile Physical Feedback)
+    // =========================================================================
+    var haptic = {
+      tap: function() {
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+          try { navigator.vibrate(10); } catch(e){}
+        }
+      },
+      bump: function() {
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+          try { navigator.vibrate([14, 25, 14]); } catch(e){}
+        }
+      },
+      burst: function() {
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+          try { navigator.vibrate([8, 18, 8, 18, 12]); } catch(e){}
+        }
+      },
+      wiggle: function() {
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+          try { navigator.vibrate([12, 30, 20]); } catch(e){}
+        }
+      }
+    };
+
+
+    // =========================================================================
     // 1. CLAY DOUGH "SQUASH & STRETCH" TACTILE PHYSICS
     // =========================================================================
     var interactiveElements = document.querySelectorAll(
-      '.hamburger-btn, .abso-logo-link, .abso-nav-overlay .nav-links li a, .abso-footer__links a'
+      '.hamburger-btn, .abso-logo-link, .abso-footer__links a, .abso-btn--home, .abso-btn--secondary'
     );
 
     interactiveElements.forEach(function(el) {
-      // Squash on press
       el.addEventListener('pointerdown', function() {
+        haptic.tap();
         gsap.to(this, {
           scaleX: 1.08,
           scaleY: 0.92,
@@ -37,7 +64,6 @@
         });
       });
 
-      // Elastic rubbery recovery on release
       function releaseSquash() {
         gsap.to(el, {
           scaleX: 1,
@@ -55,62 +81,127 @@
 
 
     // =========================================================================
-    // 2. SCROLL-DRIVEN "WALKING DOTS" & FOOTSTEP WOBBLE (ScrollTrigger)
+    // 2. HAMBURGER MASCOT BUTTON TACTILE POP
     // =========================================================================
-    var walkingDots = document.querySelector('.abso-walking-dots');
-    if (walkingDots && typeof ScrollTrigger !== 'undefined') {
-      // Horizontal walking stroll across track tied directly to scroll progress
-      gsap.fromTo(walkingDots, 
-        { x: -28 },
-        {
-          x: 28,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: walkingDots,
-            start: 'top 95%',
-            end: 'bottom 10%',
-            scrub: 0.6
-          }
-        }
-      );
-
-      // Subtle lifelike walking bob (feet stepping rhythm)
-      gsap.to(walkingDots, {
-        y: -3,
-        duration: 0.55,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut'
+    var menuToggle = document.getElementById('abso-menu-toggle');
+    if (menuToggle) {
+      menuToggle.addEventListener('click', function() {
+        haptic.bump();
+        gsap.fromTo(this, 
+          { scale: 0.88, rotation: -10 },
+          { scale: 1, rotation: 0, duration: 0.45, ease: 'elastic.out(1.3, 0.45)', overwrite: 'auto' }
+        );
       });
     }
 
 
     // =========================================================================
-    // 3. TACTILE 3D TILT & PARALLAX FOR SHOWCASE CARDS
+    // 3. SAMOSA CATCHER FLOATING CLAY SAMOSAS (Particle Emitter)
     // =========================================================================
-    var cards = document.querySelectorAll('.abso-card--hero, .abso-card--narrow');
-    var isFinePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+    var SAMOSA_SVG = '<svg viewBox="0 0 44 40" width="34" height="30" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f7bb4a"/><stop offset="50%" stop-color="#e08a1e"/><stop offset="100%" stop-color="#a64c00"/></linearGradient></defs><path d="M 22 4 C 23.5 4, 39 30, 39 33 C 39 36, 35 37, 22 37 C 9 37, 5 36, 5 33 C 5 30, 20.5 4, 22 4 Z" fill="url(#sGrad)" stroke="#7a3702" stroke-width="2" stroke-linejoin="round"/><path d="M 12 33 Q 22 30 32 33" stroke="#ffe099" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="22" cy="18" r="1.5" fill="#ffe099" opacity="0.9"/><circle cx="16" cy="24" r="1.2" fill="#7a3702" opacity="0.45"/><circle cx="27" cy="25" r="1.2" fill="#7a3702" opacity="0.45"/></svg>';
 
-    cards.forEach(function(card) {
-      // Card scroll entrance micro-polish
+    function spawnSamosas(originX, originY, count) {
+      count = count || 5;
+      haptic.burst();
+
+      for (var i = 0; i < count; i++) {
+        var p = document.createElement('div');
+        p.className = 'abso-samosa-particle';
+        p.innerHTML = SAMOSA_SVG;
+        p.style.left = (originX - 17) + 'px';
+        p.style.top = (originY - 15) + 'px';
+        document.body.appendChild(p);
+
+        var burstX = gsap.utils.random(-90, 90);
+        var burstY = gsap.utils.random(-130, -210);
+        var spin = gsap.utils.random(-240, 240);
+        var scale = gsap.utils.random(0.85, 1.3);
+
+        var tl = gsap.timeline({
+          onComplete: (function(elem) {
+            return function() {
+              if (elem.parentNode) elem.parentNode.removeChild(elem);
+            };
+          })(p)
+        });
+
+        tl.to(p, {
+          x: burstX,
+          y: burstY,
+          rotation: spin,
+          scale: scale,
+          duration: gsap.utils.random(0.38, 0.48),
+          ease: 'power2.out'
+        })
+        .to(p, {
+          y: burstY + gsap.utils.random(130, 180),
+          x: burstX + gsap.utils.random(-20, 20),
+          rotation: spin + gsap.utils.random(-60, 60),
+          opacity: 0,
+          duration: gsap.utils.random(0.55, 0.7),
+          ease: 'power2.in'
+        });
+      }
+    }
+
+    var samosaTriggers = document.querySelectorAll(
+      '.abso-card a[href*="samosa-catcher"], .banner-wrapper, .banner-overlay, .img-rounded[src*="samosa"]'
+    );
+
+    samosaTriggers.forEach(function(elem) {
+      elem.addEventListener('click', function(e) {
+        var x = e.clientX || (window.innerWidth / 2);
+        var y = e.clientY || (window.innerHeight / 2);
+        spawnSamosas(x, y, 6);
+      });
+    });
+
+
+    // =========================================================================
+    // 4. MAHABHARATA CODE OF WAR HERO GOLDEN LIGHT SHEEN & PARALLAX
+    // =========================================================================
+    var heroCard = document.querySelector('.abso-card--hero');
+    if (heroCard) {
+      var sheen = heroCard.querySelector('.abso-hero-sheen');
+      if (!sheen) {
+        sheen = document.createElement('div');
+        sheen.className = 'abso-hero-sheen';
+        sheen.setAttribute('aria-hidden', 'true');
+        heroCard.appendChild(sheen);
+      }
+
       if (typeof ScrollTrigger !== 'undefined') {
-        gsap.fromTo(card, 
-          { y: 16, opacity: 0.94 },
+        gsap.fromTo(sheen,
+          { xPercent: -120 },
           {
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            ease: 'power2.out',
+            xPercent: 120,
+            duration: 1.4,
+            ease: 'power2.inOut',
             scrollTrigger: {
-              trigger: card,
-              start: 'top 88%',
+              trigger: heroCard,
+              start: 'top 85%',
               toggleActions: 'play none none none'
             }
           }
         );
       }
 
-      // 3D perspective tilt on hover/pointer move (desktop & fine pointers)
+      heroCard.addEventListener('pointerenter', function() {
+        gsap.fromTo(sheen,
+          { xPercent: -120 },
+          { xPercent: 120, duration: 1.1, ease: 'power1.inOut', overwrite: 'auto' }
+        );
+      });
+    }
+
+
+    // =========================================================================
+    // 5. TACTILE 3D TILT & PARALLAX FOR SHOWCASE CARDS
+    // =========================================================================
+    var cards = document.querySelectorAll('.abso-card--hero, .abso-card--narrow');
+    var isFinePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+
+    cards.forEach(function(card) {
       if (isFinePointer) {
         card.style.transformStyle = 'preserve-3d';
         card.style.perspective = '1000px';
@@ -144,43 +235,266 @@
 
 
     // =========================================================================
-    // 4. HAMBURGER MASCOT BUTTON TACTILE POP
+    // 6. MASCOT FOOTER REACTION & WALKING DOTS STROLL
     // =========================================================================
-    var menuToggle = document.getElementById('abso-menu-toggle');
-    if (menuToggle) {
-      menuToggle.addEventListener('click', function() {
-        gsap.fromTo(this, 
-          { scale: 0.88, rotation: -10 },
-          { scale: 1, rotation: 0, duration: 0.45, ease: 'elastic.out(1.3, 0.45)', overwrite: 'auto' }
-        );
+    var dotsWrap = document.getElementById('abso-walking-dots-wrap');
+    var dotsImg = document.getElementById('abso-walking-dots');
+    var dotsSpeech = document.getElementById('abso-walking-dots-speech');
+
+    if (dotsImg && typeof ScrollTrigger !== 'undefined') {
+      // Horizontal stroll across track scrubbed by scroll
+      gsap.fromTo(dotsImg, 
+        { x: -28 },
+        {
+          x: 28,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: dotsWrap || dotsImg,
+            start: 'top 95%',
+            end: 'bottom 10%',
+            scrub: 0.6
+          }
+        }
+      );
+
+      // Subtle step bob
+      gsap.to(dotsImg, {
+        y: -3,
+        duration: 0.55,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut'
       });
     }
 
-    // =========================================================================
-    // 5. "THE DOT" & LOGO PLAYFUL MICRO-PHYSICS
-    // =========================================================================
-    var theDotImage = document.querySelector('.abso-panel--dot img, .dot-section img');
-    if (theDotImage) {
-      theDotImage.addEventListener('pointerenter', function() {
-        gsap.to(this, { scale: 1.04, y: -4, duration: 0.25, ease: 'power1.out' });
+    if (dotsWrap && dotsImg) {
+      var walkingPhrases = [
+        "wheee! 🏃‍♂️💨",
+        "almost there! 🚩",
+        "ticklish! 🤭",
+        "keep rolling! ✨",
+        "three dots on the run! 🐾"
+      ];
+      var walkPhraseIdx = 0;
+
+      dotsWrap.addEventListener('click', function(e) {
+        e.preventDefault();
+        haptic.tap();
+        walkPhraseIdx = (walkPhraseIdx + 1) % walkingPhrases.length;
+
+        gsap.timeline()
+          .to(dotsImg, { scaleX: 1.22, scaleY: 0.78, duration: 0.1, ease: 'power2.in' })
+          .to(dotsImg, { scaleX: 0.9, scaleY: 1.18, y: -22, duration: 0.22, ease: 'power2.out' })
+          .to(dotsImg, { scaleX: 1, scaleY: 1, y: 0, duration: 0.65, ease: 'elastic.out(1.3, 0.35)' });
+
+        if (dotsSpeech) {
+          dotsSpeech.textContent = walkingPhrases[walkPhraseIdx];
+          gsap.timeline()
+            .to(dotsSpeech, { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(2)' })
+            .to(dotsSpeech, { scale: 0.8, opacity: 0, delay: 1.5, duration: 0.3 });
+        }
       });
-      theDotImage.addEventListener('pointerleave', function() {
-        gsap.to(this, { scale: 1, y: 0, duration: 0.55, ease: 'elastic.out(1.2, 0.4)' });
+
+      // Footer links reaction
+      var footerLinks = document.querySelectorAll('.abso-footer__links a');
+      footerLinks.forEach(function(link) {
+        link.addEventListener('pointerenter', function() {
+          gsap.to(dotsImg, { x: 22, rotation: 3, scale: 1.05, duration: 0.35, ease: 'power2.out', overwrite: 'auto' });
+        });
+        link.addEventListener('pointerleave', function() {
+          gsap.to(dotsImg, { x: 0, rotation: 0, scale: 1, duration: 0.55, ease: 'elastic.out(1.1, 0.4)', overwrite: 'auto' });
+        });
       });
     }
 
-    // Playful wobble for the abso. red dot in header logo on click/tap
-    var logoImg = document.querySelector('.abso-logo');
-    if (logoImg) {
-      logoImg.addEventListener('pointerenter', function() {
-        gsap.to(this, { scale: 1.05, duration: 0.18, ease: 'power1.out' });
-      });
-      logoImg.addEventListener('pointerleave', function() {
-        gsap.to(this, { scale: 1, duration: 0.4, ease: 'elastic.out(1.1, 0.4)' });
+    // Footer logo pulse
+    var footerLogo = document.querySelector('.abso-footer__logo');
+    if (footerLogo) {
+      footerLogo.addEventListener('pointerenter', function() {
+        gsap.to(this, { scale: 1.08, duration: 0.2, yoyo: true, repeat: 1, ease: 'power2.out' });
       });
     }
 
-    // Playful wobble for the abso. red dot in header logo on click/tap
+
+    // =========================================================================
+    // 7. THE DOT EXPRESSION LAB & MOOD SWITCHER (the-dot.md)
+    // =========================================================================
+    var moodStage = document.getElementById('abso-mood-stage');
+    if (moodStage) {
+      var moodAvatar = document.getElementById('abso-mood-avatar');
+      var moodImg = document.getElementById('abso-mood-img');
+      var moodSpeech = document.getElementById('abso-mood-speech');
+      var moodText = document.getElementById('abso-mood-text');
+      var moodEmoji = document.getElementById('abso-mood-emoji');
+      var pills = Array.from(moodStage.querySelectorAll('.abso-mood-pill'));
+
+      var moods = pills.map(function(pill) {
+        return {
+          img: pill.getAttribute('data-img'),
+          quote: pill.getAttribute('data-quote'),
+          emoji: pill.getAttribute('data-emoji')
+        };
+      });
+
+      var activeMoodIndex = 0;
+
+      function applyMood(index) {
+        if (!moods[index]) return;
+        activeMoodIndex = index;
+
+        haptic.wiggle();
+
+        // Update pills active state
+        pills.forEach(function(p, i) {
+          if (i === index) {
+            p.classList.add('is-active');
+            gsap.fromTo(p, { scale: 0.9 }, { scale: 1, duration: 0.45, ease: 'elastic.out(1.3, 0.4)', overwrite: 'auto' });
+          } else {
+            p.classList.remove('is-active');
+          }
+        });
+
+        // Update speech text with back ease
+        if (moodSpeech && moodText && moodEmoji) {
+          moodText.textContent = moods[index].quote;
+          moodEmoji.textContent = moods[index].emoji;
+          gsap.fromTo(moodSpeech, 
+            { scale: 0.85, opacity: 0 }, 
+            { scale: 1, opacity: 1, duration: 0.35, ease: 'back.out(1.7)', overwrite: 'auto' }
+          );
+        }
+
+        // Squash & stretch avatar with fluid interruptibility
+        if (moodAvatar && moodImg) {
+          moodImg.src = moods[index].img;
+
+          gsap.killTweensOf(moodAvatar);
+          gsap.timeline()
+            .to(moodAvatar, {
+              scaleX: 1.20,
+              scaleY: 0.80,
+              duration: 0.1,
+              ease: 'power2.in'
+            })
+            .to(moodAvatar, {
+              scaleX: 0.92,
+              scaleY: 1.14,
+              y: -18,
+              duration: 0.2,
+              ease: 'power2.out'
+            })
+            .to(moodAvatar, {
+              scaleX: 1,
+              scaleY: 1,
+              y: 0,
+              duration: 0.55,
+              ease: 'elastic.out(1.2, 0.38)'
+            });
+        }
+      }
+
+      // Tap avatar to cycle moods
+      if (moodAvatar) {
+        moodAvatar.addEventListener('click', function(e) {
+          e.preventDefault();
+          var next = (activeMoodIndex + 1) % moods.length;
+          applyMood(next);
+        });
+        moodAvatar.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            var next = (activeMoodIndex + 1) % moods.length;
+            applyMood(next);
+          }
+        });
+      }
+
+      // Pill click
+      pills.forEach(function(pill, i) {
+        pill.addEventListener('click', function(e) {
+          e.preventDefault();
+          applyMood(i);
+        });
+      });
+    }
+
+
+    // =========================================================================
+    // 8. LOST IN THE 404 MAZE INTERACTIVE PAGE (404.md)
+    // =========================================================================
+    var playground404 = document.querySelector('.abso-404-playground');
+    if (playground404) {
+      // 1. Floating zero-gravity question marks and dots
+      var q1 = document.querySelector('.abso-404-floatie--q1');
+      var q2 = document.querySelector('.abso-404-floatie--q2');
+      var d1 = document.querySelector('.abso-404-floatie--dot1');
+      var d2 = document.querySelector('.abso-404-floatie--dot2');
+
+      if (q1) gsap.to(q1, { y: -18, rotation: -14, duration: 2.2, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+      if (q2) gsap.to(q2, { y: 22, rotation: 16, duration: 2.8, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+      if (d1) gsap.to(d1, { y: -14, x: 8, duration: 2.5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+      if (d2) gsap.to(d2, { y: 16, x: -10, duration: 3.1, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+      // 2. Interactive magnetic compass needle
+      var needle = document.getElementById('abso-404-needle');
+      var compass = document.getElementById('abso-404-compass');
+      if (needle && compass) {
+        playground404.addEventListener('pointermove', function(e) {
+          var rect = compass.getBoundingClientRect();
+          var cx = rect.left + rect.width / 2;
+          var cy = rect.top + rect.height / 2;
+          var rad = Math.atan2(e.clientY - cy, e.clientX - cx);
+          var deg = rad * (180 / Math.PI) + 90;
+          gsap.to(needle, { rotation: deg, duration: 0.35, ease: 'power2.out', overwrite: 'auto' });
+        });
+
+        compass.addEventListener('click', function(e) {
+          e.stopPropagation();
+          haptic.burst();
+          gsap.to(needle, { rotation: '+=720', duration: 1.1, ease: 'elastic.out(1, 0.35)', overwrite: 'auto' });
+        });
+      }
+
+      // 3. Poke The Dot in 404 maze
+      var card404 = document.getElementById('abso-404-card');
+      var speech404 = document.getElementById('abso-404-speech');
+      var phrases404 = [
+        "“Wait... is this exit 404 or entry 404?!”",
+        "“Don't panic! I found a crumb of samosa!”",
+        "“I've been running in circles for hours!”",
+        "“Follow the compass home!”",
+        "“Ouch! Still stuck in the labyrinth!”"
+      ];
+      var phraseIdx = 0;
+
+      if (card404) {
+        card404.addEventListener('click', function() {
+          haptic.bump();
+          phraseIdx = (phraseIdx + 1) % phrases404.length;
+
+          var img = document.getElementById('abso-404-img');
+          if (img) {
+            gsap.timeline()
+              .to(img, { scaleX: 1.18, scaleY: 0.82, duration: 0.1, ease: 'power2.in' })
+              .to(img, { scaleX: 0.92, scaleY: 1.14, y: -22, duration: 0.22, ease: 'power2.out' })
+              .to(img, { scaleX: 1, scaleY: 1, y: 0, duration: 0.6, ease: 'elastic.out(1.2, 0.35)' });
+          }
+
+          if (speech404) {
+            gsap.timeline()
+              .to(speech404, { scale: 0.85, opacity: 0, duration: 0.1, onComplete: function() {
+                speech404.textContent = phrases404[phraseIdx];
+              }})
+              .to(speech404, { scale: 1, opacity: 1, duration: 0.35, ease: 'back.out(1.8)' });
+          }
+        });
+      }
+    }
+
+
+    // =========================================================================
+    // 9. LOGO RED DOT WOBBLE ON INTERACTION
+    // =========================================================================
     var logoImg = document.querySelector('.abso-logo');
     if (logoImg) {
       logoImg.addEventListener('pointerenter', function() {

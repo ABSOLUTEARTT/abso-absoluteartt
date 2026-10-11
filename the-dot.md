@@ -40,9 +40,38 @@ abso_landing: true
 {% include abso-header.html %}
 
 <div class="dot-container">
-  
+
+  <!-- Interactive Dot Mood Lab (GSAP Feature 1) -->
+  <div class="abso-mood-stage" id="abso-mood-stage">
+    <div class="abso-mood-speech" id="abso-mood-speech">
+      <span class="abso-mood-speech__emoji" id="abso-mood-emoji">👋</span>
+      <span class="abso-mood-speech__text" id="abso-mood-text">“Tap me to poke my moods!”</span>
+    </div>
+
+    <div class="abso-mood-avatar-wrap" id="abso-mood-avatar" role="button" tabindex="0" aria-label="Poke The Dot to cycle moods">
+      <img id="abso-mood-img" src="{{ site.baseurl }}/assets/images/abso/the-dot-meet.webp" alt="The Dot - Current Mood" width="940" height="1535" fetchpriority="high">
+    </div>
+
+    <div class="abso-mood-controls" aria-label="Select mood">
+      <button type="button" class="abso-mood-pill is-active" data-mood="0" data-img="{{ site.baseurl }}/assets/images/abso/the-dot-meet.webp" data-quote="“Hi! I am The Dot. Perfectly round, surprisingly unpredictable.”" data-emoji="👋">
+        <span class="abso-mood-pill__dot"></span>Meet
+      </button>
+      <button type="button" class="abso-mood-pill" data-mood="1" data-img="{{ site.baseurl }}/assets/images/abso/the-dot-many-lives.webp" data-quote="“One Dot. Many Lives. An artist, a dreamer, a rogue runaway pebble.”" data-emoji="🎭">
+        <span class="abso-mood-pill__dot"></span>Many Lives
+      </button>
+      <button type="button" class="abso-mood-pill" data-mood="2" data-img="{{ site.baseurl }}/assets/images/abso/the-dot-cute-curious.webp" data-quote="“Cute. Curious. Pure unadulterated Chaos!”" data-emoji="💥">
+        <span class="abso-mood-pill__dot"></span>Chaos & Cute
+      </button>
+      <button type="button" class="abso-mood-pill" data-mood="3" data-img="{{ site.baseurl }}/assets/images/abso/the-dot-endless.webp" data-quote="“One little Dot. Endless possibilities across every canvas.”" data-emoji="✨">
+        <span class="abso-mood-pill__dot"></span>Endless
+      </button>
+    </div>
+
+    <p class="abso-mood-hint">💡 Tap The Dot above or pick a mood pill to see it react!</p>
+  </div>
+
   <div class="dot-section">
-    <img src="{{ site.baseurl }}/assets/images/abso/the-dot-meet.webp" alt="Meet the Dot." fetchpriority="high" width="940" height="1535">
+    <img src="{{ site.baseurl }}/assets/images/abso/the-dot-meet.webp" alt="Meet the Dot." loading="lazy" decoding="async" width="940" height="1535">
   </div>
   
   <div class="dot-section">

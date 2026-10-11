@@ -1024,6 +1024,366 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   transform: scale(0.992);
 }
 
+/* ==========================================================================
+   abso. GSAP Motion & Interaction Components (v0.4.1.2-GSAP)
+   ========================================================================== */
+
+/* 1. Mahabharata Golden Light Sheen */
+.abso-card--hero {
+  position: relative;
+  overflow: hidden;
+}
+.abso-hero-sheen {
+  position: absolute;
+  top: -30%;
+  left: -70%;
+  width: 240%;
+  height: 160%;
+  pointer-events: none;
+  background: linear-gradient(112deg, transparent 38%, rgba(255, 230, 120, 0.16) 47%, rgba(255, 255, 255, 0.45) 50%, rgba(255, 215, 60, 0.22) 53%, transparent 62%);
+  transform: translateX(-110%);
+  z-index: 3;
+  border-radius: inherit;
+  mix-blend-mode: screen;
+}
+
+/* 2. Samosa Catcher Floating Clay Particles */
+.abso-samosa-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform, opacity;
+  user-select: none;
+}
+
+/* 3. Footer Walking Dots Mascot Reaction */
+.abso-walking-dots-wrap {
+  position: relative;
+  display: block;
+  width: 50%;
+  max-width: 320px;
+  margin: 32px auto -24px;
+  text-align: center;
+  z-index: 2;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.abso-walking-dots-wrap .abso-walking-dots {
+  width: 100%;
+  margin: 0;
+  display: block;
+}
+.abso-walking-dots-speech {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  background: #ffffff;
+  color: #111012;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10;
+  letter-spacing: -0.2px;
+}
+.abso-walking-dots-speech::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px 5px 0;
+  border-style: solid;
+  border-color: #ffffff transparent transparent;
+  display: block;
+  width: 0;
+}
+
+/* 4. The Dot Expression Lab & Mood Switcher */
+.abso-mood-stage {
+  position: relative;
+  width: min(88.7%, 420px);
+  margin: 0 auto 36px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+@media (max-width: 520px) {
+  .abso-mood-stage {
+    width: min(92%, 360px);
+    margin-bottom: 28px;
+  }
+}
+.abso-mood-speech {
+  position: relative;
+  background: #111012;
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  max-width: 90%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.2px;
+}
+.abso-mood-speech::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0;
+  border-style: solid;
+  border-color: #111012 transparent transparent;
+  display: block;
+  width: 0;
+}
+.abso-mood-speech__emoji {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.abso-mood-avatar-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background: #f7f7f7;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+.abso-mood-avatar-wrap:hover {
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.13);
+}
+.abso-mood-avatar-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform-origin: center bottom;
+}
+.abso-mood-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 18px;
+  width: 100%;
+}
+.abso-mood-pill {
+  appearance: none;
+  background: #ffffff;
+  border: 1.5px solid #e2e2e2;
+  color: #444444;
+  border-radius: 30px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+.abso-mood-pill__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #bbb;
+  display: inline-block;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.abso-mood-pill.is-active {
+  border-color: #e62429;
+  color: #111012;
+  background: #fff5f5;
+  box-shadow: 0 3px 12px rgba(230, 36, 41, 0.15);
+}
+.abso-mood-pill.is-active .abso-mood-pill__dot {
+  background: #e62429;
+  transform: scale(1.2);
+}
+.abso-mood-hint {
+  font-size: 11px;
+  color: #888888;
+  margin: 12px 0 0 0;
+  font-weight: 500;
+}
+
+/* 5. 404 Interactive Maze Styles */
+.abso-404-container {
+  width: min(100%, 660px);
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-top: 20px;
+}
+.abso-404-playground {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 20px 48px;
+  overflow: hidden;
+}
+.abso-404-floatie {
+  position: absolute;
+  font-size: 28px;
+  font-weight: 900;
+  color: #e62429;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.65;
+  z-index: 1;
+}
+.abso-404-floatie--q1 { top: 18px; left: 16%; }
+.abso-404-floatie--q2 { top: 72px; right: 14%; font-size: 34px; color: #ff8b00; }
+.abso-404-floatie--dot1 { top: 120px; left: 10%; width: 14px; height: 14px; border-radius: 50%; background: #e62429; }
+.abso-404-floatie--dot2 { top: 150px; right: 12%; width: 10px; height: 10px; border-radius: 50%; background: #111012; }
+
+.abso-404-speech {
+  position: relative;
+  background: #111012;
+  color: #ffffff;
+  padding: 9px 20px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  max-width: 440px;
+  line-height: 1.4;
+  z-index: 2;
+}
+.abso-404-speech::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0;
+  border-style: solid;
+  border-color: #111012 transparent transparent;
+  display: block;
+  width: 0;
+}
+.abso-404-card {
+  position: relative;
+  width: min(92%, 520px);
+  border-radius: 28px;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  margin-bottom: 24px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+}
+.abso-404-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.abso-404-compass {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+}
+.abso-404-needle {
+  width: 4px;
+  height: 36px;
+  background: linear-gradient(to bottom, #e62429 50%, #111012 50%);
+  border-radius: 2px;
+  position: relative;
+}
+.abso-404-needle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #ffd700;
+  border: 1.5px solid #111012;
+  border-radius: 50%;
+}
+.abso-404-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111012;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+.abso-404-desc {
+  font-size: 15px;
+  color: #666;
+  margin: 0 0 28px 0;
+  line-height: 1.5;
+  max-width: 420px;
+}
+.abso-404-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.abso-btn--home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  background: #e62429;
+  color: #ffffff !important;
+  text-decoration: none;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 4px 14px rgba(230, 36, 41, 0.3);
+  cursor: pointer;
+  outline: none;
+}
+.abso-btn--secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: #111012;
+  color: #ffffff !important;
+  text-decoration: none;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  outline: none;
+}
+
 /* Prefers-reduced-motion: Global Accessibility Guardrail */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
