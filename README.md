@@ -1,6 +1,6 @@
 # ABSO. WEBSITE — PRODUCTION RELEASE DOCUMENTATION
 
-**Release Version:** `v0.3.1.1.2`  
+**Release Version:** `v0.3.1.1.3`  
 **Release Date:** 2026-10-11  
 **Project:** ABSO. by ABSOLUTEARTT&reg;  
 **Production URL:** [https://games.absoluteartt.com/](https://games.absoluteartt.com/)  
@@ -18,7 +18,7 @@
 The ABSO. website serves as the official digital showcase and game catalogue for ABSO. titles, designed with an intentional "mobile-first, centered, ultra-clean" aesthetic inspired by Apple design restraint, tactile indie game personality, and Pixar-style character animation principles.
 
 - **Brand:** ABSO. / ABSOLUTEARTT&reg;
-- **Current Version:** `v0.3.1.1.2`
+- **Current Version:** `v0.3.1.1.3`
 - **Release Status:** Approved Production Release
 - **Production Host:** GitHub Pages with Custom Domain (`games.absoluteartt.com`)
 - **Canonical Domain:** `https://games.absoluteartt.com/` (with 301 redirects from `abso.absoluteartt.com` and `play.absoluteartt.com`)
@@ -237,12 +237,18 @@ In terminal / command prompt: Press `Ctrl + C` or terminate the running backgrou
 
 - **Branch Strategy:** `main` serves as the single source of truth and production deployment branch.
 - **Commit Convention:** Descriptive commit messages documenting release version and major modifications.
-- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`, `v0.3.1.1`, `v0.3.1.1.2`.
+- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`, `v0.3.1.1`, `v0.3.1.1.2`, `v0.3.1.1.3`.
 - **Deployment:** Automatically triggers GitHub Pages build upon pushing to `main`.
 
 ---
 
 ## L. Detailed Release Changelogs
+
+### Release v0.3.1.1.3 — Final Approved Samosa Catcher Banner & Version Synchronization (2026-10-11)
+
+- **Samosa Catcher Banner:** Replaced banner asset with user's final approved artwork, converted to optimized WebP (`samosa-catcher.webp`, 89.2 KB). Features high-contrast 3D title text without watermarks, perfectly aligned with seamless transparent corner masking (`rx = 92`) on both Homepage (`/`) and Games catalogue (`/games/`).
+- **Site Version:** Synchronized site version to `v0.3.1.1.3` across `_config.yml`, `README.md`, and the live website footer across all pages.
+- **Visual & Style Continuity:** Preserved clean un-underlined footer links (`text-decoration: none`), cropped Twosome banner, and responsive layout across all breakpoints.
 
 ### Release v0.3.1.1.2 — Footer Note Styling & Version Alignment (2026-10-11)
 
