@@ -1048,7 +1048,7 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   mix-blend-mode: screen;
 }
 
-/* 2. Thematic Game Floating Clay Particles & Falling Coins */
+/* 2. Thematic Game Floating Clay Particles */
 .abso-samosa-particle,
 .abso-game-particle {
   position: fixed;
@@ -1057,128 +1057,6 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   will-change: transform, opacity;
   user-select: none;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.22));
-}
-
-.abso-falling-coin {
-  position: fixed;
-  z-index: 99990;
-  will-change: transform, opacity;
-  user-select: none;
-  filter: drop-shadow(0 4px 10px rgba(245, 159, 0, 0.6)) drop-shadow(0 0 6px rgba(255, 215, 0, 0.4));
-  transform-style: preserve-3d;
-  cursor: grab;
-  -webkit-tap-highlight-color: transparent;
-  pointer-events: auto;
-  touch-action: none;
-}
-.abso-falling-coin:active,
-.abso-falling-coin.is-aiming {
-  cursor: grabbing;
-  filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.95)) drop-shadow(0 0 30px rgba(255, 100, 0, 0.8));
-}
-
-/* The Dot Coin Collector Badge & Sound Toggle */
-.abso-dot-coin-counter {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background: rgba(17, 16, 18, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: #ffd700;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 800;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
-  border: 1.5px solid rgba(255, 215, 0, 0.55);
-  z-index: 10;
-  user-select: none;
-  transform-origin: center center;
-  pointer-events: auto;
-}
-.abso-sound-toggle {
-  background: none;
-  border: none;
-  padding: 0 2px;
-  margin: 0;
-  font-size: 14px;
-  cursor: pointer;
-  outline: none;
-  opacity: 0.9;
-  transition: transform 120ms ease, opacity 120ms ease;
-  -webkit-tap-highlight-color: transparent;
-}
-.abso-sound-toggle:hover {
-  transform: scale(1.18);
-  opacity: 1;
-}
-.abso-sound-toggle:active {
-  transform: scale(0.9);
-}
-
-.abso-coin-pop-text {
-  position: fixed;
-  color: #ffd700;
-  font-weight: 900;
-  font-size: 17px;
-  pointer-events: none;
-  z-index: 99999;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 215, 0, 0.6);
-  user-select: none;
-  will-change: transform, opacity;
-}
-
-/* Fever Mode Visuals */
-.abso-panel--dot.is-fever-mode {
-  filter: drop-shadow(0 0 28px rgba(255, 215, 0, 0.85)) drop-shadow(0 0 50px rgba(255, 107, 0, 0.45));
-  transition: filter 0.4s ease;
-}
-.abso-fever-banner {
-  position: fixed;
-  top: 24px;
-  left: 50%;
-  transform: translateX(-50%) scale(0);
-  background: linear-gradient(135deg, #111012 0%, #2a1b00 100%);
-  color: #ffd700;
-  border: 2px solid #ffd700;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.6);
-  padding: 10px 24px;
-  border-radius: 30px;
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: 0.5px;
-  z-index: 100000;
-  pointer-events: none;
-  user-select: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-transform: uppercase;
-}
-.abso-fever-spark,
-.abso-pinball-spark {
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  user-select: none;
-  will-change: transform, opacity;
-}
-
-
-
-/* Footsteps / Clay Dust Trail */
-.abso-clay-dust {
-  position: fixed;
-  pointer-events: none;
-  z-index: 99980;
-  border-radius: 50%;
-  background: rgba(230, 36, 41, 0.28);
-  will-change: transform, opacity;
-  transform: translate(-50%, -50%);
 }
 
 /* 3. Footer Walking Dots Mascot Reaction */
