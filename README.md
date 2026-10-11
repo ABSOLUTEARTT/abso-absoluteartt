@@ -1,6 +1,6 @@
 # ABSO. WEBSITE — PRODUCTION RELEASE DOCUMENTATION
 
-**Release Version:** `v0.3.1.1`  
+**Release Version:** `v3.1.1_alpha`  
 **Release Date:** 2026-10-11  
 **Project:** ABSO. by ABSOLUTEARTT&reg;  
 **Production URL:** [https://games.absoluteartt.com/](https://games.absoluteartt.com/)  
@@ -18,7 +18,7 @@
 The ABSO. website serves as the official digital showcase and game catalogue for ABSO. titles, designed with an intentional "mobile-first, centered, ultra-clean" aesthetic inspired by Apple design restraint, tactile indie game personality, and Pixar-style character animation principles.
 
 - **Brand:** ABSO. / ABSOLUTEARTT&reg;
-- **Current Version:** `v0.3.1.1`
+- **Current Version:** `v3.1.1_alpha`
 - **Release Status:** Approved Production Release
 - **Production Host:** GitHub Pages with Custom Domain (`games.absoluteartt.com`)
 - **Canonical Domain:** `https://games.absoluteartt.com/` (with 301 redirects from `abso.absoluteartt.com` and `play.absoluteartt.com`)
@@ -237,12 +237,18 @@ In terminal / command prompt: Press `Ctrl + C` or terminate the running backgrou
 
 - **Branch Strategy:** `main` serves as the single source of truth and production deployment branch.
 - **Commit Convention:** Descriptive commit messages documenting release version and major modifications.
-- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`, `v0.3.1.1`.
+- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`, `v0.3.1.1`, `v3.1.1_alpha`.
 - **Deployment:** Automatically triggers GitHub Pages build upon pushing to `main`.
 
 ---
 
 ## L. Detailed Release Changelogs
+
+### Release v3.1.1_alpha — Samosa Catcher Banner Replacement & Twosome Banner Edge Refinement (2026-10-11)
+
+- **Samosa Catcher Banner:** Replaced artwork on homepage (`/`) and games catalogue (`/games/`) with the official claymation banner asset (`samosa-catcher.webp`, 98.2 KB), featuring character holding samosa tray with centered "SAMOSA CATCHER" 3D title.
+- **Twosome Main Banner Edge Crop:** Fixed thin line artifact on the right edge of Twosome showcase banner (`https://games.absoluteartt.com/twosome/`). Cropped 4px stray solid-blue pixel column from `twosome-header.png` (1316x1052) and converted to WebP (`twosome-header.webp`, 61.5 KB, down from 2.26 MB PNG).
+- **Website Display Version:** Updated version string to `v3.1.1_alpha` in `_config.yml` and footer across all pages.
 
 ### Release v0.3.1.1 — WebP Performance Optimization & Asset Payload Reduction (2026-10-11)
 

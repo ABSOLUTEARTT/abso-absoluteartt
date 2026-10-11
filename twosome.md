@@ -112,7 +112,7 @@ abso_landing: true
 {% include abso-header.html %}
 
 <div class="banner-wrapper">
-  <img src="{{ site.baseurl }}/assets/images/abso/twosome-header.png" alt="Twosome Banner" fetchpriority="high">
+  <img src="{{ site.baseurl }}/assets/images/abso/twosome-header.webp" alt="Twosome Banner" fetchpriority="high" decoding="async">
   <div class="banner-text">
     Two souls. One orbit. Tap to reverse, dodge obstacles, and stay connected.
   </div>
