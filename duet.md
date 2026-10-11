@@ -177,11 +177,11 @@ abso_landing: true
   
   <!-- Home Button -->
   <div class="home-wrapper">
-    <a href="{{ site.baseurl }}/twosome/"><img src="{{ site.baseurl }}/assets/images/abso/icon-left.png" alt="Previous" style="height: 40px;"></a>
+    <a href="{{ site.baseurl }}/twosome/"><img src="{{ site.baseurl }}/assets/images/abso/icon-left.webp" alt="Previous" loading="lazy" decoding="async" style="height: 40px;"></a>
     <a href="{{ site.baseurl }}/">
-      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.png" alt="Home" style="height: 64px;">
+      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.webp" alt="Home" loading="lazy" decoding="async" style="height: 64px;">
     </a>
-    <a href="{{ site.baseurl }}/mb-cow/"><img src="{{ site.baseurl }}/assets/images/abso/icon-right.png" alt="Next" style="height: 40px;"></a>
+    <a href="{{ site.baseurl }}/mb-cow/"><img src="{{ site.baseurl }}/assets/images/abso/icon-right.webp" alt="Next" loading="lazy" decoding="async" style="height: 40px;"></a>
   </div>
 </div>
 

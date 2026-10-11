@@ -60,7 +60,7 @@ abso_landing: true
   <!-- Home Button -->
   <div class="home-wrapper" style="justify-content: center; margin: 20px auto 40px auto;">
     <a href="{{ site.baseurl }}/">
-      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.png" alt="Home" style="height: 64px;">
+      <img src="{{ site.baseurl }}/assets/images/abso/home-icon.webp" alt="Home" loading="lazy" decoding="async" style="height: 64px;">
     </a>
   </div>
 
