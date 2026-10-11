@@ -3,7 +3,7 @@
 **Release Version:** `v0.3_alpha`  
 **Release Date:** 2026-10-11  
 **Project:** ABSO. by ABSOLUTEARTT&reg;  
-**Production URL:** [https://abso.absoluteartt.com/](https://abso.absoluteartt.com/)  
+**Production URL:** [https://games.absoluteartt.com/](https://games.absoluteartt.com/)  
 **Repository:** [ABSOLUTEARTT/abso-absoluteartt](https://github.com/ABSOLUTEARTT/abso-absoluteartt)  
 **Default Branch:** `main`  
 **Deployment Target:** GitHub Pages  
@@ -20,7 +20,8 @@ The ABSO. website serves as the official digital showcase and game catalogue for
 - **Brand:** ABSO. / ABSOLUTEARTT&reg;
 - **Current Version:** `v0.3_alpha`
 - **Release Status:** Approved Production Release
-- **Production Host:** GitHub Pages with Custom Domain (`abso.absoluteartt.com`)
+- **Production Host:** GitHub Pages with Custom Domain (`games.absoluteartt.com`)
+- **Canonical Domain:** `https://games.absoluteartt.com/` (with 301 redirects from `abso.absoluteartt.com` and `play.absoluteartt.com`)
 - **SSL / HTTPS:** Enforced via GitHub Pages SSL
 
 ---
@@ -69,7 +70,7 @@ abso-absoluteartt/
 │       └── mb-cow/               # Mahabharata: Code of War game screenshots and artwork (WebP)
 ├── _site/                        # Generated static HTML output (ignored in git)
 ├── .gitignore                    # Git exclusion rules
-├── CNAME                         # Custom domain pointer (abso.absoluteartt.com)
+├── CNAME                         # Custom domain pointer (games.absoluteartt.com)
 ├── Gemfile                       # Ruby dependencies
 ├── Gemfile.lock                  # Pinned Ruby gem versions
 ├── README.md                     # Comprehensive project documentation
@@ -295,7 +296,16 @@ In terminal / command prompt: Press `Ctrl + C` or terminate the running backgrou
 
 ### 12. GitHub Pages Deployment
 - Pushed release commit and `v0.3_alpha` tag to `origin/main`.
-- Verified GitHub Pages live deployment at `https://abso.absoluteartt.com/`.
+- Verified GitHub Pages live deployment at `https://games.absoluteartt.com/`.
+
+### 13. Canonical Domain Migration
+- Primary domain migrated to `https://games.absoluteartt.com/`.
+- Repository `CNAME` updated to `games.absoluteartt.com`.
+- Site base URL updated in `_config.yml` and `404.md`.
+- Cloudflare DNS configured with CNAME `games.absoluteartt.com` pointing to `absoluteartt.github.io`.
+- Cloudflare Dynamic Redirect Rules configured:
+  - `abso.absoluteartt.com/*` HTTP 301 redirects to `https://games.absoluteartt.com/$1` (preserving path and query string).
+  - `play.absoluteartt.com/*` updated to HTTP 301 direct redirect to `https://games.absoluteartt.com/$1` (preserving path and query string).
 
 ---
 
