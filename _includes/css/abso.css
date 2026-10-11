@@ -1063,10 +1063,44 @@ html.abso-scroll-motion .info-banner-wrapper.is-settled:active {
   z-index: 99990;
   will-change: transform, opacity;
   user-select: none;
-  filter: drop-shadow(0 4px 10px rgba(180, 110, 0, 0.35));
+  filter: drop-shadow(0 4px 10px rgba(180, 110, 0, 0.45));
   transform-style: preserve-3d;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* The Dot Coin Collector Badge & Popup Text */
+.abso-dot-coin-counter {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(17, 16, 18, 0.90);
+  backdrop-filter: blur(8px);
+  color: #ffd700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+  border: 1.5px solid rgba(255, 215, 0, 0.45);
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
+  transform-origin: center center;
+}
+.abso-coin-pop-text {
+  position: fixed;
+  color: #ffd700;
+  font-weight: 900;
+  font-size: 16px;
+  pointer-events: none;
+  z-index: 99999;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  user-select: none;
+  will-change: transform, opacity;
 }
 
 /* 3. Footer Walking Dots Mascot Reaction */
