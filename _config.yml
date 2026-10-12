@@ -77,4 +77,4 @@ exclude:
   - vendor/
 
 # Site Version
-version: "v0.4.1.2-GSAP"
+version: "v0.4.1.2_GSAP"

@@ -18,11 +18,18 @@
 The ABSO. website serves as the official digital showcase and game catalogue for ABSO. titles, designed with an intentional "mobile-first, centered, ultra-clean" aesthetic inspired by Apple design restraint, tactile indie game personality, and Pixar-style character animation principles.
 
 - **Brand:** ABSO. / ABSOLUTEARTT&reg;
-- **Current Version:** `v0.4_alpha`
-- **Release Status:** Approved Production Release
+- **Production Version:** `v0.4_alpha` (Live at [https://games.absoluteartt.com/](https://games.absoluteartt.com/))
+- **Prototype Tag:** `v0.4.1.2_GSAP` (Animation & Tactile Physics Prototype — Non-Production)
+- **Release Status:** Approved Production Release is `v0.4_alpha`; Production roadmap continues toward `v0.5_alpha`
 - **Production Host:** GitHub Pages with Custom Domain (`games.absoluteartt.com`)
 - **Canonical Domain:** `https://games.absoluteartt.com/` (with 301 redirects from `abso.absoluteartt.com` and `play.absoluteartt.com`)
 - **SSL / HTTPS:** Enforced via GitHub Pages SSL
+
+> [!NOTE]
+> **Branch & Tag `v0.4.1.2_GSAP`:** Experimental Animation & Tactile Interaction Prototype Pass.  
+> This release was strictly an **animation test pass** to explore and benchmark tactile motion physics, arcade interactions, and UX trade-offs.  
+> It is **NOT** deployed to production. Live production remains on **`v0.4_alpha`** (`https://games.absoluteartt.com/`).  
+> Production development will continue directly from `v0.4_alpha` toward **`v0.5_alpha`**.
 
 ---
 
@@ -237,12 +244,38 @@ In terminal / command prompt: Press `Ctrl + C` or terminate the running backgrou
 
 - **Branch Strategy:** `main` serves as the single source of truth and production deployment branch.
 - **Commit Convention:** Descriptive commit messages documenting release version and major modifications.
-- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`, `v0.3.1.1`, `v0.3.1.1.2`, `v0.3.1.1.3`, `v0.4_alpha`.
-- **Deployment:** Automatically triggers GitHub Pages build upon pushing to `main`.
+- **Tagging:** Annotated Git tags with semver naming: `v0.3_alpha`, `v0.3.1.1`, `v0.3.1.1.2`, `v0.3.1.1.3`, `v0.4_alpha`, `v0.4.1.2_GSAP` (prototype pass).
+- **Deployment:** Automatically triggers GitHub Pages build upon pushing to `main` (only release tags on `main` deploy to production; prototype tags are non-deploying).
 
 ---
 
 ## L. Detailed Release Changelogs
+
+### Prototype Pass v0.4.1.2_GSAP — Animation & Tactile Interaction Benchmark (2026-10-12)
+> [!WARNING]
+> **Prototype Only (Non-Production):** This release was strictly an **animation and UX interaction test pass** preserved via Git tag `v0.4.1.2_GSAP`. It was **NOT deployed to live production**. The live production site at [games.absoluteartt.com](https://games.absoluteartt.com/) remains on **`v0.4_alpha`**. Production releases will resume directly from `v0.4_alpha` toward **`v0.5_alpha`**.
+
+- **Prototype Objectives & Explorations:**
+  - Integrated and evaluated GSAP 3.12.5 and ScrollTrigger for complex physics, timeline choreographies, and reactive motion.
+  - Implemented interactive physics prototypes:
+    - *Mahabharata: Code of War* Golden Sun Light Sheen swipe across the hero card.
+    - *The Dot Expression Lab & Mood Switcher* (`the-dot.md`): interactive character avatar poke, mood pill switcher, speech bubble animations, and squash-and-stretch.
+    - *Lost in the 404 Maze* (`404.md`): interactive 360° magnetic compass tracking pointer movements, elastic spin physics, and character dialog cycling.
+    - *The Dot Mascot 360 Victory Spin* on the homepage manifesto banner.
+    - *Walking Dots Mascot* footer interaction with cycling dialog bubbles.
+    - *Subway Surfers* coin shower, gravity suction, sound synthesizer, and arcade particle effects (tested and evaluated for UX feasibility).
+- **Brutal 10/10 UX Audit & Architectural Findings:**
+  - Evaluated the weight of heavy animation runtimes against pure user experience:
+    - Heavy JS frameworks (GSAP + ScrollTrigger = 115 KB) created unnecessary battery drain, initial execution overhead, and synthetic scroll interference.
+    - Continuous Web Audio and particle render loops introduced sensory clutter and high CPU usage on mobile devices.
+    - Synthetic overscroll hijacking interfered with native mobile browser momentum gestures.
+    - Artificial click delays (130ms card press wait) hurt navigation responsiveness.
+- **Pure Native 120 FPS Resolution:**
+  - Completely stripped out 115 KB of external GSAP vendor libraries.
+  - Replaced all tactile physics (squash-and-stretch, hero sheen, speech pop, compass rotation) with **pure hardware-accelerated CSS keyframes** running directly on the GPU compositor thread.
+  - Replaced heavy framework logic with a single, lean 2 KB vanilla JavaScript handler (`_includes/abso-interactions.html`).
+  - Added physical haptic feedback micro-ticks (`navigator.vibrate(8)`) for physical touchscreens.
+  - Retained 100% responsive WebP asset pipeline, zero layout shift (CLS = 0.000), and instantaneous navigation.
 
 ### Release v0.4_alpha — Comprehensive Website Performance Optimization & Responsive Media Engine (2026-10-11)
 
